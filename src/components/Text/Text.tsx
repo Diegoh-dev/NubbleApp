@@ -15,9 +15,7 @@ type TextVariants =
   | 'paragraphCaption'
   | 'paragraphCaptionSmall';
 
-  //Utilitario do typescript
-  // conteudo para o linkedin
-
+                          //Chave      valor
 const fontSizes : Record<TextVariants,TextStyle> = {
     headingLarge: {fontSize: 32, lineHeight: 38.4,},
     headingMedium: {fontSize: 22, lineHeight: 26.4},
