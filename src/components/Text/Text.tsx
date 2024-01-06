@@ -3,13 +3,39 @@ import {Text as RNText, TextProps as RnTextProps, TextStyle} from 'react-native'
 
 interface TextProps extends RnTextProps{
   preset?:TextVariants;
+  bold?:boolean;
+  italic?:boolean;
+  semiBold?:boolean;
 }
 
 
-export function Text({children,preset='headingMedium',style, ...rest}: TextProps) {
+export function Text({children,preset='headingMedium',bold,italic,semiBold,style, ...rest}: TextProps) {
+
+  const fontFamily = getFontFamily(preset,bold,italic,semiBold);
 
   const stylesText = $fontSizes[preset];
-  return <RNText  style={[style,stylesText]} {...rest}>{children}</RNText>;
+  return <RNText  style={[stylesText,{fontFamily},style,]} {...rest}>{children}</RNText>;
+}
+
+function getFontFamily(preset:TextVariants,bold?: boolean, italic?: boolean, semiBold?: boolean) {
+  if(preset === 'headingLarge' || preset === 'headingMedium' || preset === 'headingSmall'){
+    return italic ? $fontFamily.boldItalic : $fontFamily.bold;
+  }
+
+  switch (true) {
+    case bold && italic:
+      return $fontFamily.boldItalic;
+    case bold:
+      return $fontFamily.bold;
+    case italic:
+      return $fontFamily.italic;
+    case semiBold && italic:
+      return $fontFamily.mediumItalic;
+    case semiBold:
+      return $fontFamily.medium;
+    default:
+      return $fontFamily.regular;
+  }
 }
 
 type TextVariants =
