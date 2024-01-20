@@ -22,7 +22,7 @@ export function Button({title, loading,...touchableOpacityBoxPros}: ButtonProps)
       {loading ? (
         <ActivityIndicator />
       ) : (
-        <Text style={{color: '#FFF'}}>{title}</Text>
+        <Text color={"primaryContrast"}>{title}</Text>
       )}
     </TouchableOpacityBox>
   );

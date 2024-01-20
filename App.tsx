@@ -12,7 +12,7 @@ function App(): React.JSX.Element {
   return (
     <ThemeProvider theme={theme}>
     <SafeAreaView>
-      <Text preset='headingLarge' style={{color:'red'}}>Diego</Text>
+      <Text preset='headingLarge' >Diego</Text>
 
     <Box marginTop='s20'>
     <Button title='Entrar'/>

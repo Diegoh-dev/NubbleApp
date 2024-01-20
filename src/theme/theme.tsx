@@ -55,7 +55,14 @@ export const theme = createTheme({
       s8:8,
       s12:12,
       s16:16,
+    },
+
+    //PARA CORRIGIR O ERRO DO COMPOENTE DE TEXTO, POIS ELE RECEBE ALGUMAS PROPRIEDADES COMODEFAULTS
+
+    textVariants:{
+      defaults:{}
     }
+    
 })
 // Extraindo o tipo do objeto theme
 export type Theme = typeof theme;
