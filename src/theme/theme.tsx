@@ -66,3 +66,7 @@ export const theme = createTheme({
 })
 // Extraindo o tipo do objeto theme
 export type Theme = typeof theme;
+// Extraindo as chaves da propriedade "colors".
+export type ThemeColor = keyof Theme['colors'];
+
+// const teste:ThemeColor = 'background'

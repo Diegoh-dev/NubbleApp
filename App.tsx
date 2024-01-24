@@ -15,7 +15,10 @@ function App(): React.JSX.Element {
       <Text preset='headingLarge' >Diego</Text>
 
     <Box marginTop='s20'>
-    <Button title='Entrar'/>
+    <Button title='Primary' preset='primary'/>
+    </Box>
+    <Box marginTop='s20'>
+    <Button title='Outline' preset='outline'/>
     </Box>
 
     <Button title='Loafing' loading marginTop='s20'/>
