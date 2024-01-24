@@ -20,6 +20,9 @@ function App(): React.JSX.Element {
     <Box marginTop='s20'>
     <Button title='Outline' preset='outline'/>
     </Box>
+    <Box marginTop='s20'>
+    <Button title='Secundary' preset='Secundary'/>
+    </Box>
 
     <Button title='Loafing' loading marginTop='s20'/>
 

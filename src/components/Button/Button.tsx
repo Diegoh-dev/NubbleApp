@@ -10,7 +10,7 @@ import { buttonPresets } from './buttonPresets';
 //PRESET: PRIMARY E OUTILINE
 //DEFAUL, DISABLED
 
-export type ButtonsPreset = 'primary' | 'outline';
+export type ButtonsPreset = 'primary' | 'outline' | 'Secundary';
 
 
 interface ButtonProps extends TouchableOpacityBoxPros {
