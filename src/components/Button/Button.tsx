@@ -11,20 +11,21 @@ import { ActivityIndicator } from '../ActivityIndicator/ActivityIndicator';
 //PRESET: PRIMARY E OUTILINE
 //DEFAUL, DISABLED
 
-export type ButtonsPreset = 'primary' | 'outline' | 'Secundary';
+export type ButtonsPreset = 'primary' | 'outline' ;
 
 
 interface ButtonProps extends TouchableOpacityBoxPros {
   title: string;
   loading?: boolean;
-  preset?:ButtonsPreset
+  preset?:ButtonsPreset;
+  disabled?:boolean;
 }
 
-export function Button({title, loading,preset = 'primary',...touchableOpacityBoxPros}: ButtonProps) {
-  const buttonPreset = buttonPresets[preset];
+export function Button({title, loading,disabled,preset = 'primary',...touchableOpacityBoxPros}: ButtonProps) {
+  const buttonPreset = buttonPresets[preset][disabled ? 'disabled' : 'default'];
   return (
     <TouchableOpacityBox
-      // backgroundColor="buttonPrimary"
+     disabled={disabled || loading}
       paddingHorizontal="s20"
       height={50}
       alignItems="center"
