@@ -15,13 +15,13 @@ function App(): React.JSX.Element {
       <Text preset='headingLarge' >Diego</Text>
 
     <Box marginTop='s20'>
-    <Button title='Primary' preset='primary'/>
+    <Button loading title='Primary' preset='primary'/>
     </Box>
     <Box marginTop='s20'>
-    <Button title='Outline' preset='outline'/>
+    <Button loading title='Outline' preset='outline'/>
     </Box>
     <Box marginTop='s20'>
-    <Button title='Secundary' preset='Secundary'/>
+    <Button loading title='Secundary' preset='Secundary'/>
     </Box>
 
     <Button title='Loafing' loading marginTop='s20'/>

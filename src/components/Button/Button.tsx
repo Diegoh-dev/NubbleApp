@@ -1,9 +1,10 @@
-import {ActivityIndicator, TouchableOpacity} from 'react-native';
+import { TouchableOpacity} from 'react-native';
 import {Text} from '../Text/Text';
 import {useTheme} from '@shopify/restyle';
 import {Theme, ThemeColor} from '../../theme/theme';
 import {Box, TouchableOpacityBox, TouchableOpacityBoxPros} from '../Box/box';
 import { buttonPresets } from './buttonPresets';
+import { ActivityIndicator } from '../ActivityIndicator/ActivityIndicator';
 
 // SEMPRE SEPARAR A PARTE DE COMPORTAMENTO DA PARTE DE UI
 // COMPORTAMENTO X UI
@@ -33,7 +34,7 @@ export function Button({title, loading,preset = 'primary',...touchableOpacityBox
       {...touchableOpacityBoxPros}
       >
       {loading ? (
-        <ActivityIndicator />
+        <ActivityIndicator  color='carrotSecondary'/>
       ) : (
         <Text color={buttonPreset.content}>{title}</Text>
       )}
