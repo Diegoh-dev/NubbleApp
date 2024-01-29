@@ -8,24 +8,41 @@ interface ButtonUI {
   content: ThemeColor; // text ou loading
 }
 // Mapeando de uma interface para outra
-export const buttonPresets: Record<ButtonsPreset, ButtonUI> = {
+export const buttonPresets: Record<
+  ButtonsPreset,
+  {
+    default: ButtonUI;
+    disabled: ButtonUI;
+  }
+> = {
   primary: {
-    container: {
-      backgroundColor: 'primary',
+    default: {
+      container: {
+        backgroundColor: 'primary',
+      },
+      content: 'primaryContrast',
     },
-    content: 'primaryContrast',
+    disabled: {
+      container: {
+        backgroundColor: 'gray4',
+      },
+      content: 'gray2',
+    },
   },
   outline: {
-    container: {
-      borderColor: 'primary',
-      borderWidth: 1,
+    default: {
+      container: {
+        borderColor: 'primary',
+        borderWidth: 1,
+      },
+      content: 'primary',
     },
-    content: 'primary',
-  },
-  Secundary: {
-    container: {
-      backgroundColor: 'carrotSecondary',
+    disabled: {
+      container: {
+        borderWidth: 1,
+        borderColor: 'gray4',
+      },
+      content: 'gray2',
     },
-    content: 'primaryContrast',
   },
 };

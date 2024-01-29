@@ -1,29 +1,31 @@
-import {ActivityIndicator, TouchableOpacity} from 'react-native';
+import { TouchableOpacity} from 'react-native';
 import {Text} from '../Text/Text';
 import {useTheme} from '@shopify/restyle';
 import {Theme, ThemeColor} from '../../theme/theme';
 import {Box, TouchableOpacityBox, TouchableOpacityBoxPros} from '../Box/box';
 import { buttonPresets } from './buttonPresets';
+import { ActivityIndicator } from '../ActivityIndicator/ActivityIndicator';
 
 // SEMPRE SEPARAR A PARTE DE COMPORTAMENTO DA PARTE DE UI
 // COMPORTAMENTO X UI
 //PRESET: PRIMARY E OUTILINE
 //DEFAUL, DISABLED
 
-export type ButtonsPreset = 'primary' | 'outline' | 'Secundary';
+export type ButtonsPreset = 'primary' | 'outline' ;
 
 
 interface ButtonProps extends TouchableOpacityBoxPros {
   title: string;
   loading?: boolean;
-  preset?:ButtonsPreset
+  preset?:ButtonsPreset;
+  disabled?:boolean;
 }
 
-export function Button({title, loading,preset = 'primary',...touchableOpacityBoxPros}: ButtonProps) {
-  const buttonPreset = buttonPresets[preset];
+export function Button({title, loading,disabled,preset = 'primary',...touchableOpacityBoxPros}: ButtonProps) {
+  const buttonPreset = buttonPresets[preset][disabled ? 'disabled' : 'default'];
   return (
     <TouchableOpacityBox
-      // backgroundColor="buttonPrimary"
+     disabled={disabled || loading}
       paddingHorizontal="s20"
       height={50}
       alignItems="center"
@@ -33,7 +35,7 @@ export function Button({title, loading,preset = 'primary',...touchableOpacityBox
       {...touchableOpacityBoxPros}
       >
       {loading ? (
-        <ActivityIndicator />
+        <ActivityIndicator  color='carrotSecondary'/>
       ) : (
         <Text color={buttonPreset.content}>{title}</Text>
       )}

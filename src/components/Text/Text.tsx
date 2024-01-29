@@ -18,16 +18,26 @@ interface TextProps extends RSTextProps {
 
 
 
-export function Text({children,preset='headingMedium',bold,italic,semiBold,style, ...rSTextProps}: TextProps) {
-
-  const fontFamily = getFontFamily(preset,bold,italic,semiBold);
+export function Text({
+  children,
+  preset = 'headingMedium',
+  bold,
+  italic,
+  semiBold,
+  style,
+  ...rSTextProps
+}: TextProps) {
+  const fontFamily = getFontFamily(preset, bold, italic, semiBold);
 
   const stylesText = $fontSizes[preset];
-  return <SRText color='backgroundContrast' 
-  style={[stylesText,{fontFamily},style,]} 
-  {...rSTextProps}>
-    {children}
-    </SRText>;
+  return (
+    <SRText
+      color="backgroundContrast"
+      style={[stylesText, {fontFamily}, style]}
+      {...rSTextProps}>
+      {children}
+    </SRText>
+  );
 }
 
 function getFontFamily(preset:TextVariants,bold?: boolean, italic?: boolean, semiBold?: boolean) {
