@@ -5,6 +5,8 @@ import {ThemeProvider, useTheme} from '@shopify/restyle';
 import {Theme, theme} from './src/theme/theme';
 import {Button} from './src/components/Button/Button';
 import {Box} from './src/components/Box/box';
+import { EyeOffIcon } from './src/assets/fonts/icons/EyeOffIcon';
+import { EyeOnIcon } from './src/assets/fonts/icons/EyeOnIcon';
 
 function App(): React.JSX.Element {
   const {} = useTheme<Theme>();
@@ -20,8 +22,9 @@ function App(): React.JSX.Element {
           <Box marginTop="s20">
             <Button loading title="Outline" preset="outline" />
           </Box>
-
           <Button title="Loafing" loading marginTop="s20" />
+          <EyeOnIcon color='red' size={100}/>
+
         </View>
       </SafeAreaView>
     </ThemeProvider>
