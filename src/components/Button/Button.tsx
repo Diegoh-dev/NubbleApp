@@ -1,8 +1,6 @@
-import { TouchableOpacity} from 'react-native';
+import React from 'react';
 import {Text} from '../Text/Text';
-import {useTheme} from '@shopify/restyle';
-import {Theme, ThemeColor} from '../../theme/theme';
-import {Box, TouchableOpacityBox, TouchableOpacityBoxPros} from '../Box/box';
+import { TouchableOpacityBox, TouchableOpacityBoxPros} from '../Box/box';
 import { buttonPresets } from './buttonPresets';
 import { ActivityIndicator } from '../ActivityIndicator/ActivityIndicator';
 

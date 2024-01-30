@@ -1,5 +1,5 @@
-import { createText } from '@shopify/restyle';
 import React from 'react';
+import { createText } from '@shopify/restyle';
 import { TextStyle} from 'react-native';
 import { Theme } from '../../theme/theme';
 
