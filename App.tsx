@@ -13,7 +13,7 @@ function App(): React.JSX.Element {
           <Text preset="headingLarge">Diego</Text>
 
           <Icon name="eyeOn" color="carrotSecondary" size={25} />
-          <Icon name="eyOff" color="backgroundContrast" size={50} />
+          <Icon name="eyeOff" color="backgroundContrast" size={50} />
         </View>
       </SafeAreaView>
     </ThemeProvider>
