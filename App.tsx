@@ -18,7 +18,7 @@ function App(): React.JSX.Element {
           <Text preset='paragraphLarge' mb='s40'>Digite seu e-mail e senha para entrar </Text>
           
           <Box mb='s20'>
-          <TextInput label='E-mail' placeholder='Digite seu e-mail'/>
+          <TextInput errorMessage='Mensagem de error' label='E-mail' placeholder='Digite seu e-mail'/>
           </Box>
           <Box >
           <TextInput label='Senha' placeholder='Digite sua senha' />
