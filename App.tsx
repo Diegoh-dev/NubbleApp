@@ -21,7 +21,7 @@ function App(): React.JSX.Element {
           <TextInput errorMessage='Mensagem de error' label='E-mail' placeholder='Digite seu e-mail'/>
           </Box>
           <Box >
-          <TextInput label='Senha' placeholder='Digite sua senha' />
+          <TextInput label='Senha' placeholder='Digite sua senha' rightComponent={<Icon name='eyeOn' color='gray2'/>}/>
           </Box>
           <Text mt='s10' marginBottom='s8' color='primary' preset="paragraphSmall" bold>Esqueci minha senha</Text>
 
