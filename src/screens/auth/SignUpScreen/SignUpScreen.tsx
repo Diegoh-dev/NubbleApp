@@ -10,7 +10,7 @@ export function SignUpScreen() {
     // TODO: Implementar
   }
   return (
-    <Screen canGoBack>
+    <Screen canGoBack scrollable>
       <Text preset="headingLarge" mb="s32">
         Criar uma conta
       </Text>
@@ -23,6 +23,26 @@ export function SignUpScreen() {
         boxProps={{mb: 's20'}}
       />
 
+      <TextInput
+        label="E-mail"
+        placeholder="Digite seu e-mail"
+        boxProps={{mb: 's20'}}
+      />
+      <TextInput
+        label="E-mail"
+        placeholder="Digite seu e-mail"
+        boxProps={{mb: 's20'}}
+      />
+      <TextInput
+        label="E-mail"
+        placeholder="Digite seu e-mail"
+        boxProps={{mb: 's20'}}
+      />
+      <TextInput
+        label="E-mail"
+        placeholder="Digite seu e-mail"
+        boxProps={{mb: 's20'}}
+      />
       <TextInput
         label="E-mail"
         placeholder="Digite seu e-mail"
