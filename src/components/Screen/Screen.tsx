@@ -27,6 +27,7 @@ export function Screen({
   const {colors} = useAppTheme();
   return (
     <KeyboardAvoidingView
+    style={{flex:1}}
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <Container backgroundColor={colors.background}>
         <Box

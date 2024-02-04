@@ -7,7 +7,7 @@ interface props {
 }
 
 export function ScrollViewContainer({children, backgroundColor}: props) {
-  return <ScrollView style={{backgroundColor}}>{children}</ScrollView>;
+  return <ScrollView keyboardShouldPersistTaps={'handled'} style={{backgroundColor,flex:1}} >{children}</ScrollView>;
 }
 
 export function ViewContainer({children, backgroundColor}: props) {
