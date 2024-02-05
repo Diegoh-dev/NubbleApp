@@ -11,6 +11,7 @@ export function Router() {
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
+          fullScreenGestureEnabled:true // para aumentar a area arastavel dos dipositivos IOS
         }}
         initialRouteName="LoginScreen">
         <Stack.Screen name="LoginScreen" component={LoginScreen} />
