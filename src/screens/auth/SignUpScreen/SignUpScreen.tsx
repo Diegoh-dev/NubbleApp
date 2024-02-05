@@ -5,6 +5,10 @@ import {TextInput} from '../../../components/TextInput/TextInput';
 import {Icon} from '../../../components/Icon/Icon';
 import {Button} from '../../../components/Button/Button';
 import { PassWordInput } from '../../../components/PasswordInput/PasswordInput';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../../Routes/Routes';
+
+type SignUpScreenProps = NativeStackScreenProps<RootStackParamList,'SignUpScreen'>
 
 export function SignUpScreen() {
   function submitForm() {

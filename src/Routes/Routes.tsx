@@ -4,7 +4,13 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {LoginScreen} from '../screens/auth/LoginScreen/LoginScreen';
 import {SignUpScreen} from '../screens/auth/SignUpScreen/SignUpScreen';
 
-const Stack = createNativeStackNavigator();
+export type RootStackParamList = {
+  LoginScreen : undefined;
+  SignUpScreen: undefined; // Significa que essa tela não recebe nenhum parametro
+  //SucessScreen: icon, title, description
+}
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 export function Router() {
   return (
     <NavigationContainer>

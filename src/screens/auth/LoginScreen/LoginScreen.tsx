@@ -5,11 +5,15 @@ import {TextInput} from '../../../components/TextInput/TextInput';
 import {Button} from '../../../components/Button/Button';
 import {Icon} from '../../../components/Icon/Icon';
 import {Screen} from '../../../components/Screen/Screen';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../../Routes/Routes';
 
-export function LoginScreen({navigation }) {
+type LoginScreenProps = NativeStackScreenProps<RootStackParamList,'LoginScreen'>
+
+export function LoginScreen({navigation}:LoginScreenProps) {
 
   function navigationToSignUpScreen(){
-    navigation.navigate('SignUpScreen')
+    navigation.navigate('SignUpScreen');
   }
   return (
     <Screen>
