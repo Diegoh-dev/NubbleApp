@@ -4,12 +4,17 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {LoginScreen} from '../screens/auth/LoginScreen/LoginScreen';
 import {SignUpScreen} from '../screens/auth/SignUpScreen/SignUpScreen';
 import { SuccesScreen } from '../screens/auth/SuccesScreen/SuccesScreen';
+import { IconProps } from '../components/Icon/Icon';
 
 export type RootStackParamList = {
   LoginScreen : undefined;
   SignUpScreen: undefined; // Significa que essa tela não recebe nenhum parametro
   //SucessScreen: icon, title, description
-  SuccesScreen:undefined;
+  SuccesScreen:{
+    title:string;
+    description:string;
+    icon:Pick<IconProps,'name' | 'color'>;
+  };
 }
 
 const Stack = createNativeStackNavigator<RootStackParamList>();

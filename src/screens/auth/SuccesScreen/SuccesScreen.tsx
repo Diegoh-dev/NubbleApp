@@ -3,17 +3,23 @@ import {Screen} from '../../../components/Screen/Screen';
 import {Icon} from '../../../components/Icon/Icon';
 import {Text} from '../../../components/Text/Text';
 import {Button} from '../../../components/Button/Button';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../../Routes/Routes';
+import { useAppTheme } from '../../../hooks/useAppTheme';
 
-export function SuccesScreen() {
+type SuccesScreenProps = NativeStackScreenProps<RootStackParamList,'SuccesScreen'>
+
+export function SuccesScreen({route}:SuccesScreenProps) {
+
 
     function goBackToBegin(){
         //TODO: nagefar para a tela de login
     }
   return (
     <Screen>
-      <Icon name="camera" />
-      <Text mt="s24" preset='headingLarge'>Title</Text>
-      <Text mt="s16" preset='paragraphLarge'>Descrição</Text>
+      <Icon {...route.params.icon}  />
+      <Text mt="s24" preset='headingLarge'>{route.params.title}</Text>
+      <Text mt="s16" preset='paragraphLarge'>{route.params.description}</Text>
 
       <Button onPress={goBackToBegin} mt="s40" title="Voltar ao início" />
     </Screen>
