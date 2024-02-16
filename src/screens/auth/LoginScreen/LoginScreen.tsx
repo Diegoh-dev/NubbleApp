@@ -7,6 +7,7 @@ import {Icon} from '../../../components/Icon/Icon';
 import {Screen} from '../../../components/Screen/Screen';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../Routes/Routes';
+import { TouchableOpacityBox } from '../../../components/Box/box';
 
 type LoginScreenProps = NativeStackScreenProps<RootStackParamList,'LoginScreen'>
 
@@ -14,6 +15,10 @@ export function LoginScreen({navigation}:LoginScreenProps) {
 
   function navigationToSignUpScreen(){
     navigation.navigate('SignUpScreen');
+  }
+
+  function navigationToForgotPassawordScreen(){
+    navigation.navigate('ForgotPasswordScreen');
   }
   return (
     <Screen>
@@ -38,12 +43,19 @@ export function LoginScreen({navigation}:LoginScreenProps) {
         rightComponent={<Icon name="eyeOn" color="gray2" />}
       />
 
-      <Text marginBottom="s8" color="primary" preset="paragraphSmall" bold>
-        Esqueci minha senha
-      </Text>
+      
+        <Text onPress={navigationToForgotPassawordScreen} marginBottom="s8" color="primary" preset="paragraphSmall" bold>
+          Esqueci minha senha
+        </Text>
+    
 
       <Button mt="s48" title="Entrar" />
-      <Button onPress={navigationToSignUpScreen} preset="outline" mt="s12" title="Criar uma conta" />
+      <Button
+        onPress={navigationToSignUpScreen}
+        preset="outline"
+        mt="s12"
+        title="Criar uma conta"
+      />
     </Screen>
   );
 }

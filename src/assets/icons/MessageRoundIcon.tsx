@@ -8,7 +8,7 @@ export function MessageRoundIcon({
   color = palette.greenPrimary,
 }: IconBase) {
   return (
-    <Svg width={size} height={size} viewBox="0 0 48 48" fill="none">
+    <Svg width={48} height={48} viewBox="0 0 48 48" fill="none">
       <Circle cx="24" cy="24" r="24" fill={color} />
       <Path
         fillRule="evenodd"

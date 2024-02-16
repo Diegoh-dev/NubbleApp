@@ -9,11 +9,12 @@ import { useAppTheme } from '../../../hooks/useAppTheme';
 
 type SuccesScreenProps = NativeStackScreenProps<RootStackParamList,'SuccesScreen'>
 
-export function SuccesScreen({route}:SuccesScreenProps) {
+export function SuccesScreen({route,navigation}:SuccesScreenProps) {
 
 
     function goBackToBegin(){
         //TODO: nagefar para a tela de login
+        navigation.goBack();
     }
   return (
     <Screen>
