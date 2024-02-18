@@ -20,6 +20,10 @@ export function TextInput({label,errorMessage,rightComponent,boxProps, ...rnText
   const {colors} = useAppTheme();
   const inputRef = useRef<RNTextInput>(null);
 
+  console.log({
+    errorMessage
+  })
+
   const $textInputContainer: BoxProps = {
     flexDirection:'row',
     borderWidth: errorMessage ? 2 : 1,
@@ -40,6 +44,7 @@ export function TextInput({label,errorMessage,rightComponent,boxProps, ...rnText
         </Text>
         <Box {...$textInputContainer}>
           <RNTextInput
+            autoCapitalize='none'
             ref={inputRef}
             placeholderTextColor={colors.gray2}
             style={$textInputStyle}

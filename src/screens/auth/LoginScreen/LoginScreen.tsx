@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView, View} from 'react-native';
+import {Alert, SafeAreaView, View} from 'react-native';
 import {Text} from '../../../components/Text/Text';
 import {TextInput} from '../../../components/TextInput/TextInput';
 import {Button} from '../../../components/Button/Button';
@@ -7,11 +7,23 @@ import {Icon} from '../../../components/Icon/Icon';
 import {Screen} from '../../../components/Screen/Screen';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../Routes/Routes';
-import { TouchableOpacityBox } from '../../../components/Box/box';
+import { useForm,Controller } from "react-hook-form";
 
 type LoginScreenProps = NativeStackScreenProps<RootStackParamList,'LoginScreen'>
 
+type LoginFormType = {
+  email:string;
+  password:string;
+}
 export function LoginScreen({navigation}:LoginScreenProps) {
+  const { control, formState, handleSubmit } = useForm<LoginFormType>({
+    defaultValues: {
+      email: '',
+      password: ''
+    },
+    mode:'onChange'
+  });
+
 
   function navigationToSignUpScreen(){
     navigation.navigate('SignUpScreen');
@@ -20,6 +32,11 @@ export function LoginScreen({navigation}:LoginScreenProps) {
   function navigationToForgotPassawordScreen(){
     navigation.navigate('ForgotPasswordScreen');
   }
+
+  function submitForm({email,password}:LoginFormType){
+    Alert.alert(`Email:${email} ${`\n`} Senha:${password}`)
+  }
+
   return (
     <Screen>
       <Text marginBottom="s8" preset="headingLarge">
@@ -29,27 +46,69 @@ export function LoginScreen({navigation}:LoginScreenProps) {
         Digite seu e-mail e senha para entrar{' '}
       </Text>
 
-      <TextInput
-        boxProps={{mb: 's20'}}
-        errorMessage="Mensagem de error"
-        label="E-mail"
-        placeholder="Digite seu e-mail"
+      <Controller
+        control={control}
+        name="email"
+        rules={{
+          required: 'E-mail obrigatório',
+          pattern: {
+            value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+            message: 'E-mail inválido',
+          },
+        }}
+        render={({field, fieldState}) => {
+          console.log({fieldState:fieldState.error})
+          return(
+            <TextInput
+            errorMessage={fieldState.error?.message}
+            value={field.value}
+            onChangeText={field.onChange}
+            label="E-mail"
+            placeholder="Digite seu e-mail"
+            boxProps={{mb: 's20'}}
+          />
+          )
+        }}
       />
 
-      <TextInput
-        boxProps={{mb: 's10'}}
-        label="Senha"
-        placeholder="Digite sua senha"
-        rightComponent={<Icon name="eyeOn" color="gray2" />}
+     
+      <Controller
+        control={control}
+        name='password'
+        rules={{
+          required: 'Senha obrigatória',
+          minLength:{
+            value:8,
+            message:'Senha deve ter no mínimo 8 caracteres'
+          }
+        }}
+        render={({ field, fieldState }) => (
+          <TextInput
+            errorMessage={fieldState.error?.message}
+            value={field.value}
+            onChangeText={field.onChange}
+            boxProps={{ mb: 's10' }}
+            label="Senha"
+            placeholder="Digite sua senha"
+            rightComponent={<Icon name="eyeOn" color="gray2" />}
+          />
+
+        )}
       />
 
+  
       
         <Text onPress={navigationToForgotPassawordScreen} marginBottom="s8" color="primary" preset="paragraphSmall" bold>
           Esqueci minha senha
         </Text>
     
 
-      <Button mt="s48" title="Entrar" />
+        <Button
+        disabled={!formState.isValid}
+        onPress={handleSubmit(submitForm)}
+        marginTop="s48"
+        title="Entrar"
+      />
       <Button
         onPress={navigationToSignUpScreen}
         preset="outline"
