@@ -123,15 +123,13 @@ export function SignUpScreen({ navigation }: SignUpScreenProps) {
           }
         }}
         render={({ field, fieldState }) => (
-          <TextInput
+          <PassWordInput
             errorMessage={fieldState.error?.message}
             value={field.value}
             onChangeText={field.onChange}
             boxProps={{ mb: 's10' }}
             label="Senha"
-            // secureTextEntry
             placeholder="Digite sua senha"
-            rightComponent={<Icon name="eyeOn" color="gray2" />}
           />
 
         )}

@@ -8,6 +8,7 @@ import {Screen} from '../../../components/Screen/Screen';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../Routes/Routes';
 import { useForm,Controller } from "react-hook-form";
+import { PassWordInput } from '../../../components/PasswordInput/PasswordInput';
 
 type LoginScreenProps = NativeStackScreenProps<RootStackParamList,'LoginScreen'>
 
@@ -80,14 +81,14 @@ export function LoginScreen({navigation}:LoginScreenProps) {
           }
         }}
         render={({ field, fieldState }) => (
-          <TextInput
+          <PassWordInput
             errorMessage={fieldState.error?.message}
             value={field.value}
             onChangeText={field.onChange}
             boxProps={{ mb: 's10' }}
             label="Senha"
+            // secureTextEntry
             placeholder="Digite sua senha"
-            rightComponent={<Icon name="eyeOn" color="gray2" />}
           />
 
         )}
