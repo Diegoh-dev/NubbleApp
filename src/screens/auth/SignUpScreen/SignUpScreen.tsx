@@ -9,6 +9,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../Routes/Routes';
 import { useResetNavigationSuccess } from '../../../hooks/useResetNavigationSuccess';
 import { useForm, Controller } from 'react-hook-form';
+import { FormTextInput } from '../../../components/Form/FormTextInput';
 
 type SignUpScreenProps = NativeStackScreenProps<RootStackParamList, 'SignUpScreen'>;
 type SignUpFormType = {
@@ -52,7 +53,18 @@ export function SignUpScreen({ navigation }: SignUpScreenProps) {
         Criar uma conta
       </Text>
 
-      <Controller
+      <FormTextInput
+      control={control}
+      name='userName'
+      rules={{
+        required: 'Username obrigatório'
+      }}
+      label="Seu username"
+      placeholder="@"
+      boxProps={{ mb: 's20' }} 
+      />
+
+      {/* <Controller
         control={control}
         name='userName'
         rules={{
@@ -67,7 +79,7 @@ export function SignUpScreen({ navigation }: SignUpScreenProps) {
             placeholder="@"
             boxProps={{ mb: 's20' }} />
         )}
-      />
+      /> */}
 
 
 
