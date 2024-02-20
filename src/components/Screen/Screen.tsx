@@ -20,10 +20,10 @@ export function Screen({
   scrollable = false,
 }: ScreenProps) {
   const {top, bottom} = useAppSafeArea();
-  console.log({
-    device: Platform.OS,
-    bottom,
-  });
+  // console.log({
+  //   device: Platform.OS,
+  //   bottom,
+  // });
   const Container = scrollable ? ScrollViewContainer : ViewContainer;
   const {colors} = useAppTheme();
   const navigation = useNavigation();

@@ -20,9 +20,6 @@ export function TextInput({label,errorMessage,rightComponent,boxProps, ...rnText
   const {colors} = useAppTheme();
   const inputRef = useRef<RNTextInput>(null);
 
-  console.log({
-    errorMessage
-  })
 
   const $textInputContainer: BoxProps = {
     flexDirection:'row',

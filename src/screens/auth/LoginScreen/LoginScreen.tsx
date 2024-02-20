@@ -56,10 +56,8 @@ export function LoginScreen({navigation}:LoginScreenProps) {
             message: 'E-mail inválido',
           },
         }}
-        render={({field, fieldState}) => {
-          console.log({fieldState:fieldState.error})
-          return(
-            <TextInput
+        render={({field, fieldState}) => (
+          <TextInput
             errorMessage={fieldState.error?.message}
             value={field.value}
             onChangeText={field.onChange}
@@ -67,8 +65,7 @@ export function LoginScreen({navigation}:LoginScreenProps) {
             placeholder="Digite seu e-mail"
             boxProps={{mb: 's20'}}
           />
-          )
-        }}
+        )}
       />
 
      
