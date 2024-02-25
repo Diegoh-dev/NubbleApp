@@ -1,41 +1,38 @@
 import React from 'react';
-import {Alert, SafeAreaView, View} from 'react-native';
-import {Text} from '../../../components/Text/Text';
-import {TextInput} from '../../../components/TextInput/TextInput';
-import {Button} from '../../../components/Button/Button';
-import {Icon} from '../../../components/Icon/Icon';
-import {Screen} from '../../../components/Screen/Screen';
+import { Alert} from 'react-native';
+import { Text } from '../../../components/Text/Text';
+import { Button } from '../../../components/Button/Button';
+import { Screen } from '../../../components/Screen/Screen';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../Routes/Routes';
-import { useForm,Controller } from "react-hook-form";
-import { PassWordInput } from '../../../components/PasswordInput/PasswordInput';
+import { useForm} from "react-hook-form";
 import { FormTextInput } from '../../../components/Form/FormTextInput';
 import { loginScreenShema, loginScreenShemaType } from './loginScreenShema';
-import {zodResolver} from '@hookform/resolvers/zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { FormPassWordInput } from '../../../components/Form/FormPassWordInput';
-type LoginScreenProps = NativeStackScreenProps<RootStackParamList,'LoginScreen'>
+type LoginScreenProps = NativeStackScreenProps<RootStackParamList, 'LoginScreen'>
 
 
-export function LoginScreen({navigation}:LoginScreenProps) {
+export function LoginScreen({ navigation }: LoginScreenProps) {
   const { control, formState, handleSubmit } = useForm<loginScreenShemaType>({
     defaultValues: {
       email: '',
       password: ''
     },
-    mode:'onChange',
-    resolver:zodResolver(loginScreenShema)
+    mode: 'onChange',
+    resolver: zodResolver(loginScreenShema)
   });
 
 
-  function navigationToSignUpScreen(){
+  function navigationToSignUpScreen() {
     navigation.navigate('SignUpScreen');
   }
 
-  function navigationToForgotPassawordScreen(){
+  function navigationToForgotPassawordScreen() {
     navigation.navigate('ForgotPasswordScreen');
   }
 
-  function submitForm({email,password}:loginScreenShemaType){
+  function submitForm({ email, password }: loginScreenShemaType) {
     Alert.alert(`Email:${email} ${`\n`} Senha:${password}`)
   }
 
@@ -55,27 +52,6 @@ export function LoginScreen({navigation}:LoginScreenProps) {
         placeholder="Digite seu e-mail"
         boxProps={{ mb: 's20' }}
       />
-      {/* <Controller
-        control={control}
-        name="email"
-        rules={{
-          required: 'E-mail obrigatório',
-          pattern: {
-            value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
-            message: 'E-mail inválido',
-          },
-        }}
-        render={({field, fieldState}) => (
-          <TextInput
-            errorMessage={fieldState.error?.message}
-            value={field.value}
-            onChangeText={field.onChange}
-            label="E-mail"
-            placeholder="Digite seu e-mail"
-            boxProps={{mb: 's20'}}
-          />
-        )}
-      /> */}
 
       <FormPassWordInput
         control={control}
@@ -85,38 +61,14 @@ export function LoginScreen({navigation}:LoginScreenProps) {
         // secureTextEntry
         placeholder="Digite sua senha"
       />
-      {/* <Controller
-        control={control}
-        name='password'
-        rules={{
-          required: 'Senha obrigatória',
-          minLength:{
-            value:8,
-            message:'Senha deve ter no mínimo 8 caracteres'
-          }
-        }}
-        render={({ field, fieldState }) => (
-          <PassWordInput
-            errorMessage={fieldState.error?.message}
-            value={field.value}
-            onChangeText={field.onChange}
-            boxProps={{ mb: 's10' }}
-            label="Senha"
-            // secureTextEntry
-            placeholder="Digite sua senha"
-          />
 
-        )}
-      /> */}
 
-  
-      
-        <Text onPress={navigationToForgotPassawordScreen} marginBottom="s8" color="primary" preset="paragraphSmall" bold>
-          Esqueci minha senha
-        </Text>
-    
+      <Text onPress={navigationToForgotPassawordScreen} marginBottom="s8" color="primary" preset="paragraphSmall" bold>
+        Esqueci minha senha
+      </Text>
 
-        <Button
+
+      <Button
         disabled={!formState.isValid}
         onPress={handleSubmit(submitForm)}
         marginTop="s48"

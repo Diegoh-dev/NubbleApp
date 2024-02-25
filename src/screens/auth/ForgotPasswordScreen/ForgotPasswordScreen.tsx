@@ -1,37 +1,37 @@
 import React from 'react';
-import {Screen} from '../../../components/Screen/Screen';
-import {Text} from '../../../components/Text/Text';
-import { TextInput } from '../../../components/TextInput/TextInput';
+import { Screen } from '../../../components/Screen/Screen';
+import { Text } from '../../../components/Text/Text';
 import { Button } from '../../../components/Button/Button';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../Routes/Routes';
 import { useResetNavigationSuccess } from '../../../hooks/useResetNavigationSuccess';
 import { FormTextInput } from '../../../components/Form/FormTextInput';
-import {useForm} from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { forgotPasswordScreenShema, forgotPasswordScreenShemaType } from './forgotPasswordScreenShema';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-type ForgotPasswordScreenProps = NativeStackScreenProps<RootStackParamList,'ForgotPasswordScreen'>;
+type ForgotPasswordScreenProps = NativeStackScreenProps<RootStackParamList, 'ForgotPasswordScreen'>;
 
-export function ForgotPasswordScreen({navigation}:ForgotPasswordScreenProps) {
+export function ForgotPasswordScreen({ navigation }: ForgotPasswordScreenProps) {
 
-  const {control,handleSubmit, formState} = useForm<forgotPasswordScreenShemaType>({
-    defaultValues:{
-      email:''
+  const { control, handleSubmit, formState } = useForm<forgotPasswordScreenShemaType>({
+    defaultValues: {
+      email: ''
     },
-    mode:'onChange',
-    resolver:zodResolver(forgotPasswordScreenShema)
+    mode: 'onChange',
+    resolver: zodResolver(forgotPasswordScreenShema)
   });
 
-  const {reset} = useResetNavigationSuccess();
+  const { reset } = useResetNavigationSuccess();
 
-  function submitForm(){
+  function submitForm(values:forgotPasswordScreenShemaType) {
+    console.log(values.email)
     reset({
-      title:`Enviamos as instruções${'\n'}para seu e-mail`,
-      description:'Clique no link enviado no seu e-mail para recuperar sua senha',
-      icon:{
-        name:'MessageRound',
-        color:'primary'
+      title: `Enviamos as instruções${'\n'}para seu e-mail`,
+      description: 'Clique no link enviado no seu e-mail para recuperar sua senha',
+      icon: {
+        name: 'MessageRound',
+        color: 'primary'
       }
     })
   }
@@ -40,7 +40,6 @@ export function ForgotPasswordScreen({navigation}:ForgotPasswordScreenProps) {
       <Text mb='s16' preset='headingLarge'>Esqueci minha senha</Text>
       <Text mb='s32' preset='paragraphLarge'>Digite seu e-mail e enviaremos as instruções para redefinição de senha</Text>
 
-      {/* <TextInput label='E-mail' placeholder='Digite seu e-mail'/> */}
 
       <FormTextInput
         control={control}
@@ -49,7 +48,7 @@ export function ForgotPasswordScreen({navigation}:ForgotPasswordScreenProps) {
         placeholder='Digite seu e-mail'
       />
 
-      <Button onPress={submitForm} mt='s40' title='Recuperar senha'/>
+      <Button onPress={handleSubmit(submitForm)} mt='s40' title='Recuperar senha' disabled={!formState.isValid}/>
 
     </Screen>
   );
