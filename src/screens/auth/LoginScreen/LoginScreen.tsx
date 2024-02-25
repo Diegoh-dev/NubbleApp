@@ -9,20 +9,21 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../Routes/Routes';
 import { useForm,Controller } from "react-hook-form";
 import { PassWordInput } from '../../../components/PasswordInput/PasswordInput';
-
+import { FormTextInput } from '../../../components/Form/FormTextInput';
+import { loginScreenShema, loginScreenShemaType } from './loginScreenShema';
+import {zodResolver} from '@hookform/resolvers/zod';
+import { FormPassWordInput } from '../../../components/Form/FormPassWordInput';
 type LoginScreenProps = NativeStackScreenProps<RootStackParamList,'LoginScreen'>
 
-type LoginFormType = {
-  email:string;
-  password:string;
-}
+
 export function LoginScreen({navigation}:LoginScreenProps) {
-  const { control, formState, handleSubmit } = useForm<LoginFormType>({
+  const { control, formState, handleSubmit } = useForm<loginScreenShemaType>({
     defaultValues: {
       email: '',
       password: ''
     },
-    mode:'onChange'
+    mode:'onChange',
+    resolver:zodResolver(loginScreenShema)
   });
 
 
@@ -34,7 +35,7 @@ export function LoginScreen({navigation}:LoginScreenProps) {
     navigation.navigate('ForgotPasswordScreen');
   }
 
-  function submitForm({email,password}:LoginFormType){
+  function submitForm({email,password}:loginScreenShemaType){
     Alert.alert(`Email:${email} ${`\n`} Senha:${password}`)
   }
 
@@ -47,7 +48,14 @@ export function LoginScreen({navigation}:LoginScreenProps) {
         Digite seu e-mail e senha para entrar{' '}
       </Text>
 
-      <Controller
+      <FormTextInput
+        control={control}
+        name='email'
+        label="E-mail"
+        placeholder="Digite seu e-mail"
+        boxProps={{ mb: 's20' }}
+      />
+      {/* <Controller
         control={control}
         name="email"
         rules={{
@@ -67,10 +75,17 @@ export function LoginScreen({navigation}:LoginScreenProps) {
             boxProps={{mb: 's20'}}
           />
         )}
-      />
+      /> */}
 
-     
-      <Controller
+      <FormPassWordInput
+        control={control}
+        name='password'
+        boxProps={{ mb: 's10' }}
+        label="Senha"
+        // secureTextEntry
+        placeholder="Digite sua senha"
+      />
+      {/* <Controller
         control={control}
         name='password'
         rules={{
@@ -92,7 +107,7 @@ export function LoginScreen({navigation}:LoginScreenProps) {
           />
 
         )}
-      />
+      /> */}
 
   
       

@@ -8,9 +8,8 @@ import { useResetNavigationSuccess } from '../../../hooks/useResetNavigationSucc
 import { useForm, Controller } from 'react-hook-form';
 import { FormTextInput } from '../../../components/Form/FormTextInput';
 import { FormPassWordInput } from '../../../components/Form/FormPassWordInput';
-import { SignUpShema, signUpShema } from './SignUpShema';
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { SignUpShematype, signUpShema } from './signUpShema';
 
 type SignUpScreenProps = NativeStackScreenProps<RootStackParamList, 'SignUpScreen'>;
 
@@ -19,7 +18,7 @@ export function SignUpScreen({ navigation }: SignUpScreenProps) {
 
   const { reset } = useResetNavigationSuccess();
 
-  const { control, formState, handleSubmit } = useForm<SignUpShema>({
+  const { control, formState, handleSubmit } = useForm<SignUpShematype>({
     defaultValues: {
       userName: '',
       fullName: '',
@@ -30,7 +29,7 @@ export function SignUpScreen({ navigation }: SignUpScreenProps) {
     resolver: zodResolver(signUpShema)
   });
 
-  function submitForm(formValues: SignUpShema) {
+  function submitForm(formValues: SignUpShematype) {
 
     console.log({
       formValues

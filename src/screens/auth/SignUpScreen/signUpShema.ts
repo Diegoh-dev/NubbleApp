@@ -1,11 +1,6 @@
 import {z} from 'zod';
 
-type SignUpFormType = {
-    userName: string;
-    fullName: string;
-    email: string;
-    password: string;
-  }
+
   
 const userNameRegex = /^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/gim;
 
@@ -21,4 +16,4 @@ export const signUpShema = z.object({
 })
 
 // zod vai inferir o tipo travez do objeto shema
-export type SignUpShema = z.infer<typeof signUpShema>;
+export type SignUpShematype = z.infer<typeof signUpShema>;
