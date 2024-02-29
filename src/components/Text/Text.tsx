@@ -7,7 +7,7 @@ const SRText = createText<Theme>();
 // Extraindo a propriedades de tipo de um componente 
 type RSTextProps = React.ComponentProps<typeof SRText>;
 
-interface TextProps extends RSTextProps {
+export interface TextProps extends RSTextProps {
   preset?:TextVariants;
   bold?:boolean;
   italic?:boolean;
