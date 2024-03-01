@@ -1,8 +1,6 @@
 import React from 'react';
-import {Text} from '../Text/Text';
-import { TouchableOpacityBox, TouchableOpacityBoxPros} from '../Box/box';
+import {Text,TouchableOpacityBox,TouchableOpacityBoxPros,ActivityIndicator} from '@components';
 import { buttonPresets } from './buttonPresets';
-import { ActivityIndicator } from '../ActivityIndicator/ActivityIndicator';
 
 // SEMPRE SEPARAR A PARTE DE COMPORTAMENTO DA PARTE DE UI
 // COMPORTAMENTO X UI

@@ -1,13 +1,9 @@
 import React from 'react';
-import { Screen } from '../../../components/Screen/Screen';
-import { Text } from '../../../components/Text/Text';
-import { Button } from '../../../components/Button/Button';
+import {Screen,Text,Button,FormTextInput,FormPassWordInput} from '@components';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../../Routes/Routes';
-import { useResetNavigationSuccess } from '../../../hooks/useResetNavigationSuccess';
-import { useForm, Controller } from 'react-hook-form';
-import { FormTextInput } from '../../../components/Form/FormTextInput';
-import { FormPassWordInput } from '../../../components/Form/FormPassWordInput';
+import { RootStackParamList } from '@routes';
+import { useResetNavigationSuccess } from '@hooks';
+import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { SignUpShematype, signUpShema } from './signUpShema';
 

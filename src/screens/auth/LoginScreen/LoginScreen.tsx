@@ -2,7 +2,7 @@ import React from 'react';
 import { Alert} from 'react-native';
 import {Text,Button,Screen,FormTextInput,FormPassWordInput} from "@components";
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../../Routes/Routes';
+import { RootStackParamList } from '@routes';
 import { useForm} from "react-hook-form";
 import { loginScreenShema, loginScreenShemaType } from './loginScreenShema';
 import { zodResolver } from '@hookform/resolvers/zod';
