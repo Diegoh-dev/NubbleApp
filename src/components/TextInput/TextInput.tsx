@@ -5,7 +5,8 @@ import {
   TextInputProps as RNTextInputProps,
   TextStyle,
 } from 'react-native';
-import {Box,BoxProps,$fontFamily,$fontSizes,Text} from '@components';
+import {$fontFamily,$fontSizes,Text} from '../Text/Text';
+import {Box,BoxProps} from '../Box/box';
 import {useAppTheme} from '@hooks';
 
 export interface TextInputProps extends RNTextInputProps {
@@ -28,6 +29,7 @@ export function TextInput({label,errorMessage,rightComponent,boxProps, ...rnText
     borderRadius: 's12',
   };
   
+  const teste = 'teste';
 
   function focusInput() {
     inputRef.current?.focus();
