@@ -1,6 +1,8 @@
-import React from "react";
-import { Controller, FieldValues, UseControllerProps } from "react-hook-form";
-import { PassWordInput, PassWordInputProps } from "@components";
+import React from 'react';
+
+import { Controller, FieldValues, UseControllerProps } from 'react-hook-form';
+
+import { PassWordInput, PassWordInputProps } from '@components';
 
 export function FormPassWordInput<FormType extends FieldValues>({ control, name, rules, ...passWordInputProps }: PassWordInputProps & UseControllerProps<FormType>) {
     return (
@@ -18,5 +20,5 @@ export function FormPassWordInput<FormType extends FieldValues>({ control, name,
 
             )}
         />
-    )
+    );
 }

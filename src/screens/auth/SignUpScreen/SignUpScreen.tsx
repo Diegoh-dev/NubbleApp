@@ -1,10 +1,14 @@
 import React from 'react';
-import {Screen,Text,Button,FormTextInput,FormPassWordInput} from '@components';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '@routes';
-import { useResetNavigationSuccess } from '@hooks';
-import { useForm } from 'react-hook-form';
+
 import { zodResolver } from '@hookform/resolvers/zod';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useForm } from 'react-hook-form';
+
+import {Screen,Text,Button,FormTextInput,FormPassWordInput} from '@components';
+import { useResetNavigationSuccess } from '@hooks';
+import { RootStackParamList } from '@routes';
+
+
 import { SignUpShematype, signUpShema } from './signUpShema';
 
 type SignUpScreenProps = NativeStackScreenProps<RootStackParamList, 'SignUpScreen'>;
@@ -22,22 +26,22 @@ export function SignUpScreen({ navigation }: SignUpScreenProps) {
       password: '',
     },
     mode: 'onChange',
-    resolver: zodResolver(signUpShema)
+    resolver: zodResolver(signUpShema),
   });
 
   function submitForm(formValues: SignUpShematype) {
 
     console.log({
-      formValues
-    })
+      formValues,
+    });
     reset({
       title: 'Sua conta foi criada com sucesso!',
       description: 'Agora é só fazer login na nossa plataforma',
       icon: {
         name: 'checkRound',
         color: 'success',
-      }
-    })
+      },
+    });
   }
   return (
     <Screen canGoBack scrollable>
@@ -47,7 +51,7 @@ export function SignUpScreen({ navigation }: SignUpScreenProps) {
 
       <FormTextInput
         control={control}
-        name='userName'
+        name="userName"
         label="Seu username"
         placeholder="@"
         boxProps={{ mb: 's20' }}
@@ -55,8 +59,8 @@ export function SignUpScreen({ navigation }: SignUpScreenProps) {
 
       <FormTextInput
         control={control}
-        name='fullName'
-        autoCapitalize='words'
+        name="fullName"
+        autoCapitalize="words"
         label="Nome Completo"
         placeholder="Digite seu nome completo"
         boxProps={{ mb: 's20' }}
@@ -64,7 +68,7 @@ export function SignUpScreen({ navigation }: SignUpScreenProps) {
 
       <FormTextInput
         control={control}
-        name='email'
+        name="email"
         label="E-mail"
         placeholder="Digite seu e-mail"
         boxProps={{ mb: 's20' }}
@@ -72,7 +76,7 @@ export function SignUpScreen({ navigation }: SignUpScreenProps) {
 
       <FormPassWordInput
         control={control}
-        name='password'
+        name="password"
         boxProps={{ mb: 's10' }}
         label="Senha"
         placeholder="Digite sua senha"

@@ -1,5 +1,6 @@
 import {ThemeColor} from '../../theme/theme';
 import {TouchableOpacityBoxPros} from '../Box/box';
+
 import {ButtonsPreset} from './Button';
 
 //INTERFACE PARA VARIAÇÃO DO BOTÃO

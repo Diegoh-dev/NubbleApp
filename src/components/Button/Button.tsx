@@ -1,5 +1,7 @@
 import React from 'react';
+
 import {Text,TouchableOpacityBox,TouchableOpacityBoxPros,ActivityIndicator} from '@components';
+
 import { buttonPresets } from './buttonPresets';
 
 // SEMPRE SEPARAR A PARTE DE COMPORTAMENTO DA PARTE DE UI
@@ -7,7 +9,7 @@ import { buttonPresets } from './buttonPresets';
 //PRESET: PRIMARY E OUTILINE
 //DEFAUL, DISABLED
 
-export type ButtonsPreset = 'primary' | 'outline' ;
+export type ButtonsPreset = 'primary' | 'outline';
 
 
 interface ButtonProps extends TouchableOpacityBoxPros {
@@ -31,7 +33,7 @@ export function Button({title, loading,disabled,preset = 'primary',...touchableO
       {...touchableOpacityBoxPros}
       >
       {loading ? (
-        <ActivityIndicator  color='carrotSecondary'/>
+        <ActivityIndicator  color="carrotSecondary"/>
       ) : (
         <Text color={buttonPreset.content}>{title}</Text>
       )}

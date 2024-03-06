@@ -5,9 +5,11 @@ import {
   TextInputProps as RNTextInputProps,
   TextStyle,
 } from 'react-native';
-import {$fontFamily,$fontSizes,Text} from '../Text/Text';
-import {Box,BoxProps} from '../Box/box';
+
 import {useAppTheme} from '@hooks';
+
+import {Box,BoxProps} from '../Box/box';
+import {$fontFamily,$fontSizes,Text} from '../Text/Text';
 
 export interface TextInputProps extends RNTextInputProps {
   label: string;
@@ -28,7 +30,7 @@ export function TextInput({label,errorMessage,rightComponent,boxProps, ...rnText
     borderColor: errorMessage ? 'error' : 'gray4',
     borderRadius: 's12',
   };
-  
+
 
   function focusInput() {
     inputRef.current?.focus();
@@ -41,7 +43,7 @@ export function TextInput({label,errorMessage,rightComponent,boxProps, ...rnText
         </Text>
         <Box {...$textInputContainer}>
           <RNTextInput
-            autoCapitalize='none'
+            autoCapitalize="none"
             ref={inputRef}
             placeholderTextColor={colors.gray2}
             style={$textInputStyle}
@@ -49,7 +51,7 @@ export function TextInput({label,errorMessage,rightComponent,boxProps, ...rnText
           />
 
           {rightComponent && (
-            <Box ml='s16' justifyContent='center'>
+            <Box ml="s16" justifyContent="center">
               {rightComponent}
             </Box>
           )}
@@ -70,6 +72,6 @@ const $textInputStyle: TextStyle = {
   padding: 0,
   ...$fontSizes.paragraphMedium,
   flexGrow:1,
-  flexShrink:1
+  flexShrink:1,
 };
 
