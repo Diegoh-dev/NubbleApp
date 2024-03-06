@@ -29,7 +29,6 @@ export function TextInput({label,errorMessage,rightComponent,boxProps, ...rnText
     borderRadius: 's12',
   };
   
-  const teste = 'teste';
 
   function focusInput() {
     inputRef.current?.focus();
