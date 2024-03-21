@@ -14,9 +14,12 @@ import { SignUpShematype, signUpShema } from './signUpShema';
 type SignUpScreenProps = NativeStackScreenProps<RootStackParamList, 'SignUpScreen'>;
 
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function SignUpScreen({ navigation }: SignUpScreenProps) {
 
   const { reset } = useResetNavigationSuccess();
+
+
 
   const { control, formState, handleSubmit } = useForm<SignUpShematype>({
     defaultValues: {
