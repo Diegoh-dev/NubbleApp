@@ -1,38 +1,30 @@
 import React from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import {IconProps} from '@components';
-import {LoginScreen,SignUpScreen,SuccesScreen,ForgotPasswordScreen} from '@screens';
+
+import {AppStack} from './AppStack';
+import {AuthStack} from './AuthStack';
 
 export type RootStackParamList = {
-  LoginScreen : undefined;
+  LoginScreen: undefined;
   SignUpScreen: undefined; // Significa que essa tela não recebe nenhum parametro
   //SucessScreen: icon, title, description
-  SuccesScreen:{
-    title:string;
-    description:string;
-    icon:Pick<IconProps,'name' | 'color'>;
+  SuccesScreen: {
+    title: string;
+    description: string;
+    icon: Pick<IconProps, 'name' | 'color'>;
   };
-  ForgotPasswordScreen:undefined;
-}
+  ForgotPasswordScreen: undefined;
+};
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+
 export function Router() {
+  const isSignedIn = false;
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-          fullScreenGestureEnabled:true, // para aumentar a area arastavel dos dipositivos IOS
-        }}
-        initialRouteName="LoginScreen">
-        <Stack.Screen name="LoginScreen" component={LoginScreen} />
-        <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
-        <Stack.Screen name="SuccesScreen" component={SuccesScreen} />
-        <Stack.Screen name="ForgotPasswordScreen" component={ForgotPasswordScreen}/>
-      </Stack.Navigator>
+      {isSignedIn ? <AppStack /> : <AuthStack />}
     </NavigationContainer>
   );
 }

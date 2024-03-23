@@ -6,6 +6,7 @@ import {IconBase} from '../../components/Icon/Icon';
 import {palette} from '../../theme/theme';
 
 export function MessageRoundIcon({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   size = 48,
   color = palette.greenPrimary,
 }: IconBase) {

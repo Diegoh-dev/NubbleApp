@@ -14,6 +14,7 @@ import { forgotPasswordScreenShema, forgotPasswordScreenShemaType } from './forg
 
 type ForgotPasswordScreenProps = NativeStackScreenProps<RootStackParamList, 'ForgotPasswordScreen'>;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function ForgotPasswordScreen({ navigation }: ForgotPasswordScreenProps) {
 
   const { control, handleSubmit, formState } = useForm<forgotPasswordScreenShemaType>({
