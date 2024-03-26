@@ -1,13 +1,11 @@
 import React from 'react';
 
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {AppStackParamList} from 'src/Routes/AppStack';
+import { AppScreenPros } from 'src/Routes/types/navigationType';
 
 import {Button, Screen, Text} from '@components';
 
-type HomeScreenProps = NativeStackScreenProps<AppStackParamList, 'HomeScreen'>;
 
-export function HomeScreen({navigation}: HomeScreenProps) {
+export function HomeScreen({navigation}: AppScreenPros<'HomeScreen'>) {
   return (
     <Screen>
       <Text preset="headingLarge">Home Screen</Text>
