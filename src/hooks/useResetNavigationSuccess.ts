@@ -1,11 +1,12 @@
 import {useNavigation} from '@react-navigation/native';
 
-import {RootStackParamList} from '@routes';
+import { AuthStackParamList } from '@routes';
+
 
 export function useResetNavigationSuccess() {
   const navigation = useNavigation();
 
-  function reset(params: RootStackParamList['SuccesScreen']) {
+  function reset(params: AuthStackParamList['SuccesScreen']) {
     navigation.reset({
       index: 1, // index da tela que queremos resetar.
       routes: [

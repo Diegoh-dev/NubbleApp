@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { AppScreenPros } from 'src/Routes/types/navigationType';
 
 import {Button, Screen, Text} from '@components';
+import { AppScreenPros } from '@routes';
 
 
 export function HomeScreen({navigation}: AppScreenPros<'HomeScreen'>) {
