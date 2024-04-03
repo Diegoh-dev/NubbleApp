@@ -1,6 +1,9 @@
 import React from 'react';
 
-import {BottomTabBarProps, createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {
+  BottomTabBarProps,
+  createBottomTabNavigator,
+} from '@react-navigation/bottom-tabs';
 
 import {Icon, Text} from '@components';
 import {
@@ -22,9 +25,8 @@ export type AppTabBottomTabParamList = {
 const Tab = createBottomTabNavigator<AppTabBottomTabParamList>();
 
 export function AppTabNavigator() {
-
-  function renderTabBar(props:BottomTabBarProps){
-    return <AppTabBar {...props}/>
+  function renderTabBar(props: BottomTabBarProps) {
+    return <AppTabBar {...props} />;
   }
   return (
     <Tab.Navigator
