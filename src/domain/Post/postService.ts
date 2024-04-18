@@ -9,6 +9,8 @@ import {Post} from './postTypes';
 async function getList(): Promise<Post[]> {
   const postPageApi = await postApi.getList();
 
+  // return []
+  //  throw new Error('Deu ruim');
   return postPageApi.data.map(postAdapter.toPost);
 }
 
