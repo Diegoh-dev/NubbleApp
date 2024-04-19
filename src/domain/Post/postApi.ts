@@ -2,16 +2,18 @@
 
 import {PageAPI, api} from '@api';
 
-import {PostAPI} from './postTypes';
+import {PageParams, PostAPI} from './postTypes';
 
-async function getList(): Promise<PageAPI<PostAPI>> {
+async function getList(params?:PageParams): Promise<PageAPI<PostAPI>> {
   //TODO: simular um delay na API
   // endereço ip
   //172.27.64.1:3333
 
   await new Promise(resolve => setTimeout(() => resolve(''), 2000));
 
-  let response = await api.get<PageAPI<PostAPI>>('user/post');
+  let response = await api.get<PageAPI<PostAPI>>('user/post',{
+    params,
+  });
 
   return response.data;
 }
