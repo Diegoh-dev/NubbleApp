@@ -9,7 +9,6 @@ async function getList(params?:PageParams): Promise<PageAPI<PostAPI>> {
   // endereço ip
   //172.27.64.1:3333
 
-  await new Promise(resolve => setTimeout(() => resolve(''), 2000));
 
   let response = await api.get<PageAPI<PostAPI>>('user/post',{
     params,
