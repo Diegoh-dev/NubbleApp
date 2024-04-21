@@ -12,7 +12,7 @@ import {HomeHeader} from './components/HomeHeader';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
-  const {postList, loding, error, refresh,fetchNextPage} = usePostList();
+  const {list:postList, loding, error, refresh,fetchNextPage} = usePostList();
 
   const flatListRef = useRef<FlatList<Post>>(null);
 
