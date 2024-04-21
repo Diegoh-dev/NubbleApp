@@ -23,7 +23,7 @@ export function PostItem({post}:Props) {
       reactionCount={post.favoriteCount}
       />
 
-      <PostBottom author={post.author} commentCount={post.commentCount} text={post.text}/>
+      <PostBottom author={post.author} commentCount={post.commentCount} text={post.text} id={post.id}/>
     </Box>
   );
 }
