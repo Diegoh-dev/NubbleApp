@@ -28,7 +28,7 @@ export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
       ref={flatListRef}
         showsVerticalScrollIndicator={false}
         data={postList}
-        keyExtractor={post => post.id}
+        keyExtractor={post => post.id.toString()}
         renderItem={renderItem}
         onEndReached={fetchNextPage}//FUNÇÃO QUE SERÁ CHAMANDA QUANDO O SCROLL ESTIVER CHEGANDO NO FINAL DA LISTA
         onEndReachedThreshold={0.1}//momento que a requisição acima será quamanda qnd chegar nos ultimos 10% da lista.
