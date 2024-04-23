@@ -24,7 +24,7 @@ export function AppTabBar({state, descriptors, navigation}: BottomTabBarProps) {
       {state.routes.map((route, index) => {
         const {options} = descriptors[route.key];
 
-        console.log(route.name);
+        // console.log(route.name);
 
         const tabItem =
           mapScreenToProps[route.name as keyof AppTabBottomTabParamList];

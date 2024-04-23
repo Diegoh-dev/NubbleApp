@@ -23,8 +23,9 @@ export function ForgotPasswordScreen({ navigation }: AuthScreenProps<'ForgotPass
 
   const { reset } = useResetNavigationSuccess();
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   function submitForm(values:forgotPasswordScreenShemaType) {
-    console.log(values.email);
+    // console.log(values.email);
     reset({
       title: `Enviamos as instruções${'\n'}para seu e-mail`,
       description: 'Clique no link enviado no seu e-mail para recuperar sua senha',

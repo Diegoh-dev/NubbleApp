@@ -25,11 +25,12 @@ export function SignUpScreen({ navigation }: AuthScreenProps<'SignUpScreen'>) {
     resolver: zodResolver(signUpShema),
   });
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   function submitForm(formValues: SignUpShematype) {
 
-    console.log({
-      formValues,
-    });
+    // console.log({
+    //   formValues,
+    // });
     reset({
       title: 'Sua conta foi criada com sucesso!',
       description: 'Agora é só fazer login na nossa plataforma',
