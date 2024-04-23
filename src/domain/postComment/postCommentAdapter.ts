@@ -1,19 +1,19 @@
 import {PostComment, PostCommentAPI} from './postCommentTypes';
 
-function toPostComment(postCommentApi: PostCommentAPI): PostComment {
+function toPostComment(postCommentAPI: PostCommentAPI): PostComment {
   return {
-    id: postCommentApi.id,
-    message: postCommentApi.message,
-    createdAt: postCommentApi.created_at,
+    id: postCommentAPI.id,
+    message: postCommentAPI.message,
+    createdAt: postCommentAPI.created_at,
     author: {
-        id:postCommentApi.user.id,
-      name: postCommentApi.user.full_name,
-      profileURL: postCommentApi.user.profile_url,
-      userName: postCommentApi.user.username,
+      id: postCommentAPI.user.id,
+      name: postCommentAPI.user.full_name,
+      profileURL: postCommentAPI.user.profile_url,
+      userName: postCommentAPI.user.username,
     },
   };
 }
 
 export const postCommentAdapter = {
-    toPostComment,
+  toPostComment,
 };

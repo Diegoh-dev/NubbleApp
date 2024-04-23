@@ -7,16 +7,17 @@ import {PageParams} from '../Post/postTypes';
 import {PostCommentAPI} from './postCommentTypes';
 
 async function getList(
-  postId: number,
+  post_id: number,
   pageParams?: PageParams,
 ): Promise<PageAPI<PostCommentAPI>> {
-  let response = await api.get<PageAPI<PostCommentAPI>>('post_comment', {
+  let response = await api.get<PageAPI<PostCommentAPI>>('user/post_comment', {
     params: {
-      postId,
+      post_id,
       ...pageParams,
     },
   });
 
+  console.log('response:',response)
   return response.data;
 }
 
