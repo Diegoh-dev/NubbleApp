@@ -67,7 +67,7 @@ export function TextInput({label,errorMessage,rightComponent,boxProps, ...rnText
   );
 }
 
-const $textInputStyle: TextStyle = {
+export const $textInputStyle: TextStyle = {
   fontFamily: $fontFamily.regular,
   padding: 0,
   ...$fontSizes.paragraphMedium,
