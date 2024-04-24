@@ -62,5 +62,6 @@ export function usePaginatedList<Data>(getList: (page:number) => Promise<Page<Da
     error,
     refresh: fetchInitialData,
     fetchNextPage,
+    hasNextPage
   };
 }
