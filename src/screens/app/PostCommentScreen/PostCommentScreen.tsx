@@ -3,9 +3,9 @@ import {FlatList, ListRenderItemInfo} from 'react-native';
 
 import {PostComment, usePostCommentList} from '@domain';
 
-import {Box, Screen, Text} from '@components';
+import {Screen} from '@components';
 import {AppScreenPros} from '@routes';
-
+import {PostCommentItem} from '@screens'
 
 export function PostCommentScreen({route}: AppScreenPros<'PostCommentScreen'>) {
   const postId = route.params.postId;
@@ -13,13 +13,10 @@ export function PostCommentScreen({route}: AppScreenPros<'PostCommentScreen'>) {
 
 
   const {list} = usePostCommentList(postId);
-  console.log('listagem:', list);
 
   function renderItem({item}: ListRenderItemInfo<PostComment>) {
     return (
-      <Box>
-        <Text>{item.message}</Text>
-      </Box>
+      <PostCommentItem postComment={item}/>
     );
   }
   return (
