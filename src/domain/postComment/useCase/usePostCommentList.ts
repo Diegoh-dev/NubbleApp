@@ -1,4 +1,4 @@
-import {usePaginatedList} from '@domain';
+import { usePaginatedList} from '@domain';
 
 import { postCommentService } from '../postCommentService';
 
