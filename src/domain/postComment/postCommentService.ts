@@ -15,9 +15,7 @@ async function getList(
     per_page: PER_PAGE,
   });
 
-  console.log({postCommentPageAPI:postCommentPageAPI.data})
 
-  console.log('teste:',postCommentPageAPI.data.map(postCommentAdapter.toPostComment))
 
   return {
     data: postCommentPageAPI.data.map(postCommentAdapter.toPostComment),

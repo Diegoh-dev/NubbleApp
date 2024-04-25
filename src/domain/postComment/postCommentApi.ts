@@ -17,7 +17,6 @@ async function getList(
     },
   });
 
-  console.log('response:',response)
   return response.data;
 }
 
