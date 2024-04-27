@@ -15,7 +15,8 @@
       "@types":["src/types"],
       "@utils":["src/utils"],
       "@infra":["src/infra"],
-      "@Auth":["src/Auth"]
+      "@Auth":["src/Auth"],
+      "@services":["src/services"]
     }
   }
 }
