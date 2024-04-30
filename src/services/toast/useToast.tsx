@@ -23,10 +23,7 @@ export function useToastService(): Pick<
   //   hideToast,
   // };
 
-  const {showToast, hideToast} = useToastServiceZustand();
+  // const {showToast, hideToast} = useToastServiceZustand();
 
-  return {
-    showToast,
-    hideToast,
-  };
+  return useToastServiceZustand();
 }

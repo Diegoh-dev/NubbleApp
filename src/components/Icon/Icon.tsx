@@ -1,6 +1,7 @@
 import React from 'react';
 import { Pressable } from 'react-native';
 
+
 import {useAppTheme} from '@hooks';
 import {ThemeColor} from '@theme';
 
@@ -17,6 +18,7 @@ import { CheckIcon } from '../../assets/icons/CheckIcon';
 import { CheckRoundIcon } from '../../assets/icons/CheckRoundIcon';
 import { ChevronRightIcon } from '../../assets/icons/ChevronRightIcon';
 import { CommentIcon } from '../../assets/icons/CommentIcon';
+import { ErrorRoundIcon } from '../../assets/icons/ErrorRoundIcon';
 import { EyeOffIcon } from '../../assets/icons/EyeOffIcon';
 import {EyeOnIcon} from '../../assets/icons/EyeOnIcon';
 import { FlashOffIcon } from '../../assets/icons/FlashOffIcon';
@@ -77,6 +79,7 @@ const iconRegistry = {
   checkRound:CheckRoundIcon,
   comment: CommentIcon,
   chevronRight: ChevronRightIcon,
+  errorRound:ErrorRoundIcon,
   eyeOn: EyeOnIcon,
   eyeOff: EyeOffIcon,
   flashOn: FlashOnIcon,

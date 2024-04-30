@@ -21,6 +21,8 @@ export function PostCommentItem({postComment,onRemoveComment,userId,postAuthorId
       onRemoveComment();
       showToast({
         message:'Comentário deletado',
+        type:'error',
+        duration:5000,
       });
     },
   });
