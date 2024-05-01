@@ -44,8 +44,7 @@ const maoTypeToIcon: Record<ToastType, IconProps> = {
 };
 
 const $boxStyles: BoxProps = {
-  position: 'absolute',
-  alignSelf: 'center',
+
   backgroundColor: 'background',
   padding: 's16',
   borderRadius: 's16',
