@@ -38,7 +38,7 @@ export function TextInput({label,errorMessage,rightComponent,boxProps, ...rnText
   return (
       <Box {...boxProps}>
     <Pressable onPress={focusInput}>
-        <Text mb="s4" preset="paragraphSmall">
+        <Text mb="s4" preset="paragraphSmall" >
           {label}
         </Text>
         <Box {...$textInputContainer}>

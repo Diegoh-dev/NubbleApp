@@ -17,6 +17,7 @@ module.exports = {
         '@infra': './src/infra',
         '@Auth': './src/Auth',
         '@services': './src/services',
+        '@user': './src/user',
       },
     }],
   ],

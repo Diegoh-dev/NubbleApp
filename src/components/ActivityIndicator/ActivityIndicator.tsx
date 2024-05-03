@@ -6,9 +6,9 @@ import {ThemeColor} from '@theme';
 
                         //Oculta a propriedade color do ActivityIndicatorProps
 interface props extends Omit<ActivityIndicatorProps,'color'> {
-    color:ThemeColor;
+    color?:ThemeColor;
 }
-export function ActivityIndicator({color}:props){
+export function ActivityIndicator({color = 'primary'}:props){
     const {colors} = useAppTheme();
     return <RNActivityIndicator color={colors[color]} />;
 }
