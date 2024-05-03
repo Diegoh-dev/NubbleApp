@@ -7,11 +7,11 @@ import {AppScreenPros} from '@routes';
 
 export function ProfileScreen({route}: AppScreenPros<'ProfileScreen'>) {
   const userId = route.params.userId;
-  const {user, loading, error} = useUserGetById(userId);
+  const {user, isLoading, isError} = useUserGetById(userId);
   return (
     <Screen canGoBack>
-      {loading && <ActivityIndicator />}
-      {error && <Text> Error ao carregar perfil do usuário</Text>}
+      {isLoading && <ActivityIndicator />}
+      {isError && <Text> Error ao carregar perfil do usuário</Text>}
       {user && (
         <Box alignItems="center">
           <ProfileAvatar
