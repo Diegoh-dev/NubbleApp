@@ -12,7 +12,7 @@ import {HomeHeader} from './components/HomeHeader';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
-  const {list:postList, loading, error, refresh,fetchNextPage} = usePostList();
+  const {list:postList, isLoading, isError, refresh,fetchNextPage} = usePostList();
 
   const flatListRef = useRef<FlatList<Post>>(null);
 
@@ -32,12 +32,12 @@ export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
         renderItem={renderItem}
         onEndReached={fetchNextPage}//FUNÇÃO QUE SERÁ CHAMANDA QUANDO O SCROLL ESTIVER CHEGANDO NO FINAL DA LISTA
         onEndReachedThreshold={0.1}//momento que a requisição acima será quamanda qnd chegar nos ultimos 10% da lista.
-        refreshControl={<RefreshControl refreshing={loading} onRefresh={refresh}/>}// componente responsalvel por fazer o pull to refresh(Puxar o scroll de cima para baixo)
-        refreshing={loading}//para saber se esta esperando novos dados de uma atualização
+        refreshControl={<RefreshControl refreshing={isLoading} onRefresh={refresh}/>}// componente responsalvel por fazer o pull to refresh(Puxar o scroll de cima para baixo)
+        refreshing={isLoading}//para saber se esta esperando novos dados de uma atualização
         contentContainerStyle={{flex: postList.length === 0 ? 1 : undefined}}
         ListHeaderComponent={<HomeHeader />}
         ListEmptyComponent={
-          <HomeEmpty loading={loading} error={error} refetch={refresh} />
+          <HomeEmpty loading={isLoading} error={isError} refetch={refresh} />
         } // O componente será renderizando toda vez que a lista estiver vazia.
       />
     </Screen>
