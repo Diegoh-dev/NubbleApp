@@ -7,25 +7,22 @@ import { useToastService } from '@services';
 import {Box, ProfileAvatar, Text} from '@components';
 
 interface Props {
+  postId: number;
   postComment: PostComment;
-  onRemoveComment:() => void;
   userId: number;
   postAuthorId: number;
 }
 
-export function PostCommentItem({postComment,onRemoveComment,userId,postAuthorId}: Props) {
+export function PostCommentItem({postId,postComment,userId,postAuthorId}: Props) {
 
   const {showToast} = useToastService();
-  const {mutate} = usePostCommentRemove({
+  const {mutate} = usePostCommentRemove(postId,{
     onSuccess:()=>{
-      onRemoveComment();
       showToast({
         message:'Comentário deletado',
-        type:'success',
-        duration:5000,
       });
     },
-    
+
   });
 
   const isAllowToDelete = postCommentService.isAllowToDelete(postComment,userId,postAuthorId);
