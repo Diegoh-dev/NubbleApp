@@ -43,7 +43,7 @@ export function PostCommentScreen({route}: AppScreenPros<'PostCommentScreen'>) {
             />
           }
         />
-        <PostCommentTextMessage postId={postId} onAddComment={refresh}/>
+        <PostCommentTextMessage postId={postId} />
       </Box>
     </Screen>
   );

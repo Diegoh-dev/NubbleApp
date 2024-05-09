@@ -21,10 +21,11 @@ export function PostCommentItem({postComment,onRemoveComment,userId,postAuthorId
       onRemoveComment();
       showToast({
         message:'Comentário deletado',
-        type:'error',
+        type:'success',
         duration:5000,
       });
     },
+    
   });
 
   const isAllowToDelete = postCommentService.isAllowToDelete(postComment,userId,postAuthorId);
