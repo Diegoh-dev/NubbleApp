@@ -1,20 +1,27 @@
 import {authAdapter} from './authAdapter';
 import {AuthApi} from './authApi';
-import {AuthTypes} from './authTypes';
+import {AuthCredentials} from './authTypes';
 
-async function getAuth(email: string, password: string): Promise<AuthTypes> {
-  const response = await AuthApi.signIn(email, password);
+async function signIn(
+  email: string,
+  password: string,
+): Promise<AuthCredentials> {
+  try {
+    const authCredentialsAPI = await AuthApi.signIn(email, password);
 
-  return authAdapter.toAuthTypes(response);
+    return authAdapter.toAuthCredentials(authCredentialsAPI);
+  } catch (error) {
+    throw new Error('email ou senha inválido');
+  }
 }
 
 async function signOut(): Promise<string> {
-  const response = await AuthApi.signOut();
+  const message = await AuthApi.signOut();
 
-  return response;
+  return message;
 }
 
 export const authService = {
-  getAuth,
+  signIn,
   signOut,
 };
