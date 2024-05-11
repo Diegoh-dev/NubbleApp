@@ -1,13 +1,28 @@
 import React from 'react';
 
-import {Screen, Text} from '@components';
-import { AppTabScreenProps } from '@routes';
+import {useAuthCrendentials} from '@services';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function MyProfileScreen({navigation}:AppTabScreenProps<'MyProfileScreen'>) {
+import {Box, Icon, Screen, Text} from '@components';
+import {AppTabScreenProps} from '@routes';
+
+export function MyProfileScreen({
+  navigation,
+}: AppTabScreenProps<'MyProfileScreen'>) {
+  const {authCredentials} = useAuthCrendentials();
+  const name = authCredentials?.user.fullName;
   return (
     <Screen>
-      <Text> My Profile Screen</Text>
+      <Box
+        flexDirection="row"
+        justifyContent="space-between"
+        alignContent="center">
+        {name && <Text>{name}</Text>}
+
+        <Icon
+          name="settings"
+          onPress={() => navigation.navigate('SettingsScreen')}
+        />
+      </Box>
     </Screen>
   );
 }

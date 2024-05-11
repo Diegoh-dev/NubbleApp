@@ -1,11 +1,17 @@
+import {useAuthCrendentials} from '@services';
 import {useMutation} from '@tanstack/react-query';
 
 import {authService} from '../AuthService';
 
-export async function useAuthSingOut() {
+export function useAuthSingOut() {
+  const {removeCrendentials} = useAuthCrendentials();
   const mutation = useMutation<string, unknown, void>({
     mutationFn: () => authService.signOut(),
     retry: false,
+    onSuccess: () => {
+      authService.removeToken();
+      removeCrendentials();
+    },
   });
 
   return {
