@@ -23,6 +23,9 @@ export  function useAuthSingIn(option?: MutationOptions<AuthCredentials>) {
         option.onError(error.message);
       }
     },
+    onSuccess: (authCredentials) => {
+        authService.updateToken(authCredentials.token);
+    }
   });
 
   return {
