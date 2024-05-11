@@ -14,7 +14,7 @@ interface Variables {
   email: string;
   password: string;
 }
-export async function useAuthSingIn(option?: MutationOptions<AuthCredentials>) {
+export  function useAuthSingIn(option?: MutationOptions<AuthCredentials>) {
   const mutation = useMutation<AuthCredentials, Error, Variables>({
     mutationFn: ({email, password}) => authService.signIn(email, password),
     retry:false,// Quando falhar a requisição não tentar fazer novamente
