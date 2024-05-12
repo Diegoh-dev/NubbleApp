@@ -3,12 +3,26 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {useAuthCrendentials} from '@services';
 
+import {ActivityIndicator, Box} from '@components';
+
 import {AppStack} from './AppStack';
 import {AuthStack} from './AuthStack';
 
 export function Router() {
   // const isSignedIn = false;
-  const {authCredentials} = useAuthCrendentials();
+  const {authCredentials, isLoading} = useAuthCrendentials();
+
+  if (isLoading) {
+    return (
+      <Box
+        flex={1}
+        backgroundColor="background"
+        justifyContent="center"
+        alignContent="center">
+        <ActivityIndicator color="primary" size={'large'} />
+      </Box>
+    );
+  }
 
   return (
     <NavigationContainer>
