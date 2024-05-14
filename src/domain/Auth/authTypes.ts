@@ -18,3 +18,19 @@ export interface SignInData {
   email?: string;
   password: string;
 }
+
+export interface SingUpDataAPI {
+  firstName?: string;
+  lastName?: string;
+  username?: string;
+  email?: string;
+  password: string;
+}
+
+export interface SingUpData {
+  firstName?: string;
+  lastName?: string;
+  username?: string;
+  email?: string;
+  password: string;
+}

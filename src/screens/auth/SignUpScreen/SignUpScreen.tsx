@@ -1,44 +1,67 @@
 import React from 'react';
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
+import {useAuthSingUp} from '@domain';
+import {zodResolver} from '@hookform/resolvers/zod';
+import {useForm} from 'react-hook-form';
 
-import {Screen,Text,Button,FormTextInput,FormPassWordInput} from '@components';
-import { useResetNavigationSuccess } from '@hooks';
-import { AuthScreenProps } from '@routes';
+import {
+  Screen,
+  Text,
+  Button,
+  FormTextInput,
+  FormPassWordInput,
+} from '@components';
+import {useResetNavigationSuccess} from '@hooks';
+import {AuthScreenProps, AuthStackParamList} from '@routes';
 
-import { SignUpShematype, signUpShema } from './signUpShema';
+import {SignUpShematype, signUpShema} from './signUpShema';
+
+const resetParam: AuthStackParamList['SuccesScreen'] = {
+  title: 'Sua conta foi criada com sucesso!',
+  description: 'Agora é só fazer login na nossa plataforma',
+  icon: {
+    name: 'checkRound',
+    color: 'success',
+  },
+};
+
+const defaultValues: SignUpShematype = {
+  userName: '',
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
+};
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function SignUpScreen({ navigation }: AuthScreenProps<'SignUpScreen'>) {
+export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
+  const {reset} = useResetNavigationSuccess();
 
-  const { reset } = useResetNavigationSuccess();
-
-  const { control, formState, handleSubmit } = useForm<SignUpShematype>({
-    defaultValues: {
-      userName: '',
-      fullName: '',
-      email: '',
-      password: '',
-    },
+  const {control, formState, handleSubmit} = useForm<SignUpShematype>({
+    defaultValues,
     mode: 'onChange',
     resolver: zodResolver(signUpShema),
   });
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  function submitForm(formValues: SignUpShematype) {
+  const {signUp, isLoading} = useAuthSingUp({
+    onSuccess: () => {
+      reset(resetParam);
+    },
+  });
 
+  function submitForm(formValues: SignUpShematype) {
     // console.log({
     //   formValues,
     // });
-    reset({
-      title: 'Sua conta foi criada com sucesso!',
-      description: 'Agora é só fazer login na nossa plataforma',
-      icon: {
-        name: 'checkRound',
-        color: 'success',
-      },
-    });
+    signUp(formValues);
+    // reset({
+    //   title: 'Sua conta foi criada com sucesso!',
+    //   description: 'Agora é só fazer login na nossa plataforma',
+    //   icon: {
+    //     name: 'checkRound',
+    //     color: 'success',
+    //   },
+    // });
   }
   return (
     <Screen canGoBack scrollable>
@@ -51,16 +74,24 @@ export function SignUpScreen({ navigation }: AuthScreenProps<'SignUpScreen'>) {
         name="userName"
         label="Seu username"
         placeholder="@"
-        boxProps={{ mb: 's20' }}
+        boxProps={{mb: 's20'}}
       />
 
       <FormTextInput
         control={control}
-        name="fullName"
+        name="firstName"
         autoCapitalize="words"
-        label="Nome Completo"
-        placeholder="Digite seu nome completo"
-        boxProps={{ mb: 's20' }}
+        label="Nome"
+        placeholder="Digite seu nome"
+        boxProps={{mb: 's20'}}
+      />
+      <FormTextInput
+        control={control}
+        name="lastName"
+        autoCapitalize="words"
+        label="Sobrenome"
+        placeholder="Digite seu sobrenome"
+        boxProps={{mb: 's20'}}
       />
 
       <FormTextInput
@@ -68,19 +99,23 @@ export function SignUpScreen({ navigation }: AuthScreenProps<'SignUpScreen'>) {
         name="email"
         label="E-mail"
         placeholder="Digite seu e-mail"
-        boxProps={{ mb: 's20' }}
+        boxProps={{mb: 's20'}}
       />
 
       <FormPassWordInput
         control={control}
         name="password"
-        boxProps={{ mb: 's10' }}
+        boxProps={{mb: 's10'}}
         label="Senha"
         placeholder="Digite sua senha"
       />
 
-      <Button disabled={!formState.isValid} onPress={handleSubmit(submitForm)} title="Criar uma conta" />
+      <Button
+        loading={isLoading}
+        disabled={!formState.isValid}
+        onPress={handleSubmit(submitForm)}
+        title="Criar uma conta"
+      />
     </Screen>
   );
 }
-

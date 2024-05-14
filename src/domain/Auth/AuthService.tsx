@@ -2,7 +2,7 @@ import {api} from '@api';
 
 import {authAdapter} from './authAdapter';
 import {AuthApi} from './authApi';
-import {AuthCredentials} from './authTypes';
+import {AuthCredentials, SingUpData} from './authTypes';
 
 async function signIn(
   email: string,
@@ -23,6 +23,10 @@ async function signOut(): Promise<string> {
   return message;
 }
 
+async function signUp(singUpData: SingUpData): Promise<void> {
+  await AuthApi.signUp(singUpData);
+}
+
 function updateToken(token: string) {
   //https://axios-http.com/docs/config_defaults
   api.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -35,6 +39,7 @@ function removeToken() {
 export const authService = {
   signIn,
   signOut,
+  signUp,
   updateToken,
   removeToken,
 };

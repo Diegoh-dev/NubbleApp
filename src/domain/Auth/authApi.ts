@@ -1,6 +1,8 @@
 import {api} from '@api';
 
-import {AuthCredentialsAPI} from './authTypes';
+import { UserAPI } from '../user';
+
+import {AuthCredentialsAPI, SingUpDataAPI} from './authTypes';
 
 async function signIn(
   email: string,
@@ -18,7 +20,13 @@ async function signOut(): Promise<string> {
   return reponse.data;
 }
 
+async function signUp(data:SingUpDataAPI):Promise<UserAPI> {
+  const response = await api.post('register',data);
+  return response.data;
+}
+
 export const AuthApi = {
   signIn,
   signOut,
+  signUp,
 };
