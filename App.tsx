@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {AuthCredentialsProvider} from '@services';
+import {AuthCredentialsProvider, MMKVStorage, initializeStorage} from '@services';
 // import { ToastProvider} from '@services';
 import {ThemeProvider} from '@shopify/restyle';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
@@ -13,6 +13,8 @@ import {theme} from './src/theme/theme';
 
 
 const queryClient = new QueryClient();
+// Injeção de dependência;
+initializeStorage(MMKVStorage);
 
 function App(): React.JSX.Element {
   return (
