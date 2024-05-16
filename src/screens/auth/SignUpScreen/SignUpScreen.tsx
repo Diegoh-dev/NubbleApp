@@ -38,7 +38,7 @@ const defaultValues: SignUpShematype = {
 export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
   const {reset} = useResetNavigationSuccess();
 
-  const {control, formState, handleSubmit,watch} = useForm<SignUpShematype>({
+  const {control, formState, handleSubmit,watch,getFieldState} = useForm<SignUpShematype>({
     defaultValues,
     mode: 'onChange',
     resolver: zodResolver(signUpShema),
@@ -51,8 +51,10 @@ export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
   });
 
   const username = watch('userName');
+  const usernameState = getFieldState('userName');
+  const usernameIsValid = !usernameState.invalid && usernameState.isDirty;
 
-  const userNameQuery = useAuthIsUsernameIsVailable({username});
+  const userNameQuery = useAuthIsUsernameIsVailable({username,enabled:usernameIsValid});
 
   function submitForm(formValues: SignUpShematype) {
   
@@ -118,7 +120,7 @@ export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
 
       <Button
         loading={isLoading}
-        disabled={!formState.isValid}
+        disabled={!formState.isValid || userNameQuery.isFetching}
         onPress={handleSubmit(submitForm)}
         title="Criar uma conta"
       />

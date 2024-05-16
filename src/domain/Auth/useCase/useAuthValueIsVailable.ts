@@ -7,19 +7,25 @@ import {authService} from '../AuthService';
 
 interface Params {
   username: string;
+  enabled:boolean;
 }
-export function useAuthIsUsernameIsVailable({username}: Params) {
+export function useAuthIsUsernameIsVailable({username,enabled}: Params) {
 
     const debouncedUserName = useDebounce(username,1500);
 
   const {data, isFetching} = useQuery({
     queryKey: [QueryKeys.IsUsernameAvailable, debouncedUserName],
-    staleTime: 20000,
     queryFn: () => authService.isUsernameAvailable(debouncedUserName),
+    staleTime: 20000,
+    enabled: enabled && debouncedUserName.length > 0,
   });
+
+  // para mostrar para o usuário que ainda está fazendo a validação(carregamento) dos dados no debounce
+
+  const isDebouncing = debouncedUserName !== username;
 
   return {
     isVailable: !!data,
-    isFetching,
+    isFetching: isFetching || isDebouncing,
   };
 }
