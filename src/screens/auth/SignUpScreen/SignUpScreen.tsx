@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {useAuthSingUp} from '@domain';
+import {useAuthIsUsernameIsVailable, useAuthSingUp} from '@domain';
 import {zodResolver} from '@hookform/resolvers/zod';
 import {useForm} from 'react-hook-form';
 
@@ -10,6 +10,7 @@ import {
   Button,
   FormTextInput,
   FormPassWordInput,
+  ActivityIndicator,
 } from '@components';
 import {useResetNavigationSuccess} from '@hooks';
 import {AuthScreenProps, AuthStackParamList} from '@routes';
@@ -37,7 +38,7 @@ const defaultValues: SignUpShematype = {
 export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
   const {reset} = useResetNavigationSuccess();
 
-  const {control, formState, handleSubmit} = useForm<SignUpShematype>({
+  const {control, formState, handleSubmit,watch} = useForm<SignUpShematype>({
     defaultValues,
     mode: 'onChange',
     resolver: zodResolver(signUpShema),
@@ -49,10 +50,12 @@ export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
     },
   });
 
+  const username = watch('userName');
+
+  const userNameQuery = useAuthIsUsernameIsVailable({username});
+
   function submitForm(formValues: SignUpShematype) {
-    // console.log({
-    //   formValues,
-    // });
+  
     signUp(formValues);
     // reset({
     //   title: 'Sua conta foi criada com sucesso!',
@@ -75,6 +78,9 @@ export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
         label="Seu username"
         placeholder="@"
         boxProps={{mb: 's20'}}
+        rightComponent={
+          userNameQuery.isFetching ? <ActivityIndicator /> : undefined
+        }
       />
 
       <FormTextInput
