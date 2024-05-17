@@ -38,11 +38,12 @@ const defaultValues: SignUpShematype = {
 export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
   const {reset} = useResetNavigationSuccess();
 
-  const {control, formState, handleSubmit,watch,getFieldState} = useForm<SignUpShematype>({
-    defaultValues,
-    mode: 'onChange',
-    resolver: zodResolver(signUpShema),
-  });
+  const {control, formState, handleSubmit, watch, getFieldState} =
+    useForm<SignUpShematype>({
+      defaultValues,
+      mode: 'onChange',
+      resolver: zodResolver(signUpShema),
+    });
 
   const {signUp, isLoading} = useAuthSingUp({
     onSuccess: () => {
@@ -54,10 +55,12 @@ export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
   const usernameState = getFieldState('userName');
   const usernameIsValid = !usernameState.invalid && usernameState.isDirty;
 
-  const userNameQuery = useAuthIsUsernameIsVailable({username,enabled:usernameIsValid});
+  const userNameQuery = useAuthIsUsernameIsVailable({
+    username,
+    enabled: usernameIsValid,
+  });
 
   function submitForm(formValues: SignUpShematype) {
-  
     signUp(formValues);
     // reset({
     //   title: 'Sua conta foi criada com sucesso!',
@@ -80,6 +83,9 @@ export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
         label="Seu username"
         placeholder="@"
         boxProps={{mb: 's20'}}
+        errorMessage={
+          userNameQuery.isUnavailable ? 'username indisponível' : undefined
+        }
         rightComponent={
           userNameQuery.isFetching ? <ActivityIndicator /> : undefined
         }
@@ -120,7 +126,7 @@ export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
 
       <Button
         loading={isLoading}
-        disabled={!formState.isValid || userNameQuery.isFetching}
+        disabled={!formState.isValid || userNameQuery.isFetching || userNameQuery.isUnavailable}
         onPress={handleSubmit(submitForm)}
         title="Criar uma conta"
       />

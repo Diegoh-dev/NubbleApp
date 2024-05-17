@@ -8,7 +8,7 @@ import { TextInput, TextInputProps } from '@components';
 // PASSAR PÓS O TYPESCRIPT VAI INFERIR O TIPO POIS ATRAVES DO CONTROL QUE JÁ POSSUI A INTERFACE DE TIPO
 
 // generic constraints => O UseControllerProps ACEITA UMA INTERFACE GENERICA MAS QUE RESPEITE A INTERFACE DO FieldValues
-export function FormTextInput<FormType extends FieldValues>({ control, name, rules, ...textInputProps }: TextInputProps & UseControllerProps<FormType>) {
+export function FormTextInput<FormType extends FieldValues>({ control, name, rules, errorMessage, ...textInputProps }: TextInputProps & UseControllerProps<FormType>) {
     return (
         <Controller
             control={control}
@@ -16,7 +16,7 @@ export function FormTextInput<FormType extends FieldValues>({ control, name, rul
             rules={rules}
             render={({ field, fieldState }) => (
                 <TextInput
-                    errorMessage={fieldState.error?.message}
+                    errorMessage={fieldState.error?.message || errorMessage}
                     value={field.value}
                     onChangeText={field.onChange}
                     {...textInputProps} />
