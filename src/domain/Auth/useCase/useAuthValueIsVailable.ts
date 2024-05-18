@@ -5,15 +5,14 @@ import {useDebounce} from '@hooks';
 
 import {authService} from '../AuthService';
 
-interface Params<T extends {length: number}>{
+interface Params<T extends {length: number}> {
   value: T;
   enabled: boolean;
-  queryKey:QueryKeys
-  isAvailableFunc: (value:T) =>  Promise<boolean>;
+  queryKey: QueryKeys;
+  isAvailableFunc: (value: T) => Promise<boolean>;
 }
 
-
- function useAuthIsValueIsVailable<T extends {length: number}>({
+function useAuthIsValueIsVailable<T extends {length: number}>({
   value,
   queryKey,
   isAvailableFunc,
@@ -38,20 +37,28 @@ interface Params<T extends {length: number}>{
   };
 }
 
-export function useAuthIsUsernameIsVailable({username, enabled}: {username:string,enabled:boolean}) {
-
+export function useAuthIsUsernameIsVailable({
+  username,
+  enabled,
+}: {
+  username: string;
+  enabled: boolean;
+}) {
   return useAuthIsValueIsVailable({
     value: username,
     enabled,
     isAvailableFunc: authService.isUsernameAvailable,
     queryKey: QueryKeys.IsUsernameAvailable,
   });
-
 }
 
-
-export function useAuthIsEmailIsVailable({email, enabled}: {email:string,enabled:boolean}) {
-
+export function useAuthIsEmailIsVailable({
+  email,
+  enabled,
+}: {
+  email: string;
+  enabled: boolean;
+}) {
   return useAuthIsValueIsVailable({
     value: email,
     enabled,
