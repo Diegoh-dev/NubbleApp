@@ -28,7 +28,7 @@ const resetParam: AuthStackParamList['SuccesScreen'] = {
 };
 
 const defaultValues: SignUpShematype = {
-  userName: '',
+  username: '',
   firstName: '',
   lastName: '',
   email: '',
@@ -75,7 +75,7 @@ export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
 
       <FormTextInput
         control={control}
-        name="userName"
+        name="username"
         label="Seu username"
         placeholder="@"
         boxProps={{mb: 's20'}}

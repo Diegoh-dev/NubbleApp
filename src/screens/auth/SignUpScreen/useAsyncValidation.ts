@@ -19,8 +19,8 @@ export function useAsyncValidation({watch, getFieldState}: Props): {
   usernameValidation: ReturnValue;
   emailValidate: ReturnValue;
 } {
-  const username = watch('userName');
-  const usernameState = getFieldState('userName');
+  const username = watch('username');
+  const usernameState = getFieldState('username');
   const usernameIsValid = !usernameState.invalid && usernameState.isDirty;
 
   const userNameQuery = useAuthIsUsernameIsVailable({
