@@ -2,7 +2,7 @@ import {api} from '@api';
 
 import { UserAPI } from '../user';
 
-import {AuthCredentialsAPI, FieldIsAvailableAPI, SingUpDataAPI} from './authTypes';
+import {AuthCredentialsAPI, FieldIsAvailableAPI, ForgotPassawordParam, SingUpDataAPI} from './authTypes';
 
 async function signIn(
   email: string,
@@ -45,10 +45,24 @@ async function isEmailAvailable(params: {
   return response.data;
 }
 
+async function forgotPassword(
+  params: ForgotPassawordParam,
+): Promise<{message: string}> {
+  // passando como PARAMETRO os dados de email
+  // const response = await api.post<{message: string}>('forgot-password',null,{
+  //   params,
+  // });
+
+  // PASSANDO COMO BODY
+  const response = await api.post<{message: string}>('forgot-password', params );
+  return response.data;
+}
+
 export const AuthApi = {
   signIn,
   signOut,
   signUp,
   isUsernameAvailable,
   isEmailAvailable,
+  forgotPassword
 };

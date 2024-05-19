@@ -39,3 +39,7 @@ export interface SingUpData {
   email?: string;
   password: string;
 }
+
+export interface ForgotPassawordParam{
+  email:string;
+}
