@@ -1,6 +1,7 @@
 import React, {PropsWithChildren, useEffect, useState} from 'react';
 import {createContext} from 'react';
 
+import {api} from '@api';
 import {AuthCredentials, authService} from '@domain';
 // import {useStoreWithEqualityFn} from 'zustand/traditional';
 
@@ -23,6 +24,45 @@ export function AuthCredentialsProvider({children}: PropsWithChildren<{}>) {
   useEffect(() => {
     startAuthCredentials();
   }, []);
+
+  useEffect(() => {
+    // 1 param => função que será executada quando der sucesso, faixa de status 200
+    // 2 param => função que serpa executada quando der um erro.
+    const interceptor = api.interceptors.response.use(
+      response => response,
+      async responseError => {
+        if (responseError.response.status === 401) {
+          if (!authCredentials?.refreshToken) {
+            removeCrendentials();
+
+            //A promisse será rejeitada será passada para o APP, se tentar fazer alguma requisição
+            return Promise.reject(responseError);
+          }
+          //salva os parametros da requisição que falhou para refazer a requisição novamente
+          // responseError.config => Tem todos os parametros da requisição;
+          const failedRequest = responseError.config;
+
+          // faz a requisição de refreshToke
+          const newAuthCredentials =
+            await authService.authenticateByRefreshToken(
+              authCredentials?.refreshToken,
+            );
+
+          // SALVO OS NOVOS DADOS DE CREDENCIAIS
+          saveCrendentials(newAuthCredentials);
+
+          // PASSO O NOVO TOKEN PARA O CABEÇALHO DA REQUISIÇÃO.
+          failedRequest.headers.Autorization = `Bearer ${newAuthCredentials.token}`;
+
+          //REFAZER A REQUISIÇÃO QUE FALHOU;
+          return api(failedRequest);
+        }
+
+        // remove listener when component unmount
+        return () => api.interceptors.response.eject(interceptor);
+      },
+    );
+  }, [authCredentials?.refreshToken]);
 
   async function startAuthCredentials() {
     try {
