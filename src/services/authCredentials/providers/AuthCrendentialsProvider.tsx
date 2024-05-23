@@ -52,7 +52,7 @@ export function AuthCredentialsProvider({children}: PropsWithChildren<{}>) {
           saveCrendentials(newAuthCredentials);
 
           // PASSO O NOVO TOKEN PARA O CABEÇALHO DA REQUISIÇÃO.
-          failedRequest.headers.Autorization = `Bearer ${newAuthCredentials.token}`;
+          failedRequest.headers.Authorization = `Bearer ${newAuthCredentials.token}`;
 
           //REFAZER A REQUISIÇÃO QUE FALHOU;
           return api(failedRequest);
