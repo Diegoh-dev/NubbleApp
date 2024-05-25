@@ -1,8 +1,11 @@
 import {api} from '@api';
+import { AxiosRequestConfig } from 'axios';
 
 import { UserAPI } from '../user';
 
 import {AuthCredentialsAPI, FieldIsAvailableAPI, ForgotPassawordParam, SingUpDataAPI} from './authTypes';
+
+const REFRESH_TOKEN_URL = 'auth/refresh-token';
 
 async function signIn(
   email: string,
@@ -59,10 +62,16 @@ async function forgotPassword(
 }
 
 async function refreshToken(token: string): Promise<AuthCredentialsAPI> {
-  const response = await api.post<AuthCredentialsAPI>('auth/refresh-token', {
+  const response = await api.post<AuthCredentialsAPI>(REFRESH_TOKEN_URL, {
     refreshToken: token,
   });
   return response.data;
+}
+
+//VERIFICAR SE A URL QUE ESTÁ DANDO ERRO 401 É A ROTA DE refresh-token
+function isRefreshTokenRequest(request: AxiosRequestConfig): boolean {
+  const url = request.url;
+  return url === REFRESH_TOKEN_URL;
 }
 
 export const AuthApi = {
@@ -72,5 +81,6 @@ export const AuthApi = {
   isUsernameAvailable,
   isEmailAvailable,
   forgotPassword,
-  refreshToken
+  refreshToken,
+  isRefreshTokenRequest,
 };
