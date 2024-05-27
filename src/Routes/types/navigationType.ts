@@ -11,6 +11,8 @@ import { AuthStackParamList } from '../AuthStack';
 
 
 // Sobresqueve a tipagem que o react navigation vai usar
+// tem que usar a interface base (RootParamList)
+// e extender as interfaces da rotas nesse caso é (AuthStackParamList, AppStackParamList)
 declare global {
   namespace ReactNavigation {
     interface RootParamList extends AuthStackParamList, AppStackParamList {}
