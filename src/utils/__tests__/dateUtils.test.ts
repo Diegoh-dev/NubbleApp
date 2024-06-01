@@ -1,9 +1,16 @@
-import {sub, formatISO} from 'date-fns';
+import {sub, add, formatISO, Duration} from 'date-fns';
 
 import {dateUtils} from '../dateUtils';
 
 //SECONDS SINCE JAN 01 1970 (TIMESTAMP)
 const MOCKED_NOW = 1717091126;
+
+function getDateISO(duration: Duration,op:'sub' | 'add' =  'sub'): string {
+  const time = op === 'sub' ? sub(Date.now(), duration) : add(Date.now(), duration);
+  const timeISO = formatISO(time);
+
+  return dateUtils.formatRelative(timeISO);
+}
 describe('dateUtils', () => {
   describe('formaRelative', () => {
     // RODA UMA VEZ ANTES DE TODOS OS TESTE; se chamar o beforeEach => roda uma vez a cada novo teste
@@ -22,17 +29,34 @@ describe('dateUtils', () => {
     test('should be displayed in seconds if less than 1 minute ago', () => {
       // data com menus de 60 secondos atrás
       // Tirando 30s então a data deve ser 30 segundos atrás;
-      const time = sub(Date.now(), {seconds: 30});
-      const timeISO = formatISO(time);
-      expect(dateUtils.formatRelative(timeISO)).toBe('30 s');
+
+      expect(getDateISO({seconds: 30})).toBe('30 s');
     });
 
-    test('another test', () => {
-      // data com menus de 60 secondos atrás
-      // Tirando 30s então a data deve ser 30 segundos atrás;
-      const time = sub(Date.now(), {seconds: 30});
-      const timeISO = formatISO(time);
-      expect(dateUtils.formatRelative(timeISO)).toBe('30 s');
+    test('should be displayed in minute if less than 1 hour ago ', () => {
+      expect(getDateISO({minutes: 20})).toBe('20 m');
+    });
+
+    test('should be displayed in hour if lass than 1 day ago', () => {
+      expect(getDateISO({hours: 20})).toBe('20 h');
+    });
+
+    test('should be displayed in days if less than 7 day ago', () => {
+      expect(getDateISO({days: 5})).toBe('5 d');
+    });
+
+    test('should be displayed in week if less than 4 weeks ago', () => {
+      expect(getDateISO({weeks: 3, hours: 2})).toBe('3 sem');
+    });
+    test('should be displayed in months if less than 12 months ago', () => {
+      expect(getDateISO({months: 10})).toBe('10 mes');
+    });
+
+    test('should be displayed in dd/MM/yyyy if more than 12 months ago', () => {
+      expect(getDateISO({months: 13})).toBe('20/12/1968');
+    });
+    test('should be displayed in dd/MM/yyyy if future date', () => {
+      expect(getDateISO({days: 2},'add')).toBe('22/01/1970');
     });
   });
 });
