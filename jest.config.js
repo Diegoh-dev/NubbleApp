@@ -3,4 +3,5 @@ module.exports = {
   coveragePathIgnorePatterns: ['/node_modules/', 'index'],
   verbose: true,
   collectCoverageFrom: ['src/{components,utils}/**/*.{js,jsx,ts,tsx}'],
+  setupFilesAfterEnv: ['@testing-library/react-native/extend-expect'],
 };
