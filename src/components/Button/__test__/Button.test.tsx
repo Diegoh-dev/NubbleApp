@@ -1,10 +1,13 @@
 import React from 'react';
 
-import {render} from '@testing-library/react-native';
+import {render} from 'test-utils';
 
-import { Button } from '../Button';
+import {Button} from '../Button';
 describe('<Button />', () => {
-  test('the component rendered', () => {
-    render(<Button title="Teste render"/>);
+  it('the component rendered', () => {
+    render(<Button title="Teste render" />);
+  });
+  it('should shows loading indicator', () => {
+    render(<Button title="Teste render" />);
   });
 });

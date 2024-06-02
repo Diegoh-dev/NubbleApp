@@ -17,7 +17,8 @@
       "@infra":["src/infra"],
       "@Auth":["src/Auth"],
       "@services":["src/services"],
-      "@user":["src/user"]
+      "@user":["src/user"],
+      "test-utils":["src/test/test-utils"]
     }
   }
 }
