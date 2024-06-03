@@ -8,7 +8,7 @@ function renderButton(props?: Partial<ButtonProps>) {
   render(<Button title="Button Title" {...props} />);
 
   //https://testing-library.com/docs/react-testing-library/cheatsheet/
-  //https://callstack.github.io/react-native-testing-library/docs/api/queries#accessing-queries
+//https://callstack.github.io/react-native-testing-library/docs/api#screen-api
   const titleElement = screen.getByText(/Button Title/i);
   return {
     titleElement,
