@@ -1,26 +1,38 @@
 import React from 'react';
 
-import {render, fireEvent} from 'test-utils';
+import {render, fireEvent, screen} from 'test-utils';
 
-import {Button} from '../Button';
+import {Button, ButtonProps} from '../Button';
+
+function renderButton(props?: Partial<ButtonProps>) {
+  render(<Button title="Button Title" {...props} />);
+
+  //https://testing-library.com/docs/react-testing-library/cheatsheet/
+  //https://callstack.github.io/react-native-testing-library/docs/api/queries#accessing-queries
+  const titleElement = screen.getByText(/Button Title/i);
+  return {
+    titleElement,
+  };
+}
 describe('<Button />', () => {
-  it('calls the onPress function when is pressed', () => {
+  it('calls the onPress function when it is pressed', () => {
     // Cria uma função simulada.
     const mockedOnPress = jest.fn();
-    const {getByText} = render(
-      <Button title="Button Title" onPress={mockedOnPress} />,
-    );
-
-    //https://testing-library.com/docs/react-testing-library/cheatsheet/
-    const titleElement = getByText(/button title/i);
-
+    const {titleElement} = renderButton({ onPress: mockedOnPress});
     // vai simular o click no botão "button title"
     fireEvent.press(titleElement);
     // espera que a função tenha sido chamada
     expect(mockedOnPress).toHaveBeenCalled();
   });
 
-  // it('should shows loading indicator', () => {
-  //   render(<Button title="Teste render" />);
-  // });
+  it('does not call onPress function when it is disabled and it pressed', () => {
+    const mockedOnPress = jest.fn();
+
+    const {titleElement} = renderButton({ onPress: mockedOnPress, disabled: true});
+
+    fireEvent.press(titleElement);
+    // negando que a função não seja chamada
+    expect(mockedOnPress).not.toHaveBeenCalled();
+  });
+
 });

@@ -12,7 +12,7 @@ import { buttonPresets } from './buttonPresets';
 export type ButtonsPreset = 'primary' | 'outline';
 
 
-interface ButtonProps extends TouchableOpacityBoxPros {
+export interface ButtonProps extends TouchableOpacityBoxPros {
   title: string;
   loading?: boolean;
   preset?:ButtonsPreset;
