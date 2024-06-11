@@ -1,6 +1,9 @@
 import React from 'react';
+import { StyleSheet } from 'react-native';
 
 import {render, fireEvent, screen} from 'test-utils';
+
+import {theme } from '@theme';
 
 import {Button, ButtonProps} from '../Button';
 
@@ -33,6 +36,16 @@ describe('<Button />', () => {
     fireEvent.press(titleElement);
     // negando que a função não seja chamada
     expect(mockedOnPress).not.toHaveBeenCalled();
+  });
+
+  test('the title should be gray if button is disabled', () => {
+    const {titleElement} = renderButton({disabled: true});
+    //https://reactnative.dev/docs/stylesheet#flatten
+    // flatten => junta as propriedades de estilos
+    const titleStyle = StyleSheet.flatten(titleElement.props.style);
+    //  console.log(titleElement.props.style)
+    //  console.log(styleText)
+    expect(titleStyle.color).toEqual(theme.colors.gray2);
   });
 
 });
