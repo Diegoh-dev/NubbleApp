@@ -1,8 +1,13 @@
 import React from 'react';
 
-import {Text,TouchableOpacityBox,TouchableOpacityBoxPros,ActivityIndicator} from '@components';
+import {
+  Text,
+  TouchableOpacityBox,
+  TouchableOpacityBoxPros,
+  ActivityIndicator,
+} from '@components';
 
-import { buttonPresets } from './buttonPresets';
+import {buttonPresets} from './buttonPresets';
 
 // SEMPRE SEPARAR A PARTE DE COMPORTAMENTO DA PARTE DE UI
 // COMPORTAMENTO X UI
@@ -11,29 +16,34 @@ import { buttonPresets } from './buttonPresets';
 
 export type ButtonsPreset = 'primary' | 'outline';
 
-
 export interface ButtonProps extends TouchableOpacityBoxPros {
   title: string;
   loading?: boolean;
-  preset?:ButtonsPreset;
-  disabled?:boolean;
+  preset?: ButtonsPreset;
+  disabled?: boolean;
 }
 
-export function Button({title, loading,disabled,preset = 'primary',...touchableOpacityBoxPros}: ButtonProps) {
+export function Button({
+  title,
+  loading,
+  disabled,
+  preset = 'primary',
+  ...touchableOpacityBoxPros
+}: ButtonProps) {
   const buttonPreset = buttonPresets[preset][disabled ? 'disabled' : 'default'];
   return (
     <TouchableOpacityBox
-     disabled={disabled || loading}
+      testID="button"
+      disabled={disabled || loading}
       paddingHorizontal="s20"
       height={50}
       alignItems="center"
       justifyContent="center"
       borderRadius="s16"
       {...buttonPreset.container}
-      {...touchableOpacityBoxPros}
-      >
+      {...touchableOpacityBoxPros}>
       {loading ? (
-        <ActivityIndicator  color="carrotSecondary"/>
+        <ActivityIndicator color="carrotSecondary" />
       ) : (
         <Text color={buttonPreset.content}>{title}</Text>
       )}
