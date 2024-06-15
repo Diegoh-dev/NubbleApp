@@ -48,7 +48,7 @@ describe('<PostBottom/>', () => {
     fireEvent.press(commentLinkElement);
 
     // expect call navigate function with param
-    //toHaveBeenCalledWith => QUANDO QUISER ESPECIFICAR O PARAMETRO DA FUNÇÃO CHAMADA
+    // toHaveBeenCalledWith => QUANDO QUISER ESPECIFICAR O PARAMETRO DA FUNÇÃO CHAMADA
     expect(mockedNavigate).toHaveBeenCalledWith('PostCommentScreen', {
       postId: mokedPost.id,
       postAuthorId: mokedPost.author.id,
