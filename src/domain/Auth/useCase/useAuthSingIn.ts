@@ -34,5 +34,6 @@ export function useAuthSingIn(option?: MutationOptions<AuthCredentials>) {
   return {
     isLoading: mutation.isLoading,
     SignIn: (variables: Variables) => mutation.mutate(variables),
+    isSuccess:mutation.isSuccess,
   };
 }
