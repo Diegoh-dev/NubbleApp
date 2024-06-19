@@ -7,7 +7,7 @@ import {RenderOptions, render} from '@testing-library/react-native';
 import {theme} from '@theme';
 // REFERÊNCIA
 //https://testing-library.com/docs/react-testing-library/setup/#custom-render
-const AllTheProviders = ({children}: {children: ReactNode}) => {
+export const AllTheProviders = ({children}: {children: ReactNode}) => {
   return (
     <ThemeProvider theme={theme}>
       <NavigationContainer>{children}</NavigationContainer>
