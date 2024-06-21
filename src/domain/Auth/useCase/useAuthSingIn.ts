@@ -27,6 +27,9 @@ export function useAuthSingIn(option?: MutationOptions<AuthCredentials>) {
     },
     onSuccess: authCredentials => {
       // authService.updateToken(authCredentials.token);
+      if (option?.onSuccess) {
+        option.onSuccess(authCredentials);
+      }
       saveCrendentials(authCredentials);
     },
   });
@@ -35,5 +38,6 @@ export function useAuthSingIn(option?: MutationOptions<AuthCredentials>) {
     isLoading: mutation.isLoading,
     SignIn: (variables: Variables) => mutation.mutate(variables),
     isSuccess:mutation.isSuccess,
+    isError:mutation.isError,
   };
 }
