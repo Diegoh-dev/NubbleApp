@@ -18,6 +18,7 @@ module.exports = {
         '@Auth': './src/Auth',
         '@services': './src/services',
         '@user': './src/user',
+        '@test': './src/test',
       },
     }],
   ],
