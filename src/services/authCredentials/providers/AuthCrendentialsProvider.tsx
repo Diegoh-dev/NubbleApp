@@ -40,7 +40,7 @@ export function AuthCredentialsProvider({children}: PropsWithChildren<{}>) {
 
   async function startAuthCredentials() {
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000, ''));
+      // await new Promise(resolve => setTimeout(resolve, 2000, ''));
       //Pegar os dados so usuário logado no storage do celular
       const getCredentials = await authCredentialsStorage.get();
 
