@@ -8,7 +8,7 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 import {Toast} from '@components';
 
-import {Router} from './src/routes/routes';
+import {Router} from './src/routes/Routes';
 import {theme} from './src/theme/theme';
 
 
