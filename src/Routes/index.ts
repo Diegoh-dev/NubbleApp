@@ -1,4 +1,4 @@
-export * from './Routes';
+export * from './routes';
 
 export * from './types/navigationType';
 export * from './AppStack';
