@@ -7,23 +7,23 @@ on:
       - develop
 
 jobs:
-  pull_request-checks:
+  pull-request-checks:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
           node-version: '20'
 
       - name: Install Packages
         run: yarn install
-    
+
       - name: Run Lint
         run: yarn lint
 
-      - name: Run Typescript compiler
+      - name: Run TypeScript compiler
         run: yarn tsc --noEmit
 
       - name: Run test
