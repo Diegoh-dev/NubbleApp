@@ -4,11 +4,11 @@ import {Alert, AlertButton} from 'react-native';
 import {authCredentialsStorage} from '@services';
 import {server, mockedPostComment, resetInMemoryResponse} from '@test';
 import {
-  // act,
+  act,
   fireEvent,
   renderScreen,
   screen,
-  // waitFor,
+  waitFor,
   waitForElementToBeRemoved,
 } from 'test-utils';
 
@@ -17,6 +17,7 @@ import { PostCommentScreen } from '../../PostCommentScreen/PostCommentScreen';
 
 beforeAll(() => {
   server.listen();
+  //https://jestjs.io/docs/timer-mocks
   jest.useFakeTimers();
 });
 
@@ -28,6 +29,7 @@ afterEach(() => {
 afterAll(() => {
   server.close();
   jest.resetAllMocks();
+  //https://jestjs.io/docs/timer-mocks
   jest.useRealTimers();
 });
 
@@ -128,12 +130,14 @@ describe('integration: PostCommentScreen', () => {
 
     // verificar se foi exibida a toast message
 
-    // await waitFor(() =>
-    //   expect(screen.getByTestId('toast-message')).toBeTruthy(),
-    // );
+    await waitFor(() =>
+      expect(screen.getByTestId('toast-message')).toBeTruthy(),
+    );
 
-    // act(() => jest.runAllTimers());
+    // https://jestjs.io/docs/timer-mocks
+    //jest.runAllTimers() => executa a função que está usando o time. usa-se "act" para avisar que o componente vai provocar uma reRenderização no componente.
+    act(() => jest.runAllTimers());
 
-    // expect(screen.queryByTestId('toast-message')).toBeNull();
+    expect(screen.queryByTestId('toast-message')).toBeNull();
   });
 });
