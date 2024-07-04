@@ -14,11 +14,14 @@ async function getList(
     page,
     per_page: PER_PAGE,
   });
+  
+// Refatoração
+  return apiAdapter.toPageModel(postCommentPageAPI,postCommentAdapter.toPostComment);
 
-  return {
-    data: postCommentPageAPI.data.map(postCommentAdapter.toPostComment),
-    meta: apiAdapter.toMetaDataPage(postCommentPageAPI.meta),
-  };
+  // return {
+  //   data: postCommentPageAPI.data.map(postCommentAdapter.toPostComment),
+  //   meta: apiAdapter.toMetaDataPage(postCommentPageAPI.meta),
+  // };
 }
 
 async function create(postId: number, message: string): Promise<PostComment> {

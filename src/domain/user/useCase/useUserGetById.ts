@@ -6,7 +6,7 @@ import {userService} from '../userService';
 export function useUserGetById(id: number) {
   const {data, isLoading, isError,isFetching,refetch} = useQuery({
     queryKey: [QueryKeys.UserGetById, id],
-    queryFn: () => userService.getList(id),
+    queryFn: () => userService.getById(id),
     staleTime: 1000 * 30, //30 segundos
     // cacheTime: 1000 * 30
   });
@@ -16,6 +16,6 @@ export function useUserGetById(id: number) {
     isLoading,
     isError,
     isFetching,
-    refetch
+    refetch,
   };
 }
