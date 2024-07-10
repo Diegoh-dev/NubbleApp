@@ -3,13 +3,18 @@ import {FlatList, ListRenderItemInfo} from 'react-native';
 
 import {User, useUserSearch} from '@domain';
 
+
 import {Icon, ProfileUser, Screen, TextInput} from '@components';
 import {useDebounce} from '@hooks';
 import {AppScreenPros} from '@routes';
 
+import {SearchHistory} from './components/SearchHistory';
+
 export function SearchScreen({}: AppScreenPros<'SearchScreen'>) {
   const [search, setSearch] = useState('');
   const debaounceSearch = useDebounce(search);
+
+  // const {addUser} = useSearchHistoryService();
 
   const {list} = useUserSearch(debaounceSearch);
 
@@ -28,11 +33,16 @@ export function SearchScreen({}: AppScreenPros<'SearchScreen'>) {
           leftComponent={<Icon color="gray3" name="search" />}
         />
       }>
-      <FlatList
-        data={list}
-        renderItem={renderItem}
-        keyExtractor={item => item.userName}
-      />
+
+      {search.length === 0 ? (
+        <SearchHistory />
+      ) : (
+        <FlatList
+          data={list}
+          renderItem={renderItem}
+          keyExtractor={item => item.userName}
+        />
+      )}
     </Screen>
   );
 }
