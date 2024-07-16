@@ -14,7 +14,13 @@ export function SearchHistory() {
       <ProfileUser
         user={item}
         avatarProps={{size: 48}}
-        RightComponent={<Icon name="trash" color='error' onPress={() => removeUser(item.id)}/>}
+        RightComponent={
+          <Icon
+            name="trash"
+            color="error"
+            onPress={() => removeUser(item.id)}
+          />
+        }
       />
     );
   }
