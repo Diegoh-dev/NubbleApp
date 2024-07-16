@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { GestureResponderEvent } from 'react-native';
 
 import { User } from '@domain';
 import { useNavigation } from '@react-navigation/native';
 
-import { PressableBox, ProfileAvatar, Text,PressableBoxProps} from '@components';
+import { PressableBox, ProfileAvatar, Text,PressableBoxProps, ProfileAvatarProps, Box} from '@components';
 
-type ProfileUserProps = {user:Pick<User, 'userName' | 'profileUrl' | 'id'>} & PressableBoxProps;
+type ProfileUserProps = {user:Pick<User, 'userName' | 'profileUrl' | 'id'>;
+  avatarProps?:Omit<Partial<ProfileAvatarProps>,'imageURL'>;
+  RightComponent?:ReactElement;
+} & PressableBoxProps;
 
-export function ProfileUser({user,onPress,...pressableBoxProps}: ProfileUserProps) {
+export function ProfileUser({user,onPress,avatarProps,RightComponent,...pressableBoxProps}: ProfileUserProps) {
 
   const navigate = useNavigation();
 
@@ -23,11 +26,23 @@ export function ProfileUser({user,onPress,...pressableBoxProps}: ProfileUserProp
   }
 
   return (
-   <PressableBox flexDirection="row" alignItems="center" mb="s16" onPress={handleOnPress} {...pressableBoxProps}>
-      <ProfileAvatar imageURL={user.profileUrl}  />
-      <Text ml="s12" preset="paragraphMedium" semiBold>
-        {user.userName}
-      </Text>
-   </PressableBox>
+    <PressableBox
+      flexDirection="row"
+      alignItems="center"
+      justifyContent="space-between"
+      mb="s16"
+      onPress={handleOnPress}
+      {...pressableBoxProps}>
+      <Box
+        flexDirection="row"
+        alignItems="center"
+        >
+        <ProfileAvatar {...avatarProps} imageURL={user.profileUrl} />
+        <Text ml="s12" preset="paragraphMedium" semiBold>
+          {user.userName}
+        </Text>
+      </Box>
+      {RightComponent}
+    </PressableBox>
   );
 }
