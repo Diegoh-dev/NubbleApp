@@ -26,7 +26,7 @@ export function Router() {
 
   return (
     <NavigationContainer>
-      {authCredentials ? <AppStack /> : <AuthStack />}
+      {authCredentials ? <AppStack/> : <AuthStack />}
     </NavigationContainer>
   );
 }
