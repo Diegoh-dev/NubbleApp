@@ -41,5 +41,8 @@ describe('integration: SearchScreen', () => {
     expect(user2).toBeTruthy();
 
     // screen.debug();
+    // clicar no usuário
+
+    fireEvent.press(user1);
   });
 });
