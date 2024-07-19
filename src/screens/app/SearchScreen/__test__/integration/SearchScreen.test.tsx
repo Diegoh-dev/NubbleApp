@@ -6,6 +6,10 @@ import {fireEvent, renderScreen, screen} from 'test-utils';
 
 import {AppStack} from '@routes';
 
+//informa para o jest que ele deve importar o modulo original e não o mockado.
+//https://jestjs.io/docs/jest-object#jestunmockmodulename
+jest.unmock('@react-navigation/native');
+
 beforeAll(() => {
   server.listen();
   jest
@@ -44,5 +48,12 @@ describe('integration: SearchScreen', () => {
     // clicar no usuário
 
     fireEvent.press(user1);
+
+
+    //verificar se o usuário vai estar na outra tela(perfil do usuario)
+    const userFullName = await screen.findByText(userMocked.user1.full_name);
+
+    expect(userFullName).toBeTruthy();
+
   });
 });
