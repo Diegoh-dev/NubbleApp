@@ -16,9 +16,10 @@ export function ScrrenHeader({canGoBack, title,HeaderComponent}: props) {
     <Box flexDirection="row" justifyContent="space-between" mb="s24">
       {canGoBack && (
         <TouchableOpacityBox
+          testID="screen-back-button"
           onPress={navigation.goBack}
           flexDirection="row"
-          mr='s10'
+          mr="s10"
           alignItems="center">
           <Icon size={ICON_SIZE} name="arrowLeft" color="primary" />
 
