@@ -11,6 +11,11 @@ type props = Pick<ScreenProps, 'canGoBack' | 'title' | 'HeaderComponent'>;
 
 export function ScrrenHeader({canGoBack, title,HeaderComponent}: props) {
   const navigation = useNavigation();
+
+  if (!title && !canGoBack && !HeaderComponent) {
+    return null;
+  }
+  
   const showBackLabel = !title && !HeaderComponent;
   return (
     <Box flexDirection="row" justifyContent="space-between" mb="s24">
