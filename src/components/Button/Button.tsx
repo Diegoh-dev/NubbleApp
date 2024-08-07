@@ -14,7 +14,7 @@ import {buttonPresets} from './buttonPresets';
 //PRESET: PRIMARY E OUTILINE
 //DEFAUL, DISABLED
 
-export type ButtonsPreset = 'primary' | 'outline';
+export type ButtonsPreset = 'primary' | 'outline' | 'ghost';
 
 export interface ButtonProps extends TouchableOpacityBoxPros {
   title: string;
@@ -43,9 +43,9 @@ export function Button({
       {...buttonPreset.container}
       {...touchableOpacityBoxPros}>
       {loading ? (
-        <ActivityIndicator color="carrotSecondary" />
+        <ActivityIndicator color={buttonPreset.content.color} />
       ) : (
-        <Text color={buttonPreset.content}>{title}</Text>
+        <Text color={buttonPreset.content.color} {...buttonPreset.content.textProps}>{title}</Text>
       )}
     </TouchableOpacityBox>
   );

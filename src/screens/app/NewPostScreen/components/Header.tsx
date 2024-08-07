@@ -20,7 +20,7 @@ export function Header({imageUri, imagewidth}: Props) {
           },
           styles.imageBackground,
         ]}>
-        <Button title="Escolher essa" mb="s24" />
+        <Button preset="ghost" title="Escolher essa" mb="s24" />
       </ImageBackground>
       <Box {...$styleOptions}>
         <Text preset="headingSmall">Sua galeria</Text>
