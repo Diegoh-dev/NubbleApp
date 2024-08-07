@@ -41,7 +41,7 @@ export function Screen({
           paddingHorizontal={noPaddingHorizontal ? undefined : "s24"}
           style={[{paddingTop: top, paddingBottom: bottom}, style]}
           {...boxProps}>
-          <ScrrenHeader HeaderComponent={HeaderComponent} canGoBack={canGoBack} title={title} />
+          <ScrrenHeader paddingHorizontal={noPaddingHorizontal ? 's24' : undefined} HeaderComponent={HeaderComponent} canGoBack={canGoBack} title={title} />
           {children}
         </Box>
       </Container>
