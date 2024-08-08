@@ -16,9 +16,9 @@ export function NewPostScreen({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   navigation,
 }: AppTabScreenProps<'NewPostScreen'>) {
-  const {list} = useCameraRoll();
+  const {photoList,fetchNextPage} = useCameraRoll(true);
   console.log({
-    list,
+    photoList,
   });
 
   function renderItem({item}: ListRenderItemInfo<string>) {
@@ -34,10 +34,13 @@ export function NewPostScreen({
       {/* numColumns: numero de colunas */}
       <FlatList
         numColumns={NUM_COLUMNS}
-        data={list}
+        data={photoList}
         renderItem={renderItem}
+        //onEndReached => função que vai ser chamada quando chegar em (onEndReachedThreshold = 0.1)10% final da lista(Carregar a proxima pagina de fotos)
+        onEndReached={fetchNextPage}
+        onEndReachedThreshold={0.1}
         ListHeaderComponent={
-          <Header imagewidth={SCREEN_WIDTH} imageUri={list[0]} />
+          <Header imagewidth={SCREEN_WIDTH} imageUri={photoList[0]} />
         }
       />
     </Screen>

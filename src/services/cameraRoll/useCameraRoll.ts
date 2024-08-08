@@ -1,34 +1,58 @@
 import {useEffect, useState} from 'react';
 import {PermissionsAndroid, Platform} from 'react-native';
 
-import {CameraRoll} from '@react-native-camera-roll/camera-roll';
+import {QueryKeys} from '@infra';
+// import {CameraRoll} from '@react-native-camera-roll/camera-roll';
+import {useInfiniteQuery} from '@tanstack/react-query';
 
-export function useCameraRoll() {
+import {cameraRollService} from './cameraRollService';
+// import {PhotoListPaginated} from './cameraRollTypes';
+
+export function useCameraRoll(hasPermission: boolean) {
   const [list, setList] = useState<string[]>([]);
-  async function getPhotos() {
-    const hasPermission = await hasAndroidPermission();
-    if (hasPermission) {
-      const photoPage = await CameraRoll.getPhotos({first: 10});
 
-      const listPhotos = photoPage.edges.map(edges => edges.node.image.uri);
+  const query = useInfiniteQuery({
+    queryKey: [QueryKeys.CameraRollList],
+    queryFn: ({pageParam}) => cameraRollService.getPhotos(pageParam),
+    //pega o parametro 'cursor' da pagina que foi retornada, e passa ele na queryFn para retornar os dados apertir desse ultimo cursor que foi retornado.
+    getNextPageParam: ({cursor}) => cursor,
+    enabled: hasPermission,
+  });
 
-      setList(listPhotos);
-    } else {
-      return [];
-    }
-  }
+  //como estava antes de receber a permissão como dependência (Não Apagar)
+  // async function getPhotos() {
+  //   const hasPermission = await hasAndroidPermission();
+  //   if (hasPermission) {
+  //     const photoPage = await CameraRoll.getPhotos({first: 10});
+  //     console.log('page info:', photoPage.page_info);
+  //     const listPhotos = photoPage.edges.map(edges => edges.node.image.uri);
+
+  //     setList(listPhotos);
+  //   } else {
+  //     return [];
+  //   }
+  // }
 
   useEffect(() => {
-    getPhotos();
-  }, []);
+    if (query.data) {
+      const newList = query.data.pages.reduce<string[]>((prev, current) => {
+        return [...prev, ...current.photoList];
+      }, []);
+
+      setList(newList);
+    }
+  }, [query.data]);
 
   return {
-    list,
+    photoList:list,
+    hasNextPage:query.hasNextPage,
+    fetchNextPage:() => query.fetchNextPage(),
   };
 }
 
 //https://github.com/react-native-cameraroll/react-native-cameraroll?tab=readme-ov-file#getphotos
 //SEM ESSA FUNÇÃO NÃO FUNCIONA NO ANDROID, APENAS NO IOS
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function hasAndroidPermission() {
   if (Platform.OS === 'ios') {
     return true;
