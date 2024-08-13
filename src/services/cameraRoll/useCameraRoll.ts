@@ -8,7 +8,9 @@ import {useInfiniteQuery} from '@tanstack/react-query';
 import {cameraRollService} from './cameraRollService';
 // import {PhotoListPaginated} from './cameraRollTypes';
 
-export function useCameraRoll(hasPermission: boolean) {
+export function useCameraRoll(hasPermission: boolean,
+  onInitialLoad?:(imageUri:string) => void,
+) {
   const [list, setList] = useState<string[]>([]);
 
   const query = useInfiniteQuery({
@@ -40,8 +42,12 @@ export function useCameraRoll(hasPermission: boolean) {
       }, []);
 
       setList(newList);
+
+      if (query.data.pages.length === 1 && onInitialLoad){
+        onInitialLoad(newList[0]);
+      }
     }
-  }, [query.data]);
+  }, [query.data,onInitialLoad]);
 
   return {
     photoList:list,
