@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import {Dimensions, FlatList, Image, ListRenderItemInfo, Pressable} from 'react-native';
 
-import {useCameraRoll} from '@services';
+import {useCameraRoll, usePermission} from '@services';
 
 import {Screen} from '@components';
 import {AppTabScreenProps} from '@routes';
@@ -17,11 +17,12 @@ export function NewPostScreen({
   navigation,
 }: AppTabScreenProps<'NewPostScreen'>) {
   const [selectedImage,setSelectedImage] = useState('');
+  const permission = usePermission('photoLibrary');
   const flatLisRef = useRef<FlatList>(null);
-  const {photoList,fetchNextPage} = useCameraRoll(true,setSelectedImage);
-  console.log({
-    photoList,
-  });
+  const {photoList,fetchNextPage} = useCameraRoll(permission.status === 'granted',setSelectedImage);
+  // console.log({
+  //   photoList,
+  // });
 
 
   function onSelectImage(imageUri:string){
