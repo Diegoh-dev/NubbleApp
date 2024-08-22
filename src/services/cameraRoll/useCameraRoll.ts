@@ -35,6 +35,12 @@ export function useCameraRoll(hasPermission: boolean,
   //   }
   // }
 
+  function fetchNextPage() {
+    if (hasPermission) {
+      query.fetchNextPage();
+    }
+  }
+
   useEffect(() => {
     if (query.data) {
       const newList = query.data.pages.reduce<string[]>((prev, current) => {
@@ -52,7 +58,7 @@ export function useCameraRoll(hasPermission: boolean,
   return {
     photoList:list,
     hasNextPage:query.hasNextPage,
-    fetchNextPage:() => query.fetchNextPage(),
+    fetchNextPage,
   };
 }
 
