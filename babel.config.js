@@ -19,6 +19,7 @@ module.exports = {
         '@services': './src/services',
         '@user': './src/user',
         '@test': './src/test',
+        '@assets': './src/assets',
       },
     }],
   ],
