@@ -20,6 +20,10 @@ export function Header({imageUri, imagewidth}: Props) {
     }
   }
 
+  function navigateToCamera(){
+      navigation.navigate('CameraScreen');
+  }
+
   return (
     <Box>
       <ImageBackground
@@ -42,7 +46,7 @@ export function Header({imageUri, imagewidth}: Props) {
       </ImageBackground>
       <Box {...$styleOptions}>
         <Text preset="headingSmall">Sua galeria</Text>
-        <Icon name="camera" />
+        <Icon name="camera" onPress={navigateToCamera}/>
       </Box>
     </Box>
   );

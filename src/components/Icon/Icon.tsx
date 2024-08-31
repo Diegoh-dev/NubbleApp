@@ -2,6 +2,7 @@ import React from 'react';
 import { Pressable } from 'react-native';
 
 
+
 import {useAppTheme} from '@hooks';
 import {ThemeColor} from '@theme';
 
@@ -11,6 +12,7 @@ import { BellIcon } from '../../assets/icons/BellIcon';
 import { BellOnIcon } from '../../assets/icons/BellOnIcon';
 import { BookMarkFillIcon } from '../../assets/icons/BookMarkFillIcon';
 import { BookMarkIcon } from '../../assets/icons/BookMarkIcon';
+import { CameraClick } from '../../assets/icons/CameraClick';
 import { CameraIcon } from '../../assets/icons/CameraIcon';
 import { ChatIcon } from '../../assets/icons/ChatIcon';
 import { ChatOnIcon } from '../../assets/icons/ChatOnIcon';
@@ -96,6 +98,7 @@ const iconRegistry = {
   search: SearchIcon,
   settings: SettingsIcon,
   trash: TrashIcon,
+  cameraClick:CameraClick,
 };
 
 type IconsType = typeof iconRegistry;
