@@ -52,7 +52,7 @@ export function NewPostScreen({
   return (
     <PermissionManager
       permissionName="photoLibrary"
-      description="Permita o Nubble acessar as imagens da sua galeria">
+      description="Autorize o Nubble a acessar as imagens da sua galeria">
       <Screen canGoBack title="Novo post" noPaddingHorizontal>
         {/* numColumns: numero de colunas */}
         <FlatList

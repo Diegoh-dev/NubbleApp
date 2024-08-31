@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Dimensions, StyleSheet} from 'react-native';
 
-import {Box, BoxProps, Icon} from '@components';
+import {Box, BoxProps, Icon, PermissionManager} from '@components';
 import {useAppSafeArea} from '@hooks';
 import {AppScreenPros} from '@routes';
 
@@ -17,29 +17,33 @@ export function CameraScreen({navigation}: AppScreenPros<'CameraScreen'>) {
     setFlashOn(prev => !prev);
   }
   return (
-    <Box flex={1}>
-      <Box backgroundColor="grayWhite" style={StyleSheet.absoluteFill} />
-      <Box flex={1} justifyContent="space-between">
-        <Box style={{paddingTop: top}} {...$controlAreaTop}>
-          <Icon
-            size={20}
-            color="grayWhite"
-            name="arrowLeft"
-            onPress={navigation.goBack}
-          />
-          <Icon
-            size={20}
-            color="grayWhite"
-            name={flashOn ? 'flashOn' : 'flashOff'}
-            onPress={toggleFlash}
-          />
-          <Box width={20} />
-        </Box>
-        <Box {...$controlAreaBottom}>
-          <Icon size={80} color="grayWhite" name="cameraClick" />
+    <PermissionManager
+      permissionName="camera"
+      description="Autorize o Nubble a acessar a câmera">
+      <Box flex={1}>
+        <Box backgroundColor="grayWhite" style={StyleSheet.absoluteFill} />
+        <Box flex={1} justifyContent="space-between">
+          <Box style={{paddingTop: top}} {...$controlAreaTop}>
+            <Icon
+              size={20}
+              color="grayWhite"
+              name="arrowLeft"
+              onPress={navigation.goBack}
+            />
+            <Icon
+              size={20}
+              color="grayWhite"
+              name={flashOn ? 'flashOn' : 'flashOff'}
+              onPress={toggleFlash}
+            />
+            <Box width={20} />
+          </Box>
+          <Box {...$controlAreaBottom}>
+            <Icon size={80} color="grayWhite" name="cameraClick" />
+          </Box>
         </Box>
       </Box>
-    </Box>
+    </PermissionManager>
   );
 }
 
