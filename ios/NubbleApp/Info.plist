@@ -50,6 +50,8 @@
 	<false/>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Para publicar novos posts</string>
+	<key>NSCameraUsageDescription</key>
+    <string>$(PRODUCT_NAME) Precisa de acesso a camera para publicar novos posts.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Panchang-Light.otf</string>
