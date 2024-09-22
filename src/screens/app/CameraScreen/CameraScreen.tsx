@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {Dimensions, StyleSheet} from 'react-native';
 
 import {useIsFocused} from '@react-navigation/native';
@@ -15,6 +15,7 @@ const CONTROL_DIFF = 30;
 export function CameraScreen({navigation}: AppScreenPros<'CameraScreen'>) {
   const {top} = useAppSafeArea();
   const [flashOn, setFlashOn] = useState(false);
+  const [isReady,setIsReady] = useState(false);
   //https://react-native-vision-camera.com/docs/guides/devices
   const device = useCameraDevice('back',{
     physicalDevices: [
@@ -28,14 +29,34 @@ export function CameraScreen({navigation}: AppScreenPros<'CameraScreen'>) {
 
   const format = useCameraFormat(device,Templates.Instagram);
 
+  const isFocused = useIsFocused(); // se tiver na tela de camera;
+  const appState = useAppState(); //para saber se o app esta aberto e minimizado;
+  const isActive = isFocused && appState === 'active';
+
+  const camera = useRef<Camera>(null);
+
+ async function takePhoto() {
+   if (camera.current) {
+     const photoFile = await camera.current?.takePhoto({
+       flash: flashOn ? 'on' : 'off',
+       // qualityPriorization:'quality',//na versão que está sendo usada não tem essa opção
+     });
+
+    //  console.log({
+    //    photoFile,
+    //  });
+
+     navigation.navigate('PublishPostScreen', {
+       imageUri: `file://${photoFile?.path}`,
+     });
+   }
+ }
 
   function toggleFlash() {
     setFlashOn(prev => !prev);
   }
 
-  const isFocused = useIsFocused(); // se tiver na tela de camera;
-  const appState = useAppState(); //para saber se o app esta aberto e minimizado;
-  const isActive = isFocused && appState === 'active';
+
 
   return (
     <PermissionManager
@@ -44,10 +65,15 @@ export function CameraScreen({navigation}: AppScreenPros<'CameraScreen'>) {
       <Box flex={1}>
         {device && device !== null && (
           <Camera
+            ref={camera}
             format={format}
             style={StyleSheet.absoluteFill}
             device={device}
             isActive={isActive} // se ficar sempre ativo, tem consumo de bateria
+            photo={true} // só funciona se passae essa propriedade
+            onInitialized={() => setIsReady(true)} // para saber que a camera está pronta
+            // enableHeigQualityPhotos={true}//SEMPRE QUE QUISER TIRA UMA FOTO COM QUALITY SENDO PASSADA TEM QUE PASSAR ESSA PROPRIEDA(CASO CONTRARIO DARÁ ERRO) (IOS)
+            //enableHeigQualityPhotos => NÃO ESTÁ DISPONIVEL NA VERSÃO QUE ESTOU USANDO (4.3.2)
           />
         )}
 
@@ -68,7 +94,13 @@ export function CameraScreen({navigation}: AppScreenPros<'CameraScreen'>) {
             <Box width={20} />
           </Box>
           <Box {...$controlAreaBottom}>
-            <Icon size={80} color="grayWhite" name="cameraClick" />
+            {isReady && (
+              <Icon 
+              size={80}
+               color="grayWhite" 
+               name="cameraClick" 
+               onPress={takePhoto} />
+            )}
           </Box>
         </Box>
       </Box>
