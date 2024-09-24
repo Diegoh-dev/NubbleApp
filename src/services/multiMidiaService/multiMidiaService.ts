@@ -9,6 +9,6 @@ function prepareImageForUploas(imageUri: string): ImageForUpload {
   };
 }
 
-// export function multiMidiaService = {
-
-// }
+export const multiMidiaService = {
+  prepareImageForUploas,
+};
