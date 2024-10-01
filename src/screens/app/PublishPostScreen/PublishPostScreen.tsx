@@ -31,6 +31,8 @@ export function PublishPostScreen({
   });
 
   function publishPost() {
+    console.log('imageUri:',imageUri);
+    console.log('description:',description);
     createPost({
       description: description,
       imageUri,
