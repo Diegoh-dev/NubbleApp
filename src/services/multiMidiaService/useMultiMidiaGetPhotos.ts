@@ -5,17 +5,17 @@ import {QueryKeys} from '@infra';
 // import {CameraRoll} from '@react-native-camera-roll/camera-roll';
 import {useInfiniteQuery} from '@tanstack/react-query';
 
-import {cameraRollService} from './cameraRollService';
+import { multiMidiaService } from './multiMidiaService';
 // import {PhotoListPaginated} from './cameraRollTypes';
 
-export function useCameraRoll(hasPermission: boolean,
+export function useMultiMidiaGetPhotos(hasPermission: boolean,
   onInitialLoad?:(imageUri:string) => void,
 ) {
   const [list, setList] = useState<string[]>([]);
 
   const query = useInfiniteQuery({
     queryKey: [QueryKeys.CameraRollList],
-    queryFn: ({pageParam}) => cameraRollService.getPhotos(pageParam),
+    queryFn: ({pageParam}) => multiMidiaService.getPhotos(pageParam),
     //pega o parametro 'cursor' da pagina que foi retornada, e passa ele na queryFn para retornar os dados apertir desse ultimo cursor que foi retornado.
     getNextPageParam: ({cursor}) => cursor,
     enabled: hasPermission,

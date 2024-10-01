@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import {FlatList, ListRenderItemInfo, RefreshControl, StyleProp, ViewStyle} from 'react-native';
+import {FlatList, ListRenderItemInfo, StyleProp, ViewStyle} from 'react-native';
 
 import {Post, usePostList} from '@domain';
 import { useScrollToTop } from '@react-navigation/native';
@@ -30,15 +30,14 @@ export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
         data={postList}
         keyExtractor={post => post.id.toString()}
         renderItem={renderItem}
-        onEndReached={fetchNextPage}//FUNÇÃO QUE SERÁ CHAMANDA QUANDO O SCROLL ESTIVER CHEGANDO NO FINAL DA LISTA
-        onEndReachedThreshold={0.1}//momento que a requisição acima será quamanda qnd chegar nos ultimos 10% da lista.
-        refreshControl={<RefreshControl refreshing={isLoading} onRefresh={refresh}/>}// componente responsalvel por fazer o pull to refresh(Puxar o scroll de cima para baixo)
-        refreshing={isLoading}//para saber se esta esperando novos dados de uma atualização
+        onEndReached={fetchNextPage}
+        onEndReachedThreshold={0.1}
+        refreshing={isLoading}
         contentContainerStyle={{flex: postList.length === 0 ? 1 : undefined}}
         ListHeaderComponent={<HomeHeader />}
         ListEmptyComponent={
           <HomeEmpty loading={isLoading} error={isError} refetch={refresh} />
-        } // O componente será renderizando toda vez que a lista estiver vazia.
+        } 
       />
     </Screen>
   );
