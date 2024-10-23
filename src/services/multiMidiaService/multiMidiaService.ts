@@ -1,4 +1,7 @@
+import { Platform } from 'react-native';
+
 import { CameraRoll } from '@react-native-camera-roll/camera-roll';
+import {manipulateAsync,SaveFormat} from 'expo-image-manipulator';
 
 import {ImageForUpload, PhotoListPaginated} from './multiMidiaType';
 
@@ -15,16 +18,55 @@ return {
 };
 }
 
+/**
+ *
+ * @param imageUri image path
+ * @returns `ImageForUpload` - an object with props requested by a `FormData`
+ */
 
-function prepareImageForUploas(imageUri: string): ImageForUpload {
+async function prepareImageForUpload(
+  imageUri: string,
+): Promise<ImageForUpload> {
+
+  console.log('imageUri:', imageUri);
+
+  const image = await manipulateAsync(prepareImageUri(imageUri), [], {
+    compress: 0.5,
+    format: SaveFormat.JPEG,
+  });
+
   return {
-    name: imageUri,
+    uri: image.uri,
+    name: Date.now().toString(),
     type: 'image/jpeg',
-    uri: 'path',
   };
 }
 
+
+/**
+ *
+ * @param imageUri image path as provided by either by camera or gallery modules
+ * @returns an imageUrl ready to be used in the `Image` component and `FormData` requests
+ */
+
+function prepareImageUri(imageUri: string): string {
+  if (Platform.OS !== 'android') {
+    return imageUri;
+  }
+
+  if (imageUri.startsWith('file://')) {
+    return imageUri;
+  }
+
+  return `file://${imageUri}`;
+}
+
 export const multiMidiaService = {
-  prepareImageForUploas,
+  prepareImageForUpload,
   getPhotos,
+  prepareImageUri,
 };
+
+
+
+

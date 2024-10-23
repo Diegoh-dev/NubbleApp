@@ -2,6 +2,7 @@ import React, {useRef, useState} from 'react';
 import {Dimensions, StyleSheet} from 'react-native';
 
 import {useIsFocused} from '@react-navigation/native';
+import { multiMidiaService } from '@services';
 import { Camera,Templates,useCameraDevice, useCameraFormat} from 'react-native-vision-camera';
 
 import {Box, BoxProps, Icon, PermissionManager} from '@components';
@@ -47,10 +48,24 @@ export function CameraScreen({navigation}: AppScreenPros<'CameraScreen'>) {
     //  });
 
      navigation.navigate('PublishPostScreen', {
-       imageUri: `file://${photoFile?.path}`,
+       imageUri: multiMidiaService.prepareImageUri(photoFile.path),
+      //  imageUri: `file://${photoFile?.path}`,
      });
    }
  }
+
+//  async function takePhoto() {
+//   if (camera.current) {
+//     const photoFile = await camera.current?.takePhoto({
+//       flash: flashOn ? 'on' : 'off',
+//       // qualityPrioritization: 'quality',
+//     });
+
+//     navigation.navigate('PublishPostScreen', {
+//       imageUri: multimediaService.prepareImageUri(photoFile.path),
+//     });
+//   }
+// }
 
   function toggleFlash() {
     setFlashOn(prev => !prev);
@@ -95,10 +110,10 @@ export function CameraScreen({navigation}: AppScreenPros<'CameraScreen'>) {
           </Box>
           <Box {...$controlAreaBottom}>
             {isReady && (
-              <Icon 
+              <Icon
               size={80}
-               color="grayWhite" 
-               name="cameraClick" 
+               color="grayWhite"
+               name="cameraClick"
                onPress={takePhoto} />
             )}
           </Box>

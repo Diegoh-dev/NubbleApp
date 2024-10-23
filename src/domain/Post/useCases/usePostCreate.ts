@@ -1,3 +1,4 @@
+
 import {MutationOptions, QueryKeys} from '@infra';
 import {ImageForUpload, multiMidiaService} from '@services';
 import {useMutation, useQueryClient} from '@tanstack/react-query';
@@ -27,18 +28,17 @@ export function usePostCreate(options?: MutationOptions<Post>) {
     },
   });
 
-  function createPost({
+ async function createPost({
     description,
     imageUri,
   }: {
     description: string;
     imageUri: string;
   }) {
-    const imageCover = multiMidiaService.prepareImageForUploas(imageUri);
+    const imageCover = await multiMidiaService.prepareImageForUpload(imageUri);
 
     mutate({
-      text: description,
-      imageCover: imageCover,
+      text: description, imageCover,
     });
   }
 
