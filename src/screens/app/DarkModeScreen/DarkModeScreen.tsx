@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 
+import { ThemePreference } from '@services';
+
 import {RadioButtonSelector, Screen} from '@components';
 
-type ThemePreference = 'light' | 'dark' | 'system';
 
 type Option = {
   label: string;
