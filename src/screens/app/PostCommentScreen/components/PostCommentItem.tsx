@@ -48,7 +48,7 @@ export function PostCommentItem({postId,postComment,userId,postAuthorId}: Props)
           <Text preset="paragraphSmall" bold>
             {postComment.author.userName}
           </Text>
-          <Text preset="paragraphSmall" color="gray1">
+          <Text preset="paragraphSmall" color="paragraph">
             {postComment.message} - {postComment.createdAtRelative}
           </Text>
         </Box>

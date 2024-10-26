@@ -37,9 +37,11 @@ const lighTheme = {
   successLight: palette.greenSuccessLight,
 
   market: palette.carrotSecondary,
+  paragraph:palette.gray1,
 };
 
-const darkTheme = {
+//typeof lighTheme: (para amarrar o darkthme a tipagem do lighTheme)
+const darkTheme : typeof lighTheme = {
   ...palette,
   //valores semânticos
   primary: palette.carrotSecondary,
@@ -57,6 +59,7 @@ const darkTheme = {
   successLight: palette.greenSuccessLight,
 
   market: palette.carrotSecondary,
+  paragraph:palette.grayWhite,
 };
 
 export const colors = {
