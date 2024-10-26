@@ -39,8 +39,12 @@ const lighTheme = {
   market: palette.carrotSecondary,
   paragraph:palette.gray1,
 
+  paragraphSecondary:palette.gray1,
+
   iconColor:palette.greenPrimary,
   iconFillColor:palette.grayWhite,
+
+  separator:palette.gray4,
 };
 
 //typeof lighTheme: (para amarrar o darkthme a tipagem do lighTheme)
@@ -64,8 +68,12 @@ const darkTheme : typeof lighTheme = {
   market: palette.carrotSecondary,
   paragraph:palette.grayWhite,
 
+  paragraphSecondary:palette.gray1,
+
   iconColor:palette.greenPrimaryLight,
   iconFillColor:palette.grayBlack,
+
+  separator:palette.gray3,
 };
 
 export const colors = {

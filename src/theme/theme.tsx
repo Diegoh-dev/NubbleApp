@@ -8,7 +8,7 @@ import { colors } from './colors';
 
 
 export const theme = createTheme({
-  colors:colors.lighTheme,
+  colors:colors.darkTheme,
   spacing: {
     s4: 4,
     s8: 8,
