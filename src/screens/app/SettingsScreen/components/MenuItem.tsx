@@ -14,9 +14,10 @@ export function MenuItem({label, onPress}: MenuItemProps) {
       flexDirection="row"
       alignItems="center"
       justifyContent="space-between"
-      paddingVertical='s16'
-      >
-      <Text preset='paragraphMedium'>{label}</Text>
+      paddingVertical="s16">
+      <Text semiBold preset="paragraphMedium">
+        {label}
+      </Text>
       <Icon name="chevronRight" />
     </PressableBox>
   );

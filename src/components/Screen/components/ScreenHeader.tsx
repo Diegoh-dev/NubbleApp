@@ -24,7 +24,7 @@ export function ScrrenHeader({canGoBack, title,HeaderComponent,...boxProps}: pro
           testID="screen-back-button"
           onPress={navigation.goBack}
           flexDirection="row"
-          mr="s10"
+          mr={ showBackLabel ? 's10' : undefined}
           alignItems="center">
           <Icon size={ICON_SIZE} name="arrowLeft" color="primary" />
 
