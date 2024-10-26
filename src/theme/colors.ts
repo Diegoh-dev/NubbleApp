@@ -44,7 +44,8 @@ const lighTheme = {
   iconColor:palette.greenPrimary,
   iconFillColor:palette.grayWhite,
 
-  separator:palette.gray4,
+  onBackgroundGray1:palette.gray1,
+  onBackgroundGray2:palette.gray4,
 };
 
 //typeof lighTheme: (para amarrar o darkthme a tipagem do lighTheme)
@@ -73,7 +74,8 @@ const darkTheme : typeof lighTheme = {
   iconColor:palette.greenPrimaryLight,
   iconFillColor:palette.grayBlack,
 
-  separator:palette.gray3,
+  onBackgroundGray1:palette.gray3,
+  onBackgroundGray2:palette.gray1,
 };
 
 export const colors = {
