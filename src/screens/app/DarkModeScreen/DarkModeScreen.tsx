@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React from 'react';
 
-import { ThemePreference } from '@services';
+import { ThemePreference, useSettingsService, useThemePreference } from '@services';
 
 import {RadioButtonSelector, Screen} from '@components';
 
@@ -29,7 +29,17 @@ const itens: Option[] = [
 ];
 
 export function DarkModeScreen() {
-  const [selectedItem, setSelectedItem] = useState<Option>();
+  // const [selectedItem, setSelectedItem] = useState<Option>();
+
+  const themePreference = useThemePreference();
+  const {setThemePreference} = useSettingsService();
+
+  const selectedItem = itens.find(item => item.themePreference === themePreference);
+
+  function setSelectedItem(item:Option){
+    setThemePreference(item.themePreference);
+  }
+
   return (
     <Screen canGoBack title="Modo escuro">
       <RadioButtonSelector

@@ -1,2 +1,2 @@
 export * from './settingsTypes';
-export * from './settingsService';
+export * from './useSettings';
