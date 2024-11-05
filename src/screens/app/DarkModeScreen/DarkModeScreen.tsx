@@ -46,8 +46,8 @@ export function DarkModeScreen() {
         itens={itens}
         selectedItem={selectedItem}
         onSelect={setSelectedItem}
-        valueKey="label"
-        labelKey="themePreference"
+        labelKey="label"
+        valueKey="themePreference"
         descriptionKey="description"
       />
     </Screen>

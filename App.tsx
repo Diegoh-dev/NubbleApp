@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 // NESSA FORMA DE IMPRTAÇÃO TEMOS UM BUG, POIS O JAVASCRIPT CARREGA OS ARQUIVOS DO INDEX, ANTES DE VAZER A INJEÇÃO NO (initializeStorage(MMKVStorage));
 // import {AuthCredentialsProvider, MMKVStorage, initializeStorage} from '@services';
 // import { ToastProvider} from '@services';
 
 
-import { useAppColor } from '@services';
+import { settingsService, useAppColor } from '@services';
 import {ThemeProvider} from '@shopify/restyle';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
@@ -25,6 +25,10 @@ initializeStorage(MMKVStorage);
 function App(): React.JSX.Element {
   useAppColorSchema();
   const appColor = useAppColor();
+
+useEffect(() => {
+  settingsService.handleStatusBar(appColor);
+}, [appColor]);
 
   return (
     <AuthCredentialsProvider>
