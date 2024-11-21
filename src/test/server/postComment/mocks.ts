@@ -1,5 +1,7 @@
-import {PageAPI} from '@api';
+// import {PageAPI} from '@api';
 import {AuthCredentials, PostCommentAPI, UserAPI, userAdapter} from '@domain';
+
+import {PageAPI} from '../../../api/apiTypes';
 
 const POST_ID = 1;
 
@@ -68,7 +70,7 @@ const mockedPostCommentResponse: PageAPI<PostCommentAPI> = {
     next_page_url: null,
     previous_page_url: null,
   },
-  data: [postCommentAPI,mateusPostCommentAPI],
+  data: [postCommentAPI, mateusPostCommentAPI],
 };
 
 export const mockedData = {

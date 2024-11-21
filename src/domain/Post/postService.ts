@@ -2,9 +2,11 @@
 // O APP NÃO ACESSA DIRETO A API OU REPOSITORIO, ELE ACESSA A CAMADA DE SERVIÇO;
 // A UNICA COISA QUE O APP PRECISA SABER É QUE ELE PODE ACESSAR UM SERVIÇO QUE RETORNA UMA LISTA PARA ELE.
 
-import {apiAdapter} from '@api';
-import { ImageForUpload } from '@services';
+// import {apiAdapter} from '@api';
+import {ImageForUpload} from '@services';
 import {Page} from '@types';
+
+import {apiAdapter} from '../../api/apiAdapter';
 
 import {postAdapter} from './postAdapter';
 import {postApi} from './postApi';

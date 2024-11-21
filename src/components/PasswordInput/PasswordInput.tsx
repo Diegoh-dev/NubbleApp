@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 
-import {TextInput,TextInputProps,Icon} from '@components';
+import {Icon} from '../Icon/Icon';
+import {TextInput, TextInputProps} from '../TextInput/TextInput';
+
+// import {TextInput,TextInputProps,Icon} from '@components';
 
 export type PassWordInputProps = Omit<TextInputProps, 'rightComponent'>;
 export function PassWordInput(props: PassWordInputProps) {

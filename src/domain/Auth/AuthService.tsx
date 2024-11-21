@@ -1,4 +1,6 @@
-import {api} from '@api';
+// import {api} from '@api';
+
+// import {api} from '../../api/apiConfig';
 
 import {authAdapter} from './authAdapter';
 import {AuthApi} from './authApi';
@@ -27,14 +29,14 @@ async function signUp(singUpData: SingUpData): Promise<void> {
   await AuthApi.signUp(singUpData);
 }
 
-function updateToken(token: string) {
-  //https://axios-http.com/docs/config_defaults
-  api.defaults.headers.common.Authorization = `Bearer ${token}`;
-}
+// function updateToken(token: string) {
+//   //https://axios-http.com/docs/config_defaults
+//   api.defaults.headers.common.Authorization = `Bearer ${token}`;
+// }
 
-function removeToken() {
-  api.defaults.headers.common.Authorization = null;
-}
+// function removeToken() {
+//   api.defaults.headers.common.Authorization = null;
+// }
 
 async function isUsernameAvailable(username: string): Promise<boolean> {
   const {isAvailable} = await AuthApi.isUsernameAvailable({username});
@@ -46,12 +48,14 @@ async function isEmailAvailable(email: string): Promise<boolean> {
   return isAvailable;
 }
 
-async function requestNewPassword(email: string):Promise<string> {
+async function requestNewPassword(email: string): Promise<string> {
   const {message} = await AuthApi.forgotPassword({email});
   return message;
 }
 
-async function authenticateByRefreshToken(token: string):Promise<AuthCredentials> {
+async function authenticateByRefreshToken(
+  token: string,
+): Promise<AuthCredentials> {
   const acAPI = await AuthApi.refreshToken(token);
   return authAdapter.toAuthCredentials(acAPI);
 }
@@ -60,11 +64,11 @@ export const authService = {
   signIn,
   signOut,
   signUp,
-  updateToken,
-  removeToken,
+  // updateToken,
+  // removeToken,
   isUsernameAvailable,
   isEmailAvailable,
   requestNewPassword,
   authenticateByRefreshToken,
-  isRefreshTokenRequest:AuthApi.isRefreshTokenRequest,
+  isRefreshTokenRequest: AuthApi.isRefreshTokenRequest,
 };

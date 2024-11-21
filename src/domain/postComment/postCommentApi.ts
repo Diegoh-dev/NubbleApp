@@ -1,7 +1,10 @@
 // ARQUIVO RESPONSAVEL POR FAZER A CONEXÃO COM API
 
-import {PageAPI, api} from '@api';
+// import {PageAPI, api} from '@api';
 
+// import {api} from '../../api/apiConfig';
+import {api} from '../../api/apiInstance';
+import {PageAPI} from '../../api/apiTypes';
 import {PageParams} from '../Post/postTypes';
 
 import {PostCommentAPI} from './postCommentTypes';
@@ -22,20 +25,22 @@ async function getList(
   return response.data;
 }
 
-
 async function create(
   post_id: number,
   message: string,
 ): Promise<PostCommentAPI> {
-  const response = await api.post<PostCommentAPI>(POST_COMMENT_PATH, {post_id, message});
+  const response = await api.post<PostCommentAPI>(POST_COMMENT_PATH, {
+    post_id,
+    message,
+  });
 
   return response.data;
 }
 
-
-async function remove(postCommentId:number):Promise<{message:string}>{
-
-  const response = await api.delete<{message:string}>(`${POST_COMMENT_PATH}/${postCommentId}`);
+async function remove(postCommentId: number): Promise<{message: string}> {
+  const response = await api.delete<{message: string}>(
+    `${POST_COMMENT_PATH}/${postCommentId}`,
+  );
 
   return response.data;
 }
@@ -43,5 +48,5 @@ async function remove(postCommentId:number):Promise<{message:string}>{
 export const postCommentApi = {
   getList,
   create,
-  remove
+  remove,
 };

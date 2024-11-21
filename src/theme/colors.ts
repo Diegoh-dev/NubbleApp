@@ -37,19 +37,19 @@ const lighTheme = {
   successLight: palette.greenSuccessLight,
 
   market: palette.carrotSecondary,
-  paragraph:palette.gray1,
+  paragraph: palette.gray1,
 
-  paragraphSecondary:palette.gray1,
+  paragraphSecondary: palette.gray1,
 
-  iconColor:palette.greenPrimary,
-  iconFillColor:palette.grayWhite,
+  iconColor: palette.greenPrimary,
+  iconFillColor: palette.grayWhite,
 
-  onBackgroundGray1:palette.gray1,
-  onBackgroundGray2:palette.gray4,
+  onBackgroundGray1: palette.gray1,
+  onBackgroundGray2: palette.gray4,
 };
 
 //typeof lighTheme: (para amarrar o darkthme a tipagem do lighTheme)
-const darkTheme : typeof lighTheme = {
+const darkTheme: typeof lighTheme = {
   ...palette,
   //valores semânticos
   primary: palette.carrotSecondary,
@@ -67,15 +67,15 @@ const darkTheme : typeof lighTheme = {
   successLight: palette.greenSuccessLight,
 
   market: palette.carrotSecondary,
-  paragraph:palette.grayWhite,
+  paragraph: palette.grayWhite,
 
-  paragraphSecondary:palette.gray1,
+  paragraphSecondary: palette.gray1,
 
-  iconColor:palette.greenPrimaryLight,
-  iconFillColor:palette.grayBlack,
+  iconColor: palette.greenPrimaryLight,
+  iconFillColor: palette.grayBlack,
 
-  onBackgroundGray1:palette.gray3,
-  onBackgroundGray2:palette.gray1,
+  onBackgroundGray1: palette.gray3,
+  onBackgroundGray2: palette.gray1,
 };
 
 export const colors = {

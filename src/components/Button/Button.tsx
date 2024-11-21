@@ -1,11 +1,15 @@
 import React from 'react';
 
-import {
-  Text,
-  TouchableOpacityBox,
-  TouchableOpacityBoxPros,
-  ActivityIndicator,
-} from '@components';
+// import {
+//   Text,
+//   TouchableOpacityBox,
+//   TouchableOpacityBoxPros,
+//   ActivityIndicator,
+// } from '@components';
+
+import {ActivityIndicator} from '../ActivityIndicator/ActivityIndicator';
+import {TouchableOpacityBox, TouchableOpacityBoxPros} from '../Box/box';
+import {Text} from '../Text/Text';
 
 import {buttonPresets} from './buttonPresets';
 
@@ -45,7 +49,11 @@ export function Button({
       {loading ? (
         <ActivityIndicator color={buttonPreset.content.color} />
       ) : (
-        <Text color={buttonPreset.content.color} {...buttonPreset.content.textProps}>{title}</Text>
+        <Text
+          color={buttonPreset.content.color}
+          {...buttonPreset.content.textProps}>
+          {title}
+        </Text>
       )}
     </TouchableOpacityBox>
   );

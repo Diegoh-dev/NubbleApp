@@ -1,7 +1,8 @@
 import {create} from 'zustand';
 import {persist} from 'zustand/middleware';
 
-import {storage} from '../storage';
+import {MMKVStorage} from '../storage';
+// import {storage} from '../storage'; verificar pq o storage não está sendo iniciado
 
 import {SearchHistoryService} from './searchHistoryType';
 
@@ -36,7 +37,7 @@ const useSearchHistoryStore = create<SearchHistoryService>()(
     }),
     {
       name: '@searchHistory',
-      storage: storage,
+      storage: MMKVStorage,
     },
   ),
 );

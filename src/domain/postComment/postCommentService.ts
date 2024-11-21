@@ -1,5 +1,7 @@
-import {apiAdapter} from '@api';
+// import {apiAdapter} from '@api';
 import {Page} from '@types';
+
+import {apiAdapter} from '../../api/apiAdapter';
 
 import {postCommentAdapter} from './postCommentAdapter';
 import {postCommentApi} from './postCommentApi';
@@ -14,9 +16,12 @@ async function getList(
     page,
     per_page: PER_PAGE,
   });
-  
-// Refatoração
-  return apiAdapter.toPageModel(postCommentPageAPI,postCommentAdapter.toPostComment);
+
+  // Refatoração
+  return apiAdapter.toPageModel(
+    postCommentPageAPI,
+    postCommentAdapter.toPostComment,
+  );
 
   // return {
   //   data: postCommentPageAPI.data.map(postCommentAdapter.toPostComment),
@@ -64,5 +69,5 @@ export const postCommentService = {
   getList,
   create,
   remove,
-  isAllowToDelete
+  isAllowToDelete,
 };

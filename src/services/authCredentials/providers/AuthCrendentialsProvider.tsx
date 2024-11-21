@@ -3,15 +3,20 @@ import {createContext} from 'react';
 
 // import {useStoreWithEqualityFn} from 'zustand/traditional';
 
-import {registerInterceptor} from '@api';
-import {AuthCredentials, authService} from '@domain';
+// import {registerInterceptor} from '@api';
+// import {AuthCredentials, authService} from '@domain';
 
+import {registerInterceptor} from '../../../api/apiConfig';
+import {apiUtils} from '../../../api/apiUtils';
+// import {authService} from '../../../domain/Auth/AuthService';
+import {AuthCredentials} from '../../../domain/Auth/authTypes';
 import {authCredentialsStorage} from '../authCredencialsStorage';
 import {AuthCredentialsService} from '../authCredentialsType';
+// import {AuthCredentialsService} from '../authCredentialsType';
 
 export const AuthCredentialsContext = createContext<AuthCredentialsService>({
   authCredentials: null,
-  userId:null,
+  userId: null,
   saveCrendentials: async () => {},
   isLoading: true,
   removeCrendentials: async () => {},
@@ -34,7 +39,7 @@ export function AuthCredentialsProvider({children}: PropsWithChildren<{}>) {
       saveCrendentials,
       removeCrendentials,
     });
-    
+
     return interceptor;
   }, [authCredentials]);
 
@@ -46,7 +51,8 @@ export function AuthCredentialsProvider({children}: PropsWithChildren<{}>) {
 
       if (getCredentials) {
         // atualiza o token de autenticação;
-        authService.updateToken(getCredentials.token);
+        // authService.updateToken(getCredentials.token);
+        apiUtils.updateToken(getCredentials.token);
         //seta os dados do usuário logado no state de authCredentials
         setAuthCredentials(getCredentials);
       }
@@ -59,13 +65,15 @@ export function AuthCredentialsProvider({children}: PropsWithChildren<{}>) {
 
   async function saveCrendentials(ac: AuthCredentials): Promise<void> {
     //TODO:Persist
-    authService.updateToken(ac.token);
+    // authService.updateToken(ac.token);
+    apiUtils.updateToken(ac.token);
     authCredentialsStorage.set(ac);
     setAuthCredentials(ac);
   }
 
   async function removeCrendentials(): Promise<void> {
-    authService.removeToken();
+    // authService.removeToken();
+    apiUtils.removeToken();
     authCredentialsStorage.remove();
     setAuthCredentials(null);
   }
@@ -79,7 +87,7 @@ export function AuthCredentialsProvider({children}: PropsWithChildren<{}>) {
         isLoading,
         saveCrendentials,
         removeCrendentials,
-        userId
+        userId,
       }}>
       {children}
     </AuthCredentialsContext.Provider>

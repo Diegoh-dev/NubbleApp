@@ -1,9 +1,16 @@
-import {api} from '@api';
-import { AxiosRequestConfig } from 'axios';
+// import {api} from '@api';
+import {AxiosRequestConfig} from 'axios';
 
-import { UserAPI } from '../user';
+// import {api} from '../../api/apiConfig';
+import {api} from '../../api/apiInstance';
+import {UserAPI} from '../user';
 
-import {AuthCredentialsAPI, FieldIsAvailableAPI, ForgotPassawordParam, SingUpDataAPI} from './authTypes';
+import {
+  AuthCredentialsAPI,
+  FieldIsAvailableAPI,
+  ForgotPassawordParam,
+  SingUpDataAPI,
+} from './authTypes';
 
 const REFRESH_TOKEN_URL = 'auth/refresh-token';
 
@@ -23,17 +30,20 @@ async function signOut(): Promise<string> {
   return reponse.data;
 }
 
-async function signUp(data:SingUpDataAPI):Promise<UserAPI> {
-  const response = await api.post('auth/register',data);
+async function signUp(data: SingUpDataAPI): Promise<UserAPI> {
+  const response = await api.post('auth/register', data);
   return response.data;
 }
 
 async function isUsernameAvailable(params: {
   username: string;
 }): Promise<FieldIsAvailableAPI> {
-  const response = await api.get<FieldIsAvailableAPI>('auth/validate-username', {
-    params,
-  });
+  const response = await api.get<FieldIsAvailableAPI>(
+    'auth/validate-username',
+    {
+      params,
+    },
+  );
 
   return response.data;
 }
@@ -57,7 +67,10 @@ async function forgotPassword(
   // });
 
   // PASSANDO COMO BODY
-  const response = await api.post<{message: string}>('auth/forgot-password', params );
+  const response = await api.post<{message: string}>(
+    'auth/forgot-password',
+    params,
+  );
   return response.data;
 }
 

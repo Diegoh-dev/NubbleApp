@@ -1,7 +1,11 @@
-import {BASE_URL, PageAPI} from '@api';
+// import {BASE_URL, PageAPI} from '@api';
 import {POST_COMMENT_PATH, PostCommentAPI} from '@domain';
 import {cloneDeep} from 'lodash';
 import {http, HttpResponse} from 'msw';
+
+// import {BASE_URL} from '../../../api/apiConfig';
+import {BASE_URL} from '../../../api/apiInstance';
+import {PageAPI} from '../../../api/apiTypes';
 
 import {mockedData} from './mocks';
 
@@ -9,7 +13,7 @@ const FULL_URL = `${BASE_URL}${POST_COMMENT_PATH}`;
 
 let inMemoryResponse = cloneDeep(mockedData.mockedPostCommentResponse);
 
-export function resetInMemoryResponse(){
+export function resetInMemoryResponse() {
   inMemoryResponse = cloneDeep(mockedData.mockedPostCommentResponse);
 }
 
@@ -26,34 +30,38 @@ export const postCommentHandlers = [
     async ({request}) => {
       const body = await request.json();
 
-      const newPostCommentAPI:PostCommentAPI = {
-      ...mockedData.postCommentAPI,
-      id:999,
-      post_id:body.post_id,
-      message:body.message,
+      const newPostCommentAPI: PostCommentAPI = {
+        ...mockedData.postCommentAPI,
+        id: 999,
+        post_id: body.post_id,
+        message: body.message,
       };
 
-      inMemoryResponse.data = [newPostCommentAPI,...inMemoryResponse.data];
+      inMemoryResponse.data = [newPostCommentAPI, ...inMemoryResponse.data];
       inMemoryResponse.meta = {
         ...inMemoryResponse.meta,
-        total:inMemoryResponse.meta.total + 1,
+        total: inMemoryResponse.meta.total + 1,
       };
 
-      return HttpResponse.json(newPostCommentAPI,{status:201});
+      return HttpResponse.json(newPostCommentAPI, {status: 201});
     },
   ),
 
   //https://mswjs.io/docs/network-behavior/rest#reading-path-parameters
 
-  http.delete<{postCommentId:string}>(`${FULL_URL}/:postCommentId`, async ({params}) => {
+  http.delete<{postCommentId: string}>(
+    `${FULL_URL}/:postCommentId`,
+    async ({params}) => {
+      inMemoryResponse.data = inMemoryResponse.data.filter(
+        item => item.id.toString() !== params.postCommentId,
+      );
 
-    inMemoryResponse.data = inMemoryResponse.data.filter(item => item.id.toString()  !== params.postCommentId);
+      inMemoryResponse.meta = {
+        ...inMemoryResponse.meta,
+        total: inMemoryResponse.meta.total - 1,
+      };
 
-    inMemoryResponse.meta = {
-      ...inMemoryResponse.meta,
-      total:inMemoryResponse.meta.total - 1,
-    };
-
-    return HttpResponse.json({message:'removed'},{status:200});
-  }),
+      return HttpResponse.json({message: 'removed'}, {status: 200});
+    },
+  ),
 ];

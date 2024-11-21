@@ -1,14 +1,11 @@
-import { ViewStyle } from 'react-native';
+import {ViewStyle} from 'react-native';
 
 import {createTheme} from '@shopify/restyle';
 
-import { colors } from './colors';
-
-
-
+import {colors} from './colors';
 
 export const theme = createTheme({
-  colors:colors.darkTheme,
+  colors: colors.lighTheme,
   spacing: {
     s4: 4,
     s8: 8,
@@ -38,17 +35,16 @@ export const theme = createTheme({
 
 export const darkTheme = createTheme({
   ...theme,
-  colors:colors.darkTheme,
+  colors: colors.darkTheme,
 });
 
-
 export const $shadowProps: ViewStyle = {
-  elevation:10,
-  shadowColor:'#000',
-  shadowOpacity:0.05,
-  shadowRadius:12,
- shadowOffset:{width:0,height:-3},
- };
+  elevation: 10,
+  shadowColor: '#000',
+  shadowOpacity: 0.05,
+  shadowRadius: 12,
+  shadowOffset: {width: 0, height: -3},
+};
 
 // Extraindo o tipo do objeto theme
 export type Theme = typeof theme;

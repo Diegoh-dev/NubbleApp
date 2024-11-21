@@ -1,6 +1,10 @@
-import {BASE_URL, PageAPI} from '@api';
+// import {BASE_URL, PageAPI} from '@api';
 import {USER_PATH, UserAPI} from '@domain';
 import {http, HttpResponse} from 'msw';
+
+// import {BASE_URL} from '../../../api/apiConfig';
+import {BASE_URL} from '../../../api/apiInstance';
+import {PageAPI} from '../../../api/apiTypes';
 
 import {userMocked} from './useMocked';
 

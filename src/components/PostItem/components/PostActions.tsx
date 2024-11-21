@@ -2,7 +2,11 @@ import React from 'react';
 
 import {Post} from '@domain';
 
-import {Box, Icon, IconProps, Text, TouchableOpacityBox} from '@components';
+import {Box, TouchableOpacityBox} from '../../Box/box';
+import {Icon, IconProps} from '../../Icon/Icon';
+import {Text} from '../../Text/Text';
+
+// import {Box, Icon, IconProps, Text, TouchableOpacityBox} from '@components';
 
 type Props = Pick<Post, 'reactionCount' | 'commentCount' | 'favoriteCount'>;
 export function PostActions({

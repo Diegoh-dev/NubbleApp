@@ -1,10 +1,11 @@
 import {create} from 'zustand';
 import {persist} from 'zustand/middleware';
 
-import {storage} from '../storage';
+import {MMKVStorage} from '../storage';
+// import {storage} from '../storage'; verificar pq o storage não está sendo iniciado
 
 import {settingsService} from './settingsService';
-import { AppColorScheme, SettingsStore, ThemePreference } from './settingsTypes';
+import {AppColorScheme, SettingsStore, ThemePreference} from './settingsTypes';
 // import {AppColorScheme, SettingsStore, ThemePreference} from './settingsType';
 
 const useSettingsStore = create<SettingsStore>()(
@@ -29,7 +30,7 @@ const useSettingsStore = create<SettingsStore>()(
     }),
     {
       name: '@Settings',
-      storage: storage,
+      storage: MMKVStorage,
     },
   ),
 );
