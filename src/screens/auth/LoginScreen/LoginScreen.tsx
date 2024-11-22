@@ -1,9 +1,10 @@
 import React from 'react';
 // import {Alert} from 'react-native';
 
-import { useAuthSingIn } from '@domain';
+import {useAuthSingIn} from '@domain';
 import {zodResolver} from '@hookform/resolvers/zod';
-import { useToastService } from '@services';
+import {AuthScreenProps} from '@Routes';
+import {useToastService} from '@services';
 import {useForm} from 'react-hook-form';
 
 import {
@@ -13,13 +14,8 @@ import {
   FormTextInput,
   FormPassWordInput,
 } from '@components';
-import { AuthScreenProps } from '@routes';
-
 
 import {loginScreenShema, loginScreenShemaType} from './loginScreenShema';
-
-
-
 
 export function LoginScreen({navigation}: AuthScreenProps<'LoginScreen'>) {
   const {control, formState, handleSubmit} = useForm<loginScreenShemaType>({
@@ -41,13 +37,13 @@ export function LoginScreen({navigation}: AuthScreenProps<'LoginScreen'>) {
 
   const {showToast} = useToastService();
 
-  const {SignIn,isLoading}  = useAuthSingIn({
-    onError: (message) => showToast({message,type:'error'}),
+  const {SignIn, isLoading} = useAuthSingIn({
+    onError: message => showToast({message, type: 'error'}),
   });
 
   function submitForm({email, password}: loginScreenShemaType) {
     // Alert.alert(`Email:${email} ${'\n'} Senha:${password}`);
-    SignIn({email,password});
+    SignIn({email, password});
   }
 
   return (

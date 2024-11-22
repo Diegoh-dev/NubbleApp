@@ -2,12 +2,17 @@ import React, {useRef, useState} from 'react';
 import {Dimensions, StyleSheet} from 'react-native';
 
 import {useIsFocused} from '@react-navigation/native';
-import { multiMidiaService } from '@services';
-import { Camera,Templates,useCameraDevice, useCameraFormat} from 'react-native-vision-camera';
+import {AppScreenPros} from '@Routes';
+import {multiMidiaService} from '@services';
+import {
+  Camera,
+  Templates,
+  useCameraDevice,
+  useCameraFormat,
+} from 'react-native-vision-camera';
 
 import {Box, BoxProps, Icon, PermissionManager} from '@components';
 import {useAppSafeArea, useAppState} from '@hooks';
-import {AppScreenPros} from '@routes';
 
 const CAMERA_VIEW = Dimensions.get('screen').width;
 const CONTROL_HEIGHT = (Dimensions.get('screen').height - CAMERA_VIEW) / 2;
@@ -16,9 +21,9 @@ const CONTROL_DIFF = 30;
 export function CameraScreen({navigation}: AppScreenPros<'CameraScreen'>) {
   const {top} = useAppSafeArea();
   const [flashOn, setFlashOn] = useState(false);
-  const [isReady,setIsReady] = useState(false);
+  const [isReady, setIsReady] = useState(false);
   //https://react-native-vision-camera.com/docs/guides/devices
-  const device = useCameraDevice('back',{
+  const device = useCameraDevice('back', {
     physicalDevices: [
       'ultra-wide-angle-camera',
       'wide-angle-camera',
@@ -28,7 +33,7 @@ export function CameraScreen({navigation}: AppScreenPros<'CameraScreen'>) {
 
   //https://react-native-vision-camera.com/docs/guides/devices
 
-  const format = useCameraFormat(device,Templates.Instagram);
+  const format = useCameraFormat(device, Templates.Instagram);
 
   const isFocused = useIsFocused(); // se tiver na tela de camera;
   const appState = useAppState(); //para saber se o app esta aberto e minimizado;
@@ -36,42 +41,40 @@ export function CameraScreen({navigation}: AppScreenPros<'CameraScreen'>) {
 
   const camera = useRef<Camera>(null);
 
- async function takePhoto() {
-   if (camera.current) {
-     const photoFile = await camera.current?.takePhoto({
-       flash: flashOn ? 'on' : 'off',
-       // qualityPriorization:'quality',//na versão que está sendo usada não tem essa opção
-     });
+  async function takePhoto() {
+    if (camera.current) {
+      const photoFile = await camera.current?.takePhoto({
+        flash: flashOn ? 'on' : 'off',
+        // qualityPriorization:'quality',//na versão que está sendo usada não tem essa opção
+      });
 
-    //  console.log({
-    //    photoFile,
-    //  });
+      //  console.log({
+      //    photoFile,
+      //  });
 
-     navigation.navigate('PublishPostScreen', {
-       imageUri: multiMidiaService.prepareImageUri(photoFile.path),
-      //  imageUri: `file://${photoFile?.path}`,
-     });
-   }
- }
+      navigation.navigate('PublishPostScreen', {
+        imageUri: multiMidiaService.prepareImageUri(photoFile.path),
+        //  imageUri: `file://${photoFile?.path}`,
+      });
+    }
+  }
 
-//  async function takePhoto() {
-//   if (camera.current) {
-//     const photoFile = await camera.current?.takePhoto({
-//       flash: flashOn ? 'on' : 'off',
-//       // qualityPrioritization: 'quality',
-//     });
+  //  async function takePhoto() {
+  //   if (camera.current) {
+  //     const photoFile = await camera.current?.takePhoto({
+  //       flash: flashOn ? 'on' : 'off',
+  //       // qualityPrioritization: 'quality',
+  //     });
 
-//     navigation.navigate('PublishPostScreen', {
-//       imageUri: multimediaService.prepareImageUri(photoFile.path),
-//     });
-//   }
-// }
+  //     navigation.navigate('PublishPostScreen', {
+  //       imageUri: multimediaService.prepareImageUri(photoFile.path),
+  //     });
+  //   }
+  // }
 
   function toggleFlash() {
     setFlashOn(prev => !prev);
   }
-
-
 
   return (
     <PermissionManager
@@ -111,10 +114,11 @@ export function CameraScreen({navigation}: AppScreenPros<'CameraScreen'>) {
           <Box {...$controlAreaBottom}>
             {isReady && (
               <Icon
-              size={80}
-               color="grayWhite"
-               name="cameraClick"
-               onPress={takePhoto} />
+                size={80}
+                color="grayWhite"
+                name="cameraClick"
+                onPress={takePhoto}
+              />
             )}
           </Box>
         </Box>

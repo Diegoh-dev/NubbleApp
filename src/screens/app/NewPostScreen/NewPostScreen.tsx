@@ -7,10 +7,10 @@ import {
   Pressable,
 } from 'react-native';
 
-import { useMultiMidiaGetPhotos, usePermission} from '@services';
+import {AppTabScreenProps} from '@Routes';
+import {useMultiMidiaGetPhotos, usePermission} from '@services';
 
 import {PermissionManager, Screen} from '@components';
-import {AppTabScreenProps} from '@routes';
 
 import {Header} from './components/Header';
 

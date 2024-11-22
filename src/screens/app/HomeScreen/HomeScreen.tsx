@@ -1,22 +1,28 @@
-import React, { useRef } from 'react';
+import React, {useRef} from 'react';
 import {FlatList, ListRenderItemInfo, StyleProp, ViewStyle} from 'react-native';
 
 import {Post, usePostList} from '@domain';
-import { useScrollToTop } from '@react-navigation/native';
+import {useScrollToTop} from '@react-navigation/native';
+import {AppTabScreenProps} from '@Routes';
 
 import {PostItem, Screen} from '@components';
-import {AppTabScreenProps} from '@routes';
 
 import {HomeEmpty} from './components/HomeEmpty';
 import {HomeHeader} from './components/HomeHeader';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
-  const {list:postList, isLoading, isError, refresh,fetchNextPage} = usePostList();
+  const {
+    list: postList,
+    isLoading,
+    isError,
+    refresh,
+    fetchNextPage,
+  } = usePostList();
 
   const flatListRef = useRef<FlatList<Post>>(null);
 
-  useScrollToTop(flatListRef);// responsavel para voltar a listagem do começo.
+  useScrollToTop(flatListRef); // responsavel para voltar a listagem do começo.
 
   function renderItem({item}: ListRenderItemInfo<Post>) {
     return <PostItem post={item} />;
@@ -25,7 +31,7 @@ export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
   return (
     <Screen style={$screen}>
       <FlatList
-      ref={flatListRef}
+        ref={flatListRef}
         showsVerticalScrollIndicator={false}
         data={postList}
         keyExtractor={post => post.id.toString()}
@@ -37,7 +43,7 @@ export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
         ListHeaderComponent={<HomeHeader />}
         ListEmptyComponent={
           <HomeEmpty loading={isLoading} error={isError} refetch={refresh} />
-        } 
+        }
       />
     </Screen>
   );

@@ -2,10 +2,10 @@ import React, {useState} from 'react';
 import {Dimensions, Image} from 'react-native';
 
 import {usePostCreate} from '@domain';
+import {AppScreenPros} from '@Routes';
 import {useToastService} from '@services';
 
 import {Button, Screen, Text, TextInput} from '@components';
-import {AppScreenPros} from '@routes';
 
 const IMAGE_WIDTH = Dimensions.get('screen').width / 2;
 
@@ -31,8 +31,8 @@ export function PublishPostScreen({
   });
 
   function publishPost() {
-    console.log('imageUri:',imageUri);
-    console.log('description:',description);
+    console.log('imageUri:', imageUri);
+    console.log('description:', description);
     createPost({
       description: description,
       imageUri,

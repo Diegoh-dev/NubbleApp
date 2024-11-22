@@ -1,12 +1,13 @@
 import React from 'react';
 
+import {AuthScreenProps} from '@Routes';
 
-import { Screen, Icon, Text, Button } from '@components';
-import { AuthScreenProps } from '@routes';
+import {Screen, Icon, Text, Button} from '@components';
 
-export function SuccesScreen({ route, navigation }: AuthScreenProps<'SuccesScreen'>) {
-
-
+export function SuccesScreen({
+  route,
+  navigation,
+}: AuthScreenProps<'SuccesScreen'>) {
   function goBackToBegin() {
     //TODO: nagefar para a tela de login
     navigation.goBack();
@@ -14,8 +15,12 @@ export function SuccesScreen({ route, navigation }: AuthScreenProps<'SuccesScree
   return (
     <Screen>
       <Icon {...route.params.icon} />
-      <Text mt="s24" preset="headingLarge">{route.params.title}</Text>
-      <Text mt="s16" preset="paragraphLarge">{route.params.description}</Text>
+      <Text mt="s24" preset="headingLarge">
+        {route.params.title}
+      </Text>
+      <Text mt="s16" preset="paragraphLarge">
+        {route.params.description}
+      </Text>
 
       <Button onPress={goBackToBegin} mt="s40" title="Voltar ao início" />
     </Screen>

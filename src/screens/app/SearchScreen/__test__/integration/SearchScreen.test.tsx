@@ -1,10 +1,9 @@
 import React from 'react';
 
+import {AppStack} from '@Routes';
 import {authCredentialsStorage} from '@services';
 import {mockUtils, server, userMocked} from '@test';
 import {act, fireEvent, renderScreen, screen} from 'test-utils';
-
-import {AppStack} from '@routes';
 
 //informa para o jest que ele deve importar o modulo original e não o mockado.
 //https://jestjs.io/docs/jest-object#jestunmockmodulename

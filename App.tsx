@@ -4,6 +4,7 @@ import React, {useEffect} from 'react';
 // import {AuthCredentialsProvider, MMKVStorage, initializeStorage} from '@services';
 // import { ToastProvider} from '@services';
 
+import {Router} from '@Routes';
 import {settingsService, useAppColor} from '@services';
 import {ThemeProvider} from '@shopify/restyle';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
@@ -11,7 +12,6 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 import {Toast} from '@components';
 import {useAppColorSchema} from '@hooks';
-import {Router} from '@routes';
 
 import {AuthCredentialsProvider} from './src/services/authCredentials/providers/AuthCrendentialsProvider';
 import {initializeStorage, MMKVStorage} from './src/services/storage';

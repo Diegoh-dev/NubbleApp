@@ -1,10 +1,15 @@
 import React from 'react';
 
-import {Screen, Text} from '@components';
-import { AppTabScreenProps } from '@routes';
+import {AppTabScreenProps} from '@Routes';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function FavoriteScreen({navigation}:AppTabScreenProps<'FavoriteScreen'>) {
+import {Screen, Text} from '@components';
+
+export function FavoriteScreen({
+  navigation,
+}: AppTabScreenProps<'FavoriteScreen'>) {
+  console.log({
+    navigation,
+  });
   return (
     <Screen>
       <Text> My Davorite Screen</Text>

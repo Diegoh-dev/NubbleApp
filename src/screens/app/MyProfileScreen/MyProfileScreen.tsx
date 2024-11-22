@@ -1,9 +1,9 @@
 import React from 'react';
 
+import {AppTabScreenProps} from '@Routes';
 import {useAuthCrendentials} from '@services';
 
 import {Box, Icon, Screen, Text} from '@components';
-import {AppTabScreenProps} from '@routes';
 
 export function MyProfileScreen({
   navigation,

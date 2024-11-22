@@ -2,11 +2,11 @@ import React, {useState} from 'react';
 import {FlatList, ListRenderItemInfo} from 'react-native';
 
 import {User, useUserSearch} from '@domain';
-import { useSearchHistoryService } from '@services';
+import {AppScreenPros} from '@Routes';
+import {useSearchHistoryService} from '@services';
 
 import {Icon, ProfileUser, Screen, TextInput} from '@components';
 import {useDebounce} from '@hooks';
-import {AppScreenPros} from '@routes';
 
 import {SearchHistory} from './components/SearchHistory';
 
@@ -19,7 +19,13 @@ export function SearchScreen({}: AppScreenPros<'SearchScreen'>) {
   const {list} = useUserSearch(debaounceSearch);
 
   function renderItem({item}: ListRenderItemInfo<User>) {
-    return <ProfileUser onPress={() => addUser(item)} user={item} avatarProps={{size:48}}/>;
+    return (
+      <ProfileUser
+        onPress={() => addUser(item)}
+        user={item}
+        avatarProps={{size: 48}}
+      />
+    );
   }
 
   return (
@@ -33,7 +39,6 @@ export function SearchScreen({}: AppScreenPros<'SearchScreen'>) {
           leftComponent={<Icon color="gray3" name="search" />}
         />
       }>
-
       {search.length === 0 ? (
         <SearchHistory />
       ) : (

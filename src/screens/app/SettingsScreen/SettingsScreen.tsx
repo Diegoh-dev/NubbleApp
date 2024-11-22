@@ -2,20 +2,22 @@ import React from 'react';
 import {FlatList, ListRenderItemInfo} from 'react-native';
 
 import {useAuthSingOut} from '@domain';
+import {AppScreenPros} from '@Routes';
 
 import {Button, Screen, Separator} from '@components';
-import {AppScreenPros} from '@routes';
 
 import {MenuItem, MenuItemProps} from './components/MenuItem';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function SettingsScreen({navigation}: AppScreenPros<'SettingsScreen'>) {
   const {SingOut, isLoading} = useAuthSingOut();
 
   const items: MenuItemProps[] = [
     {label: 'Termos de uso', onPress: () => {}},
     {label: 'Política de privacidade', onPress: () => {}},
-    {label: 'Modo escuro', onPress: () => navigation.navigate('DarkModeScreen')},
+    {
+      label: 'Modo escuro',
+      onPress: () => navigation.navigate('DarkModeScreen'),
+    },
   ];
 
   function renderItem({item}: ListRenderItemInfo<MenuItemProps>) {

@@ -2,13 +2,14 @@ import React from 'react';
 import {RefreshControl, ScrollView} from 'react-native';
 
 import {useUserGetById} from '@domain';
+import {AppScreenPros} from '@Routes';
 
 import {ActivityIndicator, Box, ProfileAvatar, Screen, Text} from '@components';
-import {AppScreenPros} from '@routes';
 
 export function ProfileScreen({route}: AppScreenPros<'ProfileScreen'>) {
   const userId = route.params.userId;
-  const {user, isLoading, isError,isFetching,refetch} = useUserGetById(userId);
+  const {user, isLoading, isError, isFetching, refetch} =
+    useUserGetById(userId);
   //isLoading => aparece quando ainda não tem cache (Na primeira vez).
   // isFetching => aparece a cada vez que um refetch é feito
   return (
@@ -17,9 +18,10 @@ export function ProfileScreen({route}: AppScreenPros<'ProfileScreen'>) {
       {isError && <Text> Error ao carregar perfil do usuário</Text>}
       {user && (
         <ScrollView
-        style={{flex:1}}
-        refreshControl={<RefreshControl refreshing={isFetching} onRefresh={refetch}/>}
-        >
+          style={{flex: 1}}
+          refreshControl={
+            <RefreshControl refreshing={isFetching} onRefresh={refetch} />
+          }>
           <Box alignItems="center">
             <ProfileAvatar
               imageURL={user.profileUrl}

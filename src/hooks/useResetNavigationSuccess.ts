@@ -1,8 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
-
-import { AuthStackParamList } from '@routes';
-
-
+import {AuthStackParamList} from '@Routes';
 
 export function useResetNavigationSuccess() {
   const navigation = useNavigation();

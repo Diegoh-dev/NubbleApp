@@ -2,6 +2,7 @@ import React from 'react';
 
 import {useAuthSingUp} from '@domain';
 import {zodResolver} from '@hookform/resolvers/zod';
+import {AuthScreenProps, AuthStackParamList} from '@Routes';
 import {useForm} from 'react-hook-form';
 
 import {
@@ -13,7 +14,6 @@ import {
   ActivityIndicator,
 } from '@components';
 import {useResetNavigationSuccess} from '@hooks';
-import {AuthScreenProps, AuthStackParamList} from '@routes';
 
 import {SignUpShematype, signUpShema} from './signUpShema';
 import {useAsyncValidation} from './useAsyncValidation';
@@ -61,10 +61,13 @@ export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
   //   enabled: usernameIsValid,
   // });
 
-  const {emailValidate,usernameValidation} = useAsyncValidation({watch, getFieldState});
+  const {emailValidate, usernameValidation} = useAsyncValidation({
+    watch,
+    getFieldState,
+  });
 
   function submitForm(formValues: SignUpShematype) {
-    console.log('formValues',formValues);
+    console.log('formValues', formValues);
     signUp(formValues);
   }
   return (
@@ -109,7 +112,9 @@ export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
         errorMessage={emailValidate.errorMessage}
         placeholder="Digite seu e-mail"
         boxProps={{mb: 's20'}}
-        rightComponent={emailValidate.isFetching ? <ActivityIndicator/> : undefined}
+        rightComponent={
+          emailValidate.isFetching ? <ActivityIndicator /> : undefined
+        }
       />
 
       <FormPassWordInput
@@ -122,7 +127,11 @@ export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
 
       <Button
         loading={isLoading}
-        disabled={!formState.isValid || usernameValidation.notReady || emailValidate.notReady}
+        disabled={
+          !formState.isValid ||
+          usernameValidation.notReady ||
+          emailValidate.notReady
+        }
         onPress={handleSubmit(submitForm)}
         title="Criar uma conta"
       />
