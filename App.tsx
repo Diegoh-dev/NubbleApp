@@ -11,8 +11,8 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 import {Toast} from '@components';
 import {useAppColorSchema} from '@hooks';
+import {Router} from '@routes';
 
-import {Router} from './src/routes/Routes';
 import {AuthCredentialsProvider} from './src/services/authCredentials/providers/AuthCrendentialsProvider';
 import {initializeStorage, MMKVStorage} from './src/services/storage';
 import {darkTheme, theme} from './src/theme/theme';
