@@ -24,11 +24,23 @@ jobs:
       - name: Install Packages
         run: yarn install
 
-      - name: Run Lint
-        run: yarn lint
+      - name: Check TypeScript Version
+        run: yarn tsc --version
+
+      - name: Check tsconfig.json
+        run: cat tsconfig.json
+
+      - name: List Files
+        run: ls -R src/
+
+      - name: Clear Cache
+        run: yarn cache clean
 
       - name: Run TypeScript compiler
         run: yarn tsc --noEmit
 
-      - name: Run test
+      - name: Run Lint
+        run: yarn lint
+
+      - name: Run Test
         run: yarn test
