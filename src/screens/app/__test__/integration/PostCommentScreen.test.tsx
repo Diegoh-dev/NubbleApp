@@ -12,8 +12,7 @@ import {
   waitForElementToBeRemoved,
 } from 'test-utils';
 
-import { PostCommentScreen } from '../../PostCommentScreen/PostCommentScreen';
-
+import {PostCommentScreen} from '../../PostCommentScreen/PostCommentScreen';
 
 beforeAll(() => {
   server.listen();
@@ -69,7 +68,7 @@ describe('integration: PostCommentScreen', () => {
     const comments = await screen.findAllByTestId('post-comment-id');
 
     expect(comments.length).toBe(3);
-  });
+  }, 1000);
 
   test('When DELETING a comment, the list is automatically updated and a toast message is displayed ', async () => {
     jest
@@ -116,7 +115,7 @@ describe('integration: PostCommentScreen', () => {
     // pressionar em "confirmar" no alert
     mockedConfirm && mockedConfirm();
 
-//https://callstack.github.io/react-native-testing-library/docs/api#waitforelementtoberemoved
+    //https://callstack.github.io/react-native-testing-library/docs/api#waitforelementtoberemoved
     // verificar se a list foi atualizada (meu comentário sumiu)
     await waitForElementToBeRemoved(() =>
       screen.getByText(mockedPostComment.mateusPostCommentAPI.message, {
