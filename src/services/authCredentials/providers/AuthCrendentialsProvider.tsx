@@ -58,6 +58,7 @@ export function AuthCredentialsProvider({children}: PropsWithChildren<{}>) {
       }
     } catch (error) {
       //TODO: handle error
+      console.log({error});
     } finally {
       setIsLoading(false);
     }
