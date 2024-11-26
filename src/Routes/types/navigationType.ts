@@ -1,14 +1,11 @@
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import { CompositeScreenProps } from '@react-navigation/native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
+import {CompositeScreenProps} from '@react-navigation/native';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
-
-
-import { AppStackParamList } from '../AppStack';
-import { AppTabBottomTabParamList } from '../AppTabNavigator';
-import { AuthStackParamList } from '../AuthStack';
-
-
+import {AppStackParamList} from '../AppStack';
+import {AppTabBottomTabParamList} from '../AppTabNavigator';
+import {AuthStackParamList} from '../AuthStack';
+import {OnboardingStackParamList} from '../OnboardingStack';
 
 // Sobresqueve a tipagem que o react navigation vai usar
 // tem que usar a interface base (RootParamList)
@@ -19,14 +16,19 @@ declare global {
   }
 }
 
-export type AppScreenPros<RouteName extends keyof AppStackParamList> = NativeStackScreenProps<AppStackParamList, RouteName>;
+export type AppScreenPros<RouteName extends keyof AppStackParamList> =
+  NativeStackScreenProps<AppStackParamList, RouteName>;
 
-export type AuthScreenProps<RouteName extends keyof AuthStackParamList> = NativeStackScreenProps<
-AuthStackParamList,
-  RouteName
->;
+export type AuthScreenProps<RouteName extends keyof AuthStackParamList> =
+  NativeStackScreenProps<AuthStackParamList, RouteName>;
 
-export type AppTabScreenProps<RouteName extends keyof AppTabBottomTabParamList> = CompositeScreenProps<
+export type OnboardingScreenProps<
+  RouteName extends keyof OnboardingStackParamList,
+> = NativeStackScreenProps<OnboardingStackParamList, RouteName>;
+
+export type AppTabScreenProps<
+  RouteName extends keyof AppTabBottomTabParamList,
+> = CompositeScreenProps<
   BottomTabScreenProps<AppTabBottomTabParamList, RouteName>,
-  NativeStackScreenProps<AppStackParamList,'AppTabNavigator'>
+  NativeStackScreenProps<AppStackParamList, 'AppTabNavigator'>
 >;
