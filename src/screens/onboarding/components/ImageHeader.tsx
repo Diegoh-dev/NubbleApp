@@ -1,12 +1,22 @@
 import React from 'react';
 import {Dimensions, Image} from 'react-native';
 
-import {images} from '@assets';
+import {useAppColor} from '@services';
+
+import {OnboardingPageItem} from '../onboardingFingData';
 
 const SCREEN_WIDTH = Dimensions.get('screen').width;
 
-export function ImageHeader() {
-  return (
-    <Image source={images.onboardingDark1} style={{width: SCREEN_WIDTH}} />
-  );
+type ImageHeaderProps = {
+  image: OnboardingPageItem['image'];
+};
+
+export function ImageHeader({image}: ImageHeaderProps) {
+  const appColor = useAppColor();
+  console.log({
+    appColor,
+  });
+
+  const source = appColor === 'light' ? image.light : image.dark;
+  return <Image source={source} style={{width: SCREEN_WIDTH}} />;
 }
