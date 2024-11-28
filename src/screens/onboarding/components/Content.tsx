@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Box, Text} from '@components';
 
-import {OnboardingPageItem} from '../onboardingFingData';
+import {OnboardingPageItem} from '../onboardingData';
 
 type ContentProps = Omit<OnboardingPageItem, 'image'>;
 

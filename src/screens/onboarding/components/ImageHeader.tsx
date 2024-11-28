@@ -3,7 +3,7 @@ import {Dimensions, Image} from 'react-native';
 
 import {useAppColor} from '@services';
 
-import {OnboardingPageItem} from '../onboardingFingData';
+import {OnboardingPageItem} from '../onboardingData';
 
 const SCREEN_WIDTH = Dimensions.get('screen').width;
 
