@@ -1,7 +1,10 @@
 module.exports = {
   root: true,
-  extends: ['@react-native','plugin:@tanstack/eslint-plugin-query/recommended'],
-  plugins: ['import','@tanstack/query'], //Informando para o eslint o plugin que está sendo ususado
+  extends: [
+    '@react-native',
+    'plugin:@tanstack/eslint-plugin-query/recommended',
+  ],
+  plugins: ['import', '@tanstack/query'], //Informando para o eslint o plugin que está sendo ususado
   overrides: [
     {
       files: ['*.ts', '*.tsx'],
@@ -32,9 +35,10 @@ module.exports = {
               order: 'asc',
               caseInsensitive: true,
             },
-            'newlines-between': 'always',// coloca uma linha entre cada grupo
+            'newlines-between': 'always', // coloca uma linha entre cada grupo
           },
         ],
+        'react-native/no-inline-styles': 'off', //desabilita o warn de quando usar estilo inline
       },
     },
   ],

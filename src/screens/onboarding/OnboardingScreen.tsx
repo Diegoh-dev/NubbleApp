@@ -41,7 +41,7 @@ export function OnboardingScreen({
   }
 
   return (
-    <Box flex={1} backgroundColor="error">
+    <Box flex={1} backgroundColor="background">
       <FlatList
         ref={flatListRef}
         // scrollEnabled = desabilitar o scroll para que o usuário passe para a proxima página apenas usando os botões.
