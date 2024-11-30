@@ -31,8 +31,6 @@ export function PublishPostScreen({
   });
 
   function publishPost() {
-    console.log('imageUri:', imageUri);
-    console.log('description:', description);
     createPost({
       description: description,
       imageUri,
@@ -45,7 +43,6 @@ export function PublishPostScreen({
         source={{
           uri: imageUri,
         }}
-        // eslint-disable-next-line react-native/no-inline-styles
         style={{
           width: IMAGE_WIDTH,
           height: IMAGE_WIDTH,

@@ -1,21 +1,21 @@
-import { Platform } from 'react-native';
+import {Platform} from 'react-native';
 
-import { CameraRoll } from '@react-native-camera-roll/camera-roll';
-import {manipulateAsync,SaveFormat} from 'expo-image-manipulator';
+import {CameraRoll} from '@react-native-camera-roll/camera-roll';
+import {manipulateAsync, SaveFormat} from 'expo-image-manipulator';
 
 import {ImageForUpload, PhotoListPaginated} from './multiMidiaType';
 
 async function getPhotos(cursor?: string): Promise<PhotoListPaginated> {
   // after => vai buscar a proxima pagina, a partir do elemento 'cursor' que é passado nele.
-const photoPage = await CameraRoll.getPhotos({first: 12,after:cursor});
+  const photoPage = await CameraRoll.getPhotos({first: 12, after: cursor});
 
-const photoList = photoPage.edges.map(edge => edge.node.image.uri);
+  const photoList = photoPage.edges.map(edge => edge.node.image.uri);
 
-return {
-  photoList,
-  cursor:photoPage.page_info.end_cursor,
-  hasNextPage:photoPage.page_info.has_next_page,
-};
+  return {
+    photoList,
+    cursor: photoPage.page_info.end_cursor,
+    hasNextPage: photoPage.page_info.has_next_page,
+  };
 }
 
 /**
@@ -27,9 +27,6 @@ return {
 async function prepareImageForUpload(
   imageUri: string,
 ): Promise<ImageForUpload> {
-
-  console.log('imageUri:', imageUri);
-
   const image = await manipulateAsync(prepareImageUri(imageUri), [], {
     compress: 0.5,
     format: SaveFormat.JPEG,
@@ -41,7 +38,6 @@ async function prepareImageForUpload(
     type: 'image/jpeg',
   };
 }
-
 
 /**
  *
@@ -66,7 +62,3 @@ export const multiMidiaService = {
   getPhotos,
   prepareImageUri,
 };
-
-
-
-

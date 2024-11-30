@@ -67,7 +67,6 @@ export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
   });
 
   function submitForm(formValues: SignUpShematype) {
-    console.log('formValues', formValues);
     signUp(formValues);
   }
   return (
